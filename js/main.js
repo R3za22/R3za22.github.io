@@ -176,6 +176,14 @@ function renderResume(resume) {
   addEntries("#education-list", resume.education,
     (e) => `${e.degree} — ${e.school}`, (e) => e.period, () => null);
 
+  const langs = $("#languages-list");
+  if (langs && resume.languages) {
+    for (const lang of resume.languages) {
+      const li = el("li", `${lang.name} — ${lang.level}`);
+      langs.append(li);
+    }
+  }
+
   const pdfLink = $("#resume-pdf-link");
   if (pdfLink) pdfLink.href = resume.pdf;
 }

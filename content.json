@@ -1,13 +1,13 @@
 {
   "profile": {
-    "name": "EDIT ME — Your Full Name",
+    "name": "Reza Ghamar",
     "title": "Mobile & Full-Stack Developer",
-    "bio": "EDIT ME — Short 2–3 sentence bio. Android developer (Kotlin/Compose and React Native) who ships production apps end-to-end: mobile clients, Django REST backends, billing, and deployment.",
-    "location": "EDIT ME — City, Country (optional, leave empty to hide)",
+    "bio": "Self-taught developer from Ahvaz, Iran, shipping production apps end-to-end: native Android (Kotlin + Jetpack Compose), React Native, and web frontends backed by Django REST APIs — including billing, OTP auth, and deployment.",
+    "location": "Ahvaz, Iran",
     "links": {
       "github": "https://github.com/R3za22",
       "linkedin": "EDIT ME — https://linkedin.com/in/your-handle",
-      "email": "Taharezaclaud@gmail.com"
+      "email": "rezaghamar20@gmail.com"
     }
   },
   "projects": [
@@ -126,26 +126,50 @@
     },
     {
       "category": "Tools & Other",
-      "items": ["Git / GitHub", "GitHub Actions (CI/CD)", "Solidity", "Linux server deployment", "Payment integration (Zarinpal)", "SMS/OTP auth"]
+      "items": ["Git / GitHub", "GitHub Actions (CI/CD)", "Solidity", "C++", "Adobe Photoshop", "Linux server deployment", "Payment integration (Zarinpal)", "SMS/OTP auth"]
     }
   ],
   "resume": {
     "pdf": "assets/resume.pdf",
-    "summary": "EDIT ME — One-paragraph professional summary for the resume page.",
+    "summary": "Self-taught developer with several years of freelance experience. Started in frontend web development (HTML, CSS, JavaScript/TypeScript, React, Next.js — both CSR and SSR), then expanded into mobile: native Android with Kotlin and Jetpack Compose, and cross-platform apps with React Native/Expo. Now building complete products end-to-end — mobile clients, Django REST backends, payment integration, and production deployment.",
     "experience": [
       {
-        "role": "EDIT ME — Job Title",
-        "company": "EDIT ME — Company",
-        "period": "EDIT ME — 2024 – Present",
-        "points": ["EDIT ME — achievement or responsibility", "EDIT ME — achievement or responsibility"]
+        "role": "Freelance Web & Mobile Developer",
+        "company": "Self-employed",
+        "period": "2022 – Present",
+        "points": [
+          "Building Mangaro: Persian-first manga platform — Kotlin/Compose Android app + Django REST backend in production",
+          "Frontend development with React, Next.js, TypeScript, Tailwind CSS, and Bootstrap",
+          "Cross-platform mobile apps with React Native and Expo (Zaboon, Profit App team)",
+          "Built stateracademy.ir (Stater Academy website)"
+        ]
+      },
+      {
+        "role": "Graphic Designer (Photoshop)",
+        "company": "Freelance",
+        "period": "2014 – 2019",
+        "points": [
+          "Banner design and visual identity work with Adobe Photoshop"
+        ]
       }
     ],
     "education": [
       {
-        "degree": "EDIT ME — Degree, Field",
-        "school": "EDIT ME — University",
-        "period": "EDIT ME — years"
+        "degree": "B.Sc. Software Engineering (in progress)",
+        "school": "Islamic Azad University of Ahvaz",
+        "period": "2023 – Present"
+      },
+      {
+        "degree": "Associate Degree, Software Engineering",
+        "school": "Jundi-Shapur University (state university)",
+        "period": "2018 – 2021"
       }
+    ],
+    "languages": [
+      { "name": "Persian", "level": "Native" },
+      { "name": "English", "level": "Fluent" },
+      { "name": "Arabic", "level": "Advanced" },
+      { "name": "Japanese", "level": "Basic" }
     ]
   }
 }
