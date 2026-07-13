@@ -4,6 +4,9 @@
     "title": "Mobile & Full-Stack Developer",
     "bio": "Self-taught developer from Ahvaz, Iran, shipping production apps end-to-end: native Android (Kotlin + Jetpack Compose), React Native, and web frontends backed by Django REST APIs — including billing, OTP auth, and deployment.",
     "location": "Ahvaz, Iran",
+    "coordinates": "31.3°N 48.7°E",
+    "motto": { "local": "سازنده، نه تزئین‌کار", "en": "builder, not decorator" },
+    "marquee": ["Kotlin", "Jetpack Compose", "Django REST", "React Native", "Next.js", "Solidity"],
     "links": {
       "github": "https://github.com/R3za22",
       "linkedin": "EDIT ME — https://linkedin.com/in/your-handle",
@@ -23,6 +26,8 @@
       ],
       "tech": ["Kotlin", "Jetpack Compose", "Django", "DRF", "PostgreSQL", "SQLDelight", "GitHub Actions"],
       "category": "android",
+      "displayTag": "ANDROID · API",
+      "flagship": true,
       "repo": null,
       "repoNote": "Private repository — code available on request",
       "demo": null,
@@ -44,6 +49,8 @@
       ],
       "tech": ["React Native", "Expo", "TypeScript", "Python", "Lottie"],
       "category": "android",
+      "displayTag": "MOBILE",
+      "flagship": false,
       "repo": null,
       "repoNote": "Private repository — code available on request",
       "demo": null,
@@ -64,6 +71,8 @@
       ],
       "tech": ["React Native", "Expo", "TypeScript"],
       "category": "mobile",
+      "displayTag": "MOBILE",
+      "flagship": false,
       "repo": null,
       "repoNote": "Private / team repository",
       "demo": null,
@@ -84,6 +93,8 @@
       ],
       "tech": ["Next.js", "TypeScript", "React", "Vercel"],
       "category": "web",
+      "displayTag": "WEB",
+      "flagship": false,
       "repo": "https://github.com/R3za22/Evently-2024",
       "repoNote": null,
       "demo": "https://evently-2024-ochre.vercel.app",
@@ -105,6 +116,8 @@
       ],
       "tech": ["Solidity", "Ethereum", "Hardhat"],
       "category": "tools",
+      "displayTag": "CONTRACT",
+      "flagship": false,
       "repo": "https://github.com/R3za22/basic-eth-wallet",
       "repoNote": null,
       "demo": null,
@@ -115,6 +128,11 @@
       "fallbackStats": { "stars": 0, "language": "Solidity" }
     }
   ],
+  "androidSection": {
+    "heading": "Native where\nit counts.",
+    "description": "Mangaro is a heavily reworked TachiyomiSY fork — Kotlin, Compose, offline-first reading, OTP auth and subscription billing running in production. Zaboon brings gamified English lessons to Persian speakers.",
+    "ctaLabel": "GET THE APK"
+  },
   "skills": [
     {
       "category": "Mobile",
