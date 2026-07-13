@@ -1,0 +1,151 @@
+{
+  "profile": {
+    "name": "EDIT ME — Your Full Name",
+    "title": "Mobile & Full-Stack Developer",
+    "bio": "EDIT ME — Short 2–3 sentence bio. Android developer (Kotlin/Compose and React Native) who ships production apps end-to-end: mobile clients, Django REST backends, billing, and deployment.",
+    "location": "EDIT ME — City, Country (optional, leave empty to hide)",
+    "links": {
+      "github": "https://github.com/R3za22",
+      "linkedin": "EDIT ME — https://linkedin.com/in/your-handle",
+      "email": "Taharezaclaud@gmail.com"
+    }
+  },
+  "projects": [
+    {
+      "id": "mangaro",
+      "name": "Mangaro",
+      "tagline": "Persian-first, self-hosted manga reader for the Iranian market",
+      "description": "Curated manga platform built end-to-end: native Android app (Kotlin + Jetpack Compose, heavily refactored TachiyomiSY fork) talking to a single self-hosted Django REST backend. Phone-OTP auth, Free/Plus subscriptions via Zarinpal, RTL-locked Persian UI, and a sanctioned deploy pipeline to production on Liara.",
+      "highlights": [
+        "Production system end-to-end: mobile app, API, billing, media proxy, CI, deploy scripts",
+        "Large-scale fork surgery — replacing upstream Tachiyomi systems with custom auth, source, and onboarding flows",
+        "Offline-first: local SQLDelight database is authoritative, backend mirrors it"
+      ],
+      "tech": ["Kotlin", "Jetpack Compose", "Django", "DRF", "PostgreSQL", "SQLDelight", "GitHub Actions"],
+      "category": "android",
+      "repo": null,
+      "repoNote": "Private repository — code available on request",
+      "demo": null,
+      "playStore": null,
+      "apk": null,
+      "screenshots": ["assets/screenshots/mangaro-1.png", "assets/screenshots/mangaro-2.png", "assets/screenshots/mangaro-3.png"],
+      "githubStatsRepo": null,
+      "fallbackStats": null
+    },
+    {
+      "id": "zaboon",
+      "name": "Zaboon",
+      "tagline": "Gamified English-learning app for Persian speakers",
+      "description": "Game-like language learning app built with React Native (Expo) and TypeScript, backed by a custom Python API. Quiz progression, leaderboards, alphabet training, Lottie-animated loading flows, over-the-air updates, and full RTL handling.",
+      "highlights": [
+        "Second mobile stack alongside native Kotlin — React Native + Expo with OTA updates",
+        "Persian-first UX: RTL layout, localized game flows",
+        "Custom Python backend (ZaboonAPI) for content and progress"
+      ],
+      "tech": ["React Native", "Expo", "TypeScript", "Python", "Lottie"],
+      "category": "android",
+      "repo": null,
+      "repoNote": "Private repository — code available on request",
+      "demo": null,
+      "playStore": null,
+      "apk": null,
+      "screenshots": ["assets/screenshots/zaboon-1.png", "assets/screenshots/zaboon-2.png"],
+      "githubStatsRepo": null,
+      "fallbackStats": null
+    },
+    {
+      "id": "profit-app",
+      "name": "Profit App",
+      "tagline": "Production fintech-style mobile app, built with a team",
+      "description": "Shipped, versioned production app (React Native + Expo, TypeScript) developed collaboratively — part of a product family including an admin app and web frontends. Contributed across the main mobile client through tagged releases.",
+      "highlights": [
+        "Team collaboration on a real release cycle (tagged versions, multi-app product family)",
+        "Large TypeScript codebase with shared components across apps"
+      ],
+      "tech": ["React Native", "Expo", "TypeScript"],
+      "category": "mobile",
+      "repo": null,
+      "repoNote": "Private / team repository",
+      "demo": null,
+      "playStore": null,
+      "apk": null,
+      "screenshots": ["assets/screenshots/profit-1.png"],
+      "githubStatsRepo": null,
+      "fallbackStats": null
+    },
+    {
+      "id": "evently",
+      "name": "Evently",
+      "tagline": "Event platform with live demo",
+      "description": "Event discovery and management platform built with Next.js and TypeScript, deployed on Vercel. Create, browse, and manage events through a server-rendered React frontend.",
+      "highlights": [
+        "Live, clickable deployment",
+        "Next.js App Router with TypeScript"
+      ],
+      "tech": ["Next.js", "TypeScript", "React", "Vercel"],
+      "category": "web",
+      "repo": "https://github.com/R3za22/Evently-2024",
+      "repoNote": null,
+      "demo": "https://evently-2024-ochre.vercel.app",
+      "playStore": null,
+      "apk": null,
+      "screenshots": [],
+      "githubStatsRepo": "R3za22/Evently-2024",
+      "fallbackStats": { "stars": 0, "language": "TypeScript" }
+    },
+    {
+      "id": "basic-eth-wallet",
+      "name": "Basic ETH Wallet",
+      "tagline": "Multi-signature Ethereum smart contract wallet",
+      "description": "Solidity smart contract wallet with guardian-based ownership recovery (3-guardian multi-sig owner change), per-address spending allowances, and safe ETH transfers using call() with reentrancy protection.",
+      "highlights": [
+        "Guardian recovery system — no single point of failure",
+        "Modern Solidity patterns (0.8.x, call() over deprecated transfer())",
+        "Spending allowances for delegated, capped access"
+      ],
+      "tech": ["Solidity", "Ethereum", "Hardhat"],
+      "category": "tools",
+      "repo": "https://github.com/R3za22/basic-eth-wallet",
+      "repoNote": null,
+      "demo": null,
+      "playStore": null,
+      "apk": null,
+      "screenshots": [],
+      "githubStatsRepo": "R3za22/basic-eth-wallet",
+      "fallbackStats": { "stars": 0, "language": "Solidity" }
+    }
+  ],
+  "skills": [
+    {
+      "category": "Mobile",
+      "items": ["Kotlin", "Jetpack Compose", "Android SDK", "React Native", "Expo", "SQLDelight", "OTA updates", "RTL / i18n"]
+    },
+    {
+      "category": "Web & Backend",
+      "items": ["TypeScript", "React", "Next.js", "Python", "Django", "Django REST Framework", "PostgreSQL", "REST API design"]
+    },
+    {
+      "category": "Tools & Other",
+      "items": ["Git / GitHub", "GitHub Actions (CI/CD)", "Solidity", "Linux server deployment", "Payment integration (Zarinpal)", "SMS/OTP auth"]
+    }
+  ],
+  "resume": {
+    "pdf": "assets/resume.pdf",
+    "summary": "EDIT ME — One-paragraph professional summary for the resume page.",
+    "experience": [
+      {
+        "role": "EDIT ME — Job Title",
+        "company": "EDIT ME — Company",
+        "period": "EDIT ME — 2024 – Present",
+        "points": ["EDIT ME — achievement or responsibility", "EDIT ME — achievement or responsibility"]
+      }
+    ],
+    "education": [
+      {
+        "degree": "EDIT ME — Degree, Field",
+        "school": "EDIT ME — University",
+        "period": "EDIT ME — years"
+      }
+    ]
+  }
+}
