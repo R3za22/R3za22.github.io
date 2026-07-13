@@ -22,10 +22,20 @@ function isPlaceholder(value) {
   return typeof value === "string" && value.startsWith("EDIT ME");
 }
 
-/* ---------- shared: profile header ---------- */
+/* ---------- shared: profile / hero ---------- */
 function renderProfile(profile) {
-  const name = $("#profile-name");
-  if (name) name.textContent = isPlaceholder(profile.name) ? "Your Name" : profile.name;
+  const name = isPlaceholder(profile.name) ? "Your Name" : profile.name;
+  const [first, ...restWords] = name.split(" ");
+  const rest = restWords.join(" ");
+
+  const heroFirst = $("#hero-first");
+  if (heroFirst) heroFirst.textContent = first.toUpperCase();
+  const heroRest = $("#hero-rest");
+  if (heroRest && rest) {
+    const dot = heroRest.querySelector(".dot");
+    heroRest.textContent = rest.toUpperCase();
+    if (dot) heroRest.append(dot);
+  }
 
   const title = $("#profile-title");
   if (title) title.textContent = profile.title;
@@ -35,105 +45,122 @@ function renderProfile(profile) {
     ? profile.bio.replace(/^EDIT ME — /, "")
     : profile.bio;
 
-  const links = $("#profile-links");
-  if (links) {
+  const locale = $("#hero-locale");
+  if (locale && (profile.location || profile.coordinates || profile.motto)) {
+    const line1 = [profile.location, profile.coordinates].filter(Boolean).join(" — ").toUpperCase();
+    locale.textContent = "";
+    if (line1) locale.append(document.createTextNode(line1));
+    if (profile.motto) {
+      if (line1) locale.append(document.createElement("br"));
+      const fa = el("span", profile.motto.local, { class: "fa" });
+      locale.append(fa, document.createTextNode(` · ${profile.motto.en}`));
+    }
+  }
+
+  const marquee = $("#marquee-track");
+  if (marquee && profile.marquee?.length) {
+    const words = profile.marquee.map((w) => w.toUpperCase());
+    const loop = [...words, ...words]; // duplicated for seamless CSS marquee
+    marquee.textContent = "";
+    loop.forEach((word, i) => {
+      marquee.append(el("span", word));
+      if (i < loop.length - 1) marquee.append(el("span", "✦", { class: "sep" }));
+    });
+  }
+
+  const headshot = $("#headshot");
+  // Reveal the headshot slot only once a real image is provided
+  if (headshot) headshot.addEventListener("load", () => headshot.removeAttribute("hidden"));
+
+  const footerLinks = $("#footer-links");
+  if (footerLinks) {
     const { github, linkedin, email } = profile.links;
-    if (github) links.append(el("a", "GitHub", { href: github, target: "_blank", rel: "noopener" }));
+    if (github) footerLinks.append(el("a", "GITHUB", { href: github, target: "_blank", rel: "noopener" }));
     if (linkedin && !isPlaceholder(linkedin))
-      links.append(el("a", "LinkedIn", { href: linkedin, target: "_blank", rel: "noopener" }));
-    if (email) links.append(el("a", "Email", { href: `mailto:${email}` }));
+      footerLinks.append(el("a", "LINKEDIN", { href: linkedin, target: "_blank", rel: "noopener" }));
+    if (email) footerLinks.append(el("a", "EMAIL", { href: `mailto:${email}` }));
   }
 
   const footer = $("#footer-line");
-  if (footer) {
-    const displayName = isPlaceholder(profile.name) ? "R3za22" : profile.name;
-    footer.textContent = `© ${new Date().getFullYear()} ${displayName}`;
-  }
-}
+  if (footer) footer.textContent = `© ${new Date().getFullYear()} ${name.toUpperCase()} — BUILT BY HAND, NO FRAMEWORK`;
 
-/* ---------- shared: card link row ---------- */
-function renderLinks(nav, project) {
-  if (project.repo) nav.append(el("a", "Repository", { href: project.repo, target: "_blank", rel: "noopener" }));
-  else if (project.repoNote) nav.append(el("span", project.repoNote, { class: "repo-note" }));
-  if (project.demo) nav.append(el("a", "Live demo", { href: project.demo, target: "_blank", rel: "noopener" }));
-  if (project.playStore) nav.append(el("a", "Play Store", { href: project.playStore, target: "_blank", rel: "noopener" }));
-  if (project.apk) nav.append(el("a", "Download APK", { href: project.apk, target: "_blank", rel: "noopener" }));
-}
-
-function renderList(ul, items) {
-  for (const item of items) ul.append(el("li", item));
+  // resume.html header
+  const resumeName = $(".resume-header #profile-name");
+  if (resumeName) resumeName.textContent = name;
+  const resumeTitle = $(".resume-header #profile-title");
+  if (resumeTitle) resumeTitle.textContent = profile.title.toUpperCase();
 }
 
 /* ---------- index: projects ---------- */
-function renderProjects(projects) {
+function projectHref(p, githubProfile) {
+  if (p.demo) return p.demo;
+  if (p.repo) return p.repo;
+  if (p.playStore) return p.playStore;
+  if (p.flagship && p.category === "android") return "#android-apps";
+  return githubProfile || "#projects";
+}
+
+function renderProjects(projects, githubProfile) {
   const grid = $("#project-grid");
   if (!grid) return;
-  const tpl = $("#tpl-project-card");
+  const tpl = $("#tpl-project-row");
 
-  for (const p of projects) {
-    const card = tpl.content.cloneNode(true);
-    $(".pc-name", card).textContent = p.name;
-    $(".pc-tagline", card).textContent = p.tagline;
-    $(".pc-desc", card).textContent = p.description;
-    renderList($(".pc-highlights", card), p.highlights);
-    renderList($(".pc-tech", card), p.tech);
-    renderLinks($(".pc-links", card), p);
+  projects.forEach((p, i) => {
+    const row = tpl.content.cloneNode(true);
+    const anchor = row.querySelector(".pc-row");
+    const href = projectHref(p, githubProfile);
+    anchor.href = href;
+    if (/^https?:\/\//.test(href)) {
+      anchor.target = "_blank";
+      anchor.rel = "noopener";
+    }
+    if (p.flagship) anchor.classList.add("flagship");
+    anchor.dataset.projectId = p.id;
 
-    const article = card.querySelector("article");
-    article.dataset.projectId = p.id;
-    grid.append(card);
+    $(".pc-index", row).textContent = String(i + 1).padStart(3, "0");
+    $(".pc-name-text", row).textContent = p.name.toUpperCase();
+    const flag = $(".pc-flag", row);
+    if (p.flagship) flag.hidden = false;
+    $(".pc-tagline", row).textContent = p.tagline;
+    $(".pc-tag", row).textContent = (p.displayTag || p.category || "").toUpperCase();
 
-    if (p.githubStatsRepo) applyStats(article, p);
-  }
+    grid.append(row);
+  });
 }
 
-/* Live stats with hardcoded fallback. */
-async function applyStats(article, project) {
-  const statsEl = $(".pc-stats", article);
-  const show = (stars, language) => {
-    $(".pc-stars", article).textContent = `★ ${stars}`;
-    $(".pc-lang", article).textContent = language || "";
-    statsEl.hidden = false;
-  };
-  try {
-    const res = await fetch(`https://api.github.com/repos/${project.githubStatsRepo}`);
-    if (!res.ok) throw new Error(res.status);
-    const data = await res.json();
-    show(data.stargazers_count, data.language);
-  } catch {
-    if (project.fallbackStats) show(project.fallbackStats.stars, project.fallbackStats.language);
-  }
-}
-
-/* ---------- index: android apps ---------- */
-function renderAndroidApps(projects) {
+/* ---------- index: android apps (phone frames + copy) ---------- */
+function renderAndroidApps(projects, androidSection) {
   const list = $("#android-list");
   if (!list) return;
-  const tpl = $("#tpl-android-card");
+  const tpl = $("#tpl-android-frame");
+  const androidProjects = projects.filter((p) => p.category === "android");
 
-  for (const p of projects.filter((x) => x.category === "android")) {
-    const card = tpl.content.cloneNode(true);
-    $(".ac-name", card).textContent = p.name;
-    $(".ac-tagline", card).textContent = p.tagline;
-    $(".ac-desc", card).textContent = p.description;
-    renderList($(".ac-highlights", card), p.highlights);
-    renderList($(".ac-tech", card), p.tech);
-    renderLinks($(".ac-links", card), p);
-
-    const strip = $(".ac-screenshots", card);
+  for (const p of androidProjects) {
     for (const src of p.screenshots) {
+      const frame = tpl.content.cloneNode(true);
+      const screen = $(".ac-screen", frame);
       const img = el("img", null, { src, alt: `${p.name} screenshot`, loading: "lazy" });
-      // Until real screenshots are added, show a labeled placeholder box instead
       img.addEventListener("error", () => {
-        const box = el("div", "screenshot placeholder", { class: "screenshot-placeholder" });
-        img.replaceWith(box);
+        img.replaceWith(el("div", `${p.name} — screenshot`, { class: "screenshot-placeholder" }));
       });
-      strip.append(img);
+      screen.append(img);
+      list.append(frame);
     }
-
-    card.querySelector("article").dataset.projectId = p.id;
-    list.append(card);
   }
+
+  if (!androidSection) return;
+  const copy = el("div", null, { id: "android-copy" });
+  copy.dataset.reveal = "";
+  copy.append(el("h3", androidSection.heading));
+  copy.append(el("p", androidSection.description));
+
+  const ctaTarget = androidProjects.find((p) => p.apk || p.playStore);
+  const ctaHref = ctaTarget ? (ctaTarget.apk || ctaTarget.playStore) : "#projects";
+  const cta = el("a", `${androidSection.ctaLabel} ↗`, { id: "android-cta", href: ctaHref });
+  if (/^https?:\/\//.test(ctaHref)) { cta.target = "_blank"; cta.rel = "noopener"; }
+  copy.append(cta);
+
+  list.append(copy);
 }
 
 /* ---------- shared: skills ---------- */
@@ -144,7 +171,7 @@ function renderSkills(skills) {
     const section = el("section", null, { class: "skill-group" });
     section.append(el("h3", group.category));
     const ul = el("ul");
-    renderList(ul, group.items);
+    for (const item of group.items) ul.append(el("li", item));
     section.append(ul);
     wrap.append(section);
   }
@@ -165,7 +192,7 @@ function renderResume(resume) {
       $(".re-period", node).textContent = periodOf(entry).replace(/^EDIT ME — /, "");
       const ul = $(".re-points", node);
       const points = pointsOf(entry);
-      if (points) renderList(ul, points.map((pt) => pt.replace(/^EDIT ME — /, "")));
+      if (points) points.forEach((pt) => ul.append(el("li", pt.replace(/^EDIT ME — /, ""))));
       else ul.remove();
       container.append(node);
     }
@@ -178,24 +205,55 @@ function renderResume(resume) {
 
   const langs = $("#languages-list");
   if (langs && resume.languages) {
-    for (const lang of resume.languages) {
-      const li = el("li", `${lang.name} — ${lang.level}`);
-      langs.append(li);
-    }
+    for (const lang of resume.languages) langs.append(el("li", `${lang.name} — ${lang.level}`));
   }
 
   const pdfLink = $("#resume-pdf-link");
   if (pdfLink) pdfLink.href = resume.pdf;
 }
 
+/* ---------- reveal-on-scroll ---------- */
+function initReveal() {
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const targets = Array.from(document.querySelectorAll("[data-reveal]"));
+  if (!targets.length) return;
+
+  let pending = new Set(targets);
+  const reveal = (el) => { el.classList.add("rg-in"); pending.delete(el); };
+
+  const observer = new IntersectionObserver(
+    (entries, obs) => {
+      for (const entry of entries) {
+        if (entry.isIntersecting) {
+          reveal(entry.target);
+          obs.unobserve(entry.target);
+        }
+      }
+    },
+    { threshold: 0, rootMargin: "0px 0px -12% 0px" }
+  );
+  targets.forEach((t, i) => {
+    t.style.transitionDelay = `${(i % 5) * 70}ms`;
+    observer.observe(t);
+  });
+
+  // Safety net: never leave content permanently hidden if IntersectionObserver
+  // never fires (e.g. throttled background tab, unsupported environment).
+  setTimeout(() => {
+    pending.forEach(reveal);
+    observer.disconnect();
+  }, 4000);
+}
+
 /* ---------- boot ---------- */
 loadContent()
   .then((content) => {
     renderProfile(content.profile);
-    renderProjects(content.projects);
-    renderAndroidApps(content.projects);
+    renderProjects(content.projects, content.profile.links.github);
+    renderAndroidApps(content.projects, content.androidSection);
     renderSkills(content.skills);
     renderResume(content.resume);
+    initReveal();
   })
   .catch((err) => {
     console.error(err);

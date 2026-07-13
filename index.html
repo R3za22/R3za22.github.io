@@ -3,95 +3,104 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portfolio — R3za22</title>
+  <title>Reza Ghamar — Mobile & Full-Stack Developer</title>
   <meta name="description" content="Portfolio: Android (Kotlin/Compose, React Native), full-stack web, and tooling projects.">
-  <!-- DESIGN PASS: replace css/style.css with Claude Design output. Markup below is
-       semantic and data-driven (js/main.js + content.json) — restyle freely, but keep
-       element ids and data-* attributes, the JS targets them. -->
+  <!-- Kinetic design (from Claude Design project "Portfolio - Kinetic"), wired to
+       content.json via js/main.js. See DESIGN_HANDOFF.md for the render contract. -->
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-  <!-- ============ HERO / ABOUT ============ -->
-  <header id="hero" class="section">
-    <!-- DESIGN PASS: hero layout, headshot slot below -->
-    <img id="headshot" src="assets/headshot.jpg" alt="" hidden>
-    <h1 id="profile-name"><!-- filled from content.json --></h1>
-    <p id="profile-title"></p>
-    <p id="profile-bio"></p>
-    <nav id="profile-links" aria-label="Contact links">
-      <!-- anchors injected: GitHub, LinkedIn, email -->
-    </nav>
+  <!-- ============ NAV / HERO ============ -->
+  <header id="hero">
+    <span id="brand">RG&copy;</span>
     <nav id="site-nav" aria-label="Site sections">
-      <a href="#projects">Projects</a>
-      <a href="#android-apps">Android Apps</a>
-      <a href="#skills">Skills</a>
-      <a href="resume.html">Resume</a>
+      <a href="#projects">PROJECTS</a>
+      <a href="#android-apps">ANDROID</a>
+      <a href="#skills">SKILLS</a>
+      <a href="resume.html">RESUME &#8599;</a>
     </nav>
   </header>
 
+  <div id="hero-content">
+    <div>
+      <img id="headshot" src="assets/headshot.jpg" alt="" hidden>
+      <div class="hero-line"><div id="hero-first" class="hero-name rise-in"></div></div>
+      <div class="hero-line"><div id="hero-rest" class="hero-name outline rise-in" style="animation-delay:.12s"><span class="dot">.</span></div></div>
+
+      <div id="hero-meta">
+        <p id="profile-bio" class="rise-in" style="animation-delay:.28s"></p>
+        <p id="hero-locale" class="rise-in" style="animation-delay:.36s"></p>
+      </div>
+
+      <div id="hero-cta" class="rise-in" style="animation-delay:.44s">
+        <a class="primary" href="#projects">SEE THE WORK &#8595;</a>
+        <a id="hero-github" class="secondary" href="https://github.com/R3za22" target="_blank" rel="noopener">GITHUB &#8599;</a>
+      </div>
+    </div>
+
+    <div id="marquee-wrap">
+      <div id="marquee-track"><!-- filled by js/main.js --></div>
+    </div>
+  </div>
+
   <main>
     <!-- ============ PROJECTS ============ -->
-    <section id="projects" class="section">
-      <h2>Projects</h2>
-      <div id="project-grid" class="card-grid">
-        <!-- project cards injected by js/main.js — template below -->
+    <section id="projects">
+      <div id="projects-head">
+        <span class="section-label">01 &mdash; SELECTED WORK</span>
+        <span class="years">2022&ndash;2026</span>
+      </div>
+      <div id="project-grid">
+        <!-- project rows injected by js/main.js -->
       </div>
     </section>
 
     <!-- ============ ANDROID APPS ============ -->
-    <section id="android-apps" class="section">
-      <h2>Android Apps</h2>
+    <section id="android-apps">
+      <span class="section-label">02 &mdash; ON DEVICE</span>
       <div id="android-list">
-        <!-- android app cards (with screenshot strips) injected by js/main.js -->
+        <!-- phone frames + copy block injected by js/main.js -->
       </div>
     </section>
 
     <!-- ============ SKILLS ============ -->
-    <section id="skills" class="section">
-      <h2>Skills</h2>
-      <div id="skills-groups" class="card-grid">
+    <section id="skills">
+      <span class="section-label">03 &mdash; STACK</span>
+      <div id="skills-groups" data-reveal>
         <!-- skill groups injected by js/main.js -->
       </div>
     </section>
 
     <!-- ============ RESUME TEASER ============ -->
-    <section id="resume-teaser" class="section">
-      <h2>Resume</h2>
-      <p>Full work history and education on the <a href="resume.html">resume page</a>,
-         or <a id="resume-pdf-link" href="assets/resume.pdf" download>download the PDF</a>.</p>
-    </section>
+    <a id="resume-teaser" href="resume.html" data-reveal>
+      <span class="section-label">04 &mdash; RESUME</span>
+      <div id="resume-teaser-inner">
+        <span class="big">FULL HISTORY &rarr;</span>
+        <p>Experience, education, languages &mdash; on one quiet, printable page. PDF included.</p>
+      </div>
+    </a>
   </main>
 
-  <footer class="section">
+  <footer>
     <p id="footer-line"></p>
+    <div id="footer-links"><!-- filled by js/main.js --></div>
   </footer>
 
   <!-- templates used by js/main.js -->
-  <template id="tpl-project-card">
-    <article class="project-card">
-      <h3 class="pc-name"></h3>
-      <p class="pc-tagline"></p>
-      <p class="pc-desc"></p>
-      <ul class="pc-highlights"></ul>
-      <ul class="pc-tech" aria-label="Tech stack"></ul>
-      <p class="pc-stats" hidden><span class="pc-stars"></span> <span class="pc-lang"></span></p>
-      <nav class="pc-links"></nav>
-    </article>
+  <template id="tpl-project-row">
+    <a class="pc-row" data-reveal>
+      <span class="pc-index"></span>
+      <span class="pc-name"><span class="pc-name-text"></span><span class="pc-flag" hidden>&#9733; FLAGSHIP</span></span>
+      <span class="pc-tagline"></span>
+      <span class="pc-tag"></span>
+    </a>
   </template>
 
-  <template id="tpl-android-card">
-    <article class="android-card">
-      <h3 class="ac-name"></h3>
-      <p class="ac-tagline"></p>
-      <div class="ac-screenshots">
-        <!-- screenshot <img> or placeholder boxes injected -->
-      </div>
-      <p class="ac-desc"></p>
-      <ul class="ac-highlights"></ul>
-      <ul class="ac-tech" aria-label="Tech stack"></ul>
-      <nav class="ac-links"></nav>
-    </article>
+  <template id="tpl-android-frame">
+    <div class="ac-frame" data-reveal>
+      <div class="ac-screen"></div>
+    </div>
   </template>
 
   <script src="js/main.js"></script>

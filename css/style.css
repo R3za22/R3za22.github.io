@@ -1,94 +1,407 @@
 /* ============================================================
-   PLACEHOLDER STYLES — DESIGN PASS REPLACES THIS ENTIRE FILE.
-   Intentionally minimal: layout scaffolding + readability only.
-   Claude Design output should overwrite css/style.css wholesale;
-   markup ids/classes to target are listed in README.md.
+   Kinetic portfolio theme — adapted from Claude Design project
+   "Portfolio - Kinetic". Rendered content lives in content.json;
+   this file is presentation only. See DESIGN_HANDOFF.md for the
+   contract this file must not break.
    ============================================================ */
+
+@import url("fonts.css");
+
+:root {
+  --bg: #0b0b0d;
+  --fg: #f2f0ec;
+  --fg-dim-70: rgba(242, 240, 236, 0.72);
+  --fg-dim-55: rgba(242, 240, 236, 0.55);
+  --fg-dim-45: rgba(242, 240, 236, 0.45);
+  --fg-dim-25: rgba(242, 240, 236, 0.25);
+  --fg-dim-14: rgba(242, 240, 236, 0.14);
+  --fg-dim-08: rgba(242, 240, 236, 0.08);
+  --accent: #7c5cff;
+  --accent-dim: rgba(124, 92, 255, 0.14);
+  --font-display: "Archivo", sans-serif;
+  --font-body: "Instrument Sans", sans-serif;
+  --font-mono: "IBM Plex Mono", monospace;
+  --font-fa: "Vazirmatn", sans-serif;
+  --edge: 48px;
+}
+
+@media (max-width: 640px) {
+  :root { --edge: 24px; }
+}
 
 * { box-sizing: border-box; }
 
+html { background: var(--bg); }
+
 body {
   margin: 0;
-  font-family: system-ui, sans-serif;
-  line-height: 1.6;
-  color: #222;
-  background: #fff;
+  font-family: var(--font-display);
+  color: var(--fg);
+  background: var(--bg);
+  min-height: 100vh;
+  overflow-x: hidden;
+  line-height: 1.5;
 }
 
-.section {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 2rem 1rem;
+a { color: inherit; text-decoration: none; }
+a:hover { color: var(--accent); }
+
+h1, h2, h3 { margin: 0; }
+
+ul { margin: 0; padding: 0; list-style: none; }
+
+/* ---------- reveal-on-scroll ---------- */
+[data-reveal] { opacity: 0; transform: translateY(30px); }
+[data-reveal].rg-in {
+  opacity: 1;
+  transform: none;
+  transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] { opacity: 1; transform: none; }
+  * { animation: none !important; }
 }
 
-h1 { font-size: 2rem; margin: 0 0 0.25rem; }
-h2 { font-size: 1.4rem; border-bottom: 1px solid #ddd; padding-bottom: 0.3rem; }
-h3 { font-size: 1.1rem; margin-bottom: 0.25rem; }
-
-a { color: #0645ad; }
-
-nav a { margin-right: 1rem; }
-
-/* card grids */
-.card-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 1rem;
+@keyframes riseIn {
+  from { transform: translateY(110%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
 }
-
-.project-card,
-.android-card,
-.skill-group,
-.resume-entry {
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  padding: 1rem;
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
 }
+.rise-in { animation: riseIn 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
 
-.android-card { margin-bottom: 1rem; }
-
-/* tech tag lists */
-.pc-tech, .ac-tech {
-  list-style: none;
-  padding: 0;
+/* ---------- nav ---------- */
+#hero {
+  position: sticky;
+  top: 0;
+  z-index: 50;
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px var(--edge);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  background: rgba(11, 11, 13, 0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--fg-dim-08);
+}
+#brand { font-weight: 800; font-size: 15px; }
+#site-nav { display: flex; gap: 36px; color: var(--fg-dim-70); }
+#site-nav a[href="resume.html"] { color: var(--accent); }
+@media (max-width: 640px) {
+  #site-nav { gap: 18px; font-size: 11px; }
+}
+
+/* ---------- hero content ---------- */
+#hero-content {
+  position: relative;
+  min-height: 78vh;
+  padding: 70px var(--edge) 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.hero-line { overflow: hidden; }
+.hero-name {
+  font-weight: 900;
+  font-stretch: 105%;
+  font-size: clamp(64px, 13vw, 196px);
+  line-height: 0.88;
+  letter-spacing: -0.03em;
+}
+.hero-name.outline {
+  color: transparent;
+  -webkit-text-stroke: 2px var(--fg);
+}
+.hero-name .dot { color: var(--accent); -webkit-text-stroke: 0; }
+
+#hero-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-top: 52px;
+  gap: 40px;
   flex-wrap: wrap;
-  gap: 0.4rem;
 }
-.pc-tech li, .ac-tech li {
-  border: 1px solid #ccc;
-  border-radius: 999px;
-  padding: 0.1rem 0.6rem;
-  font-size: 0.8rem;
+#profile-bio {
+  max-width: 480px;
+  font-family: var(--font-body);
+  font-size: 20px;
+  line-height: 1.55;
+  color: var(--fg-dim-70);
+  margin: 0;
+}
+#hero-locale {
+  text-align: right;
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  line-height: 1.9;
+  color: var(--fg-dim-55);
+  margin: 0;
+}
+#hero-locale .fa { font-family: var(--font-fa); color: rgba(124, 92, 255, 0.85); }
+
+#hero-cta {
+  display: flex;
+  gap: 14px;
+  margin-top: 48px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+}
+#hero-cta a {
+  padding: 14px 26px;
+  border-radius: 2px;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+#hero-cta a.primary { background: var(--accent); color: var(--bg); font-weight: 600; }
+#hero-cta a.primary:hover { background: var(--fg); color: var(--bg); }
+#hero-cta a.secondary { border: 1px solid rgba(242, 240, 236, 0.3); }
+#hero-cta a.secondary:hover { border-color: var(--accent); color: var(--accent); }
+
+/* ---------- marquee ---------- */
+#marquee-wrap {
+  margin: 70px calc(var(--edge) * -1) 0;
+  border-top: 1px solid var(--fg-dim-14);
+  border-bottom: 1px solid var(--fg-dim-14);
+  padding: 16px 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+#marquee-track {
+  display: inline-flex;
+  gap: 56px;
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.14em;
+  color: var(--fg-dim-55);
+  animation: marquee 22s linear infinite;
+}
+#marquee-track span.sep { color: var(--accent); }
+
+/* ---------- section labels ---------- */
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  color: var(--accent);
 }
 
-/* screenshot strip */
-.ac-screenshots {
+/* ---------- projects ---------- */
+#projects { padding: 100px var(--edge) 40px; }
+#projects-head {
   display: flex;
-  gap: 0.5rem;
-  overflow-x: auto;
-  padding: 0.5rem 0;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 8px;
 }
-.ac-screenshots img,
-.screenshot-placeholder {
-  height: 320px;
-  min-width: 150px;
-  border: 1px dashed #bbb;
-  border-radius: 8px;
-  object-fit: cover;
+#projects-head .years { font-family: var(--font-mono); font-size: 12px; color: var(--fg-dim-45); }
+#project-grid { border-top: 1px solid var(--fg-dim-14); }
+
+.pc-row {
+  display: grid;
+  grid-template-columns: 64px minmax(260px, 1fr) minmax(200px, 340px) 130px;
+  align-items: center;
+  gap: 24px;
+  padding: 34px 0;
+  border-bottom: 1px solid var(--fg-dim-14);
+  transition: background 0.3s, padding 0.3s;
 }
-.screenshot-placeholder {
+.pc-row:hover { background: var(--accent-dim); padding-left: 14px; }
+.pc-row.flagship { background: linear-gradient(90deg, rgba(124, 92, 255, 0.12), transparent 60%); }
+.pc-index { font-family: var(--font-mono); font-size: 13px; color: var(--fg-dim-45); }
+.pc-name {
+  font-weight: 800;
+  font-size: clamp(28px, 4.5vw, 56px);
+  letter-spacing: -0.02em;
+  color: var(--fg);
+}
+.pc-flag {
+  font-size: 14px;
+  vertical-align: super;
+  color: var(--accent);
+  font-weight: 600;
+  margin-left: 8px;
+}
+.pc-tagline {
+  font-family: var(--font-body);
+  font-size: 14.5px;
+  line-height: 1.5;
+  color: var(--fg-dim-70);
+  margin: 0;
+}
+.pc-tag {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--fg-dim-55);
+  text-align: right;
+}
+.pc-desc, .pc-highlights, .pc-tech, .pc-stats, .pc-links { display: none; }
+
+@media (max-width: 900px) {
+  .pc-row { grid-template-columns: 48px 1fr; row-gap: 10px; padding: 26px 0; }
+  .pc-name { font-size: 36px; }
+  .pc-tagline, .pc-tag { grid-column: 2; text-align: left; }
+}
+
+/* ---------- android section ---------- */
+#android-apps { padding: 90px var(--edge) 100px; }
+#android-list { display: flex; gap: 28px; margin-top: 36px; flex-wrap: wrap; }
+
+.ac-frame {
+  width: 236px;
+  height: 492px;
+  border-radius: 34px;
+  background: #101013;
+  border: 1.5px solid var(--fg-dim-14);
+  padding: 10px;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+  transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.3s;
+}
+.ac-frame:hover { transform: translateY(-8px); border-color: rgba(124, 92, 255, 0.6); }
+.ac-frame:nth-child(2) { margin-top: 56px; }
+.ac-screen {
+  width: 100%;
+  height: 100%;
+  border-radius: 26px;
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #999;
-  font-size: 0.8rem;
+}
+.ac-screen img { width: 100%; height: 100%; object-fit: cover; }
+.screenshot-placeholder {
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(-45deg, #141419 0 14px, #17171d 14px 28px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 12px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--fg-dim-45);
 }
 
-.repo-note { color: #777; font-style: italic; font-size: 0.85rem; }
+#android-copy { flex: 1; min-width: 320px; align-self: center; padding-left: 30px; }
+#android-copy h3 { font-weight: 800; font-size: 42px; letter-spacing: -0.02em; line-height: 1.1; white-space: pre-line; }
+#android-copy p {
+  margin-top: 18px;
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--fg-dim-70);
+  max-width: 380px;
+}
+#android-cta {
+  margin-top: 26px;
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  padding: 11px 20px;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  border-radius: 2px;
+  transition: background 0.2s, color 0.2s;
+}
+#android-cta:hover { background: var(--accent); color: var(--bg); }
 
-.pc-stats { color: #555; font-size: 0.85rem; }
+@media (max-width: 900px) { #android-copy { padding-left: 0; } }
 
-.re-period { color: #777; font-size: 0.9rem; margin-top: 0; }
+/* ---------- skills ---------- */
+#skills { padding: 90px var(--edge) 100px; border-top: 1px solid var(--fg-dim-14); }
+#skills-groups {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  margin-top: 36px;
+  border: 1px solid var(--fg-dim-14);
+}
+.skill-group { padding: 36px; border-right: 1px solid var(--fg-dim-14); }
+.skill-group:last-child { border-right: none; }
+.skill-group h3 { font-weight: 800; font-size: 26px; letter-spacing: -0.01em; }
+.skill-group ul { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 22px; font-family: var(--font-mono); font-size: 12.5px; }
+.skill-group li {
+  padding: 7px 13px;
+  border: 1px solid var(--fg-dim-25);
+  border-radius: 100px;
+  color: var(--fg-dim-70);
+}
+@media (max-width: 900px) {
+  #skills-groups { grid-template-columns: 1fr; }
+  .skill-group { border-right: none; border-bottom: 1px solid var(--fg-dim-14); }
+  .skill-group:last-child { border-bottom: none; }
+}
 
-footer { color: #777; font-size: 0.85rem; }
+/* ---------- resume teaser ---------- */
+#resume-teaser {
+  display: block;
+  padding: 110px var(--edge);
+  border-top: 1px solid var(--fg-dim-14);
+  background: linear-gradient(180deg, transparent, rgba(124, 92, 255, 0.08));
+  transition: background 0.3s;
+}
+#resume-teaser:hover { background: rgba(124, 92, 255, 0.14); }
+#resume-teaser-inner { display: flex; justify-content: space-between; align-items: center; margin-top: 24px; gap: 40px; flex-wrap: wrap; }
+#resume-teaser-inner .big { font-weight: 900; font-stretch: 105%; font-size: clamp(40px, 7vw, 104px); letter-spacing: -0.03em; line-height: 0.95; }
+#resume-teaser-inner p { font-family: var(--font-body); font-size: 16px; line-height: 1.6; color: var(--fg-dim-70); max-width: 340px; margin: 0; }
+
+/* ---------- footer ---------- */
+footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 28px var(--edge);
+  border-top: 1px solid var(--fg-dim-14);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--fg-dim-45);
+  flex-wrap: wrap;
+  gap: 12px;
+}
+#footer-links { display: flex; gap: 26px; }
+#footer-links a { color: var(--fg-dim-55); }
+
+/* ============================================================
+   Resume page — quieter, printable variant of the same system
+   ============================================================ */
+body.resume-page { font-family: var(--font-body); }
+.resume-nav {
+  padding: 24px var(--edge);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  border-bottom: 1px solid var(--fg-dim-14);
+}
+.resume-header { padding: 60px var(--edge) 40px; border-bottom: 1px solid var(--fg-dim-14); }
+.resume-header h1 { font-family: var(--font-display); font-weight: 900; font-size: clamp(40px, 6vw, 72px); letter-spacing: -0.02em; }
+.resume-header #profile-title { font-family: var(--font-mono); color: var(--accent); margin-top: 8px; font-size: 14px; }
+#resume-pdf-link {
+  display: inline-block;
+  margin-top: 22px;
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  padding: 11px 20px;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  border-radius: 2px;
+}
+#resume-pdf-link:hover { background: var(--accent); color: var(--bg); }
+
+.resume-body { max-width: 760px; margin: 0 auto; padding: 0 var(--edge); }
+.resume-body .section { padding: 48px 0; border-bottom: 1px solid var(--fg-dim-14); }
+.resume-body .section:last-child { border-bottom: none; }
+.resume-body h2 { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.2em; color: var(--accent); text-transform: uppercase; margin-bottom: 24px; }
+#resume-summary-text { font-size: 17px; line-height: 1.65; color: var(--fg-dim-70); }
+
+.resume-entry { padding: 18px 0; border-top: 1px solid var(--fg-dim-08); }
+.resume-entry:first-child { border-top: none; }
+.re-heading { font-family: var(--font-display); font-weight: 700; font-size: 20px; }
+.re-period { font-family: var(--font-mono); color: var(--fg-dim-45); font-size: 13px; margin: 4px 0 10px; }
+.re-points { padding-left: 1.1em; list-style: disc; }
+.re-points li { font-size: 15px; line-height: 1.6; color: var(--fg-dim-70); margin-bottom: 4px; }
+
+#languages-list { display: flex; flex-wrap: wrap; gap: 10px; font-family: var(--font-mono); font-size: 13px; }
+#languages-list li { padding: 6px 13px; border: 1px solid var(--fg-dim-25); border-radius: 100px; color: var(--fg-dim-70); }
