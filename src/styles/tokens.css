@@ -1,0 +1,25 @@
+:root {
+  --bg: #0b0d10;
+  --grid: #16191e;
+  --surface: #11141a;
+  --raised: #171b22;
+  --border: #22262d;
+  --control: #2a2f37;
+  --text: #e8eaed;
+  --muted: #a1a7b0;
+  --dim: #7c838e;
+  --accent: #c8f25a;
+  --on-accent: #0b0d10;
+
+  --r-tag: 6px;
+  --r-btn: 8px;
+  --r-card: 12px;
+  --r-panel: 16px;
+
+  --container: 1200px;
+  --gutter: 24px;
+
+  --font-en: 'Geist Variable', system-ui, sans-serif;
+  --font-fa: 'Vazirmatn Variable', system-ui, sans-serif;
+  --font-mono: 'Geist Mono Variable', ui-monospace, monospace;
+}

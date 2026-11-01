@@ -1,0 +1,33 @@
+---
+import '@fontsource-variable/geist';
+import '@fontsource-variable/geist-mono';
+import '@fontsource-variable/vazirmatn';
+import '../styles/global.css';
+
+interface Props {
+  lang: 'en' | 'fa';
+  title: string;
+  description: string;
+  alternate: string;
+  wide?: boolean;
+}
+
+const { lang, title, description, alternate, wide = true } = Astro.props;
+const dir = lang === 'fa' ? 'rtl' : 'ltr';
+const otherLang = lang === 'fa' ? 'en' : 'fa';
+const containerStyle = wide ? undefined : '--container: 1100px';
+---
+
+<!doctype html>
+<html lang={lang} dir={dir} style={containerStyle}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <link rel="alternate" hreflang={otherLang} href={alternate} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
