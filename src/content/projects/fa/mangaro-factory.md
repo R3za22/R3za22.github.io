@@ -8,7 +8,7 @@ stack: []
 links:
   credit:
     label: "MangaTranslator"
-    url: "https://example.com/TODO-mangatranslator"
+    url: "https://github.com/meangrinch/MangaTranslator"
 order: 6
 featured: false
 images: []
