@@ -1,0 +1,161 @@
+---
+import { t, type Lang } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+  nodes: { title: string; detail: string }[];
+  services: string[];
+}
+
+const { lang, nodes, services } = Astro.props;
+// Flow arrow in reading direction: `→` in EN, `←` in FA. In RTL the flex row
+// already runs right to left, so the same glyph points the right way.
+const arrow = t(lang, 'arrow');
+---
+
+<div class="diagram" data-architecture>
+  <div class="flow">
+    {
+      nodes.map((node, i) => (
+        <>
+          {i > 0 && (
+            <>
+              <span class="arrow arrow-h" aria-hidden="true">{arrow}</span>
+              <span class="arrow arrow-v" aria-hidden="true">↓</span>
+            </>
+          )}
+          <div class={`node${i === 0 ? ' lead' : ''}`}>
+            <div class="node-title" dir="auto">{node.title}</div>
+            <div class="node-detail" dir="ltr">{node.detail}</div>
+          </div>
+        </>
+      ))
+    }
+  </div>
+  {
+    services.length > 0 && (
+      <ul class="services">
+        {services.map((service) => {
+          // A service such as `SMS gateway → phone-OTP login` keeps its arrow
+          // as a direction-aware glyph between the two parts.
+          const [from, to] = service.split(' → ');
+          return (
+            <li class="service">
+              {to === undefined ? (
+                <span dir="auto">{service}</span>
+              ) : (
+                <>
+                  <span dir="auto">{from}</span>
+                  <span class="arrow-inline" aria-hidden="true">{arrow}</span>
+                  <span dir="auto">{to}</span>
+                </>
+              )}
+            </li>
+          );
+        })}
+      </ul>
+    )
+  }
+</div>
+
+<style>
+  .diagram {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .flow {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: stretch;
+  }
+
+  .node {
+    flex: 1 1 200px;
+    min-inline-size: 0;
+    padding: 18px;
+    border: 1px solid var(--control);
+    border-radius: 10px;
+    background: var(--surface);
+  }
+
+  .node.lead {
+    border-color: var(--accent);
+  }
+
+  .node-title {
+    font-weight: 600;
+  }
+
+  .node-detail {
+    margin-block-start: 6px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  .arrow {
+    flex: 0 0 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-mono);
+    color: var(--muted);
+  }
+
+  .arrow-v {
+    display: none;
+  }
+
+  .services {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .service {
+    flex: 1 1 200px;
+    min-inline-size: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+    padding: 14px 18px;
+    border: 1px dashed var(--control);
+    border-radius: 10px;
+    font-size: 14px;
+    color: var(--muted);
+  }
+
+  .arrow-inline {
+    font-family: var(--font-mono);
+  }
+
+  /* Narrow screens: the flow runs top to bottom, so arrows point down. */
+  @media (max-width: 600px) {
+    .flow {
+      flex-direction: column;
+    }
+
+    .node {
+      flex: 0 0 auto;
+    }
+
+    .arrow {
+      flex: 0 0 24px;
+    }
+
+    .arrow-h {
+      display: none;
+    }
+
+    .arrow-v {
+      display: flex;
+    }
+  }
+</style>

@@ -1,0 +1,64 @@
+---
+import { t, type Lang } from '../i18n/ui';
+import { slugOf, type Project } from '../lib/caseStudy';
+
+interface Props {
+  lang: Lang;
+  prev: Project;
+  next: Project;
+}
+
+const { lang, prev, next } = Astro.props;
+const workPrefix = lang === 'fa' ? '/fa/work' : '/work';
+// Previous points back in reading order: `←` in EN, `→` in FA.
+const prevArrow = lang === 'fa' ? '→' : '←';
+---
+
+<nav class="pager" aria-label={t(lang, 'cs_back')}>
+  <a class="prev" href={`${workPrefix}/${slugOf(prev)}`} data-prev>
+    <span class="arrow" aria-hidden="true">{prevArrow}</span>
+    <span dir="auto">{prev.data.name}</span>
+  </a>
+  <a class="next" href={`${workPrefix}/${slugOf(next)}`} data-next>
+    <span>{t(lang, 'cs_next')}</span>
+    <span dir="auto">{next.data.name}</span>
+    <span class="arrow" aria-hidden="true">{t(lang, 'arrow')}</span>
+  </a>
+</nav>
+
+<style>
+  .pager {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
+    padding-block: 32px 56px;
+    border-top: 1px solid var(--border);
+  }
+
+  .prev,
+  .next {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+    color: var(--text);
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 600;
+  }
+
+  .prev {
+    color: var(--muted);
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  .arrow {
+    color: var(--accent);
+  }
+
+  .prev .arrow {
+    color: var(--muted);
+  }
+</style>

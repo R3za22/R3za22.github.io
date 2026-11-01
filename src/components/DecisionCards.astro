@@ -1,0 +1,66 @@
+---
+import { t, type Lang } from '../i18n/ui';
+import { toPersianDigits } from '../i18n/digits';
+
+interface Props {
+  lang: Lang;
+  items: { title: string; text: string }[];
+}
+
+const { lang, items } = Astro.props;
+const label = (n: number) => {
+  const num = String(n);
+  return `${t(lang, 'cs_challenge')} ${lang === 'fa' ? toPersianDigits(num) : num}`;
+};
+---
+
+<div class="cards">
+  {
+    items.map((item, i) => (
+      <article class="card" data-decision>
+        <div class="challenge">{label(i + 1)}</div>
+        <h3 dir="auto">{item.title}</h3>
+        <p dir="auto">{item.text}</p>
+      </article>
+    ))
+  }
+</div>
+
+<style>
+  .cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .card {
+    flex: 1 1 300px;
+    min-inline-size: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 24px;
+    border: 1px solid var(--border);
+    border-radius: var(--r-card);
+    background: var(--surface);
+  }
+
+  .challenge {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--accent);
+  }
+
+  h3 {
+    margin: 0;
+    font-size: 19px;
+    font-weight: 600;
+  }
+
+  p {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--muted);
+  }
+</style>

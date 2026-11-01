@@ -1,6 +1,10 @@
 ---
 name: "Mangaro"
 tagline: "Persian-first, self-hosted manga reader for the Iranian market"
+pitch: "A Persian-first manga reader for the Iranian market, built and run solo: Android app, API, payments and deployment."
+platform: "Android + REST API"
+hosting: "Liara (Iran)"
+period: "v1.13 · 2024 — now"
 role: "Founder, sole developer"
 status: "production"
 team: false

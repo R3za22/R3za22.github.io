@@ -1,6 +1,10 @@
 ---
 name: "Profit"
 tagline: "Persian investment platform. React Native app, admin app, Next.js web."
+pitch: "[placeholder]"
+platform: "React Native app + Next.js web"
+hosting: "[placeholder]"
+period: "[placeholder]"
 role: "mobile + web · team"
 status: "shipped"
 team: true

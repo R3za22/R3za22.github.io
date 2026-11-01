@@ -126,3 +126,35 @@ Facts that have no home in the new collections, for later use:
 `README.md`, `DESIGN_HANDOFF.md` and `assets/screenshots/README.md` still describe the
 old vanilla site and say that copy lives in `content.json`. Update them when the
 Astro rebuild lands.
+
+## Case-study pages (Task 5)
+
+Placeholders added by the case-study pages. The page renders each one as visible text.
+
+### Project fields (`pitch`, `platform`, `hosting`, `period`)
+- `en/mangaro.md`: all four from the design. `pitch` is the design's one-line pitch.
+  `fa/mangaro.md`: `pitch` reuses the FA card sentence (the Mangaro tagline). Confirm
+  it, or replace it with a real one-line pitch. `platform`, `hosting`, `period` are `[جانگهدار]`.
+- `en/zaboon.md`: `platform` "React Native (Expo) + Python API" is taken from the overview
+  body. `pitch`, `hosting`, `period` are `[placeholder]`.
+- `en/profit.md`: `platform` "React Native app + Next.js web" is taken from the tagline.
+  `pitch`, `hosting`, `period` are `[placeholder]`.
+- `fa/zaboon.md`, `fa/profit.md`: `pitch`, `platform`, `hosting`, `period` are `[جانگهدار]`.
+
+### Mangaro case-study chrome (EN from the design, FA not yet written)
+- Phone frame labels, `cs_shot_library`, `cs_shot_reader`, `cs_shot_plus`: EN from the design
+  (`[Library screen video]`, `[Reader screen]`, `[Plus subscription]`). FA `[جانگهدار]`.
+- Frames for Zaboon and Profit are `[placeholder]` (EN) / `[جانگهدار]` (FA) until screenshots exist.
+- `cs_team_project` ("team project"): FA `[جانگهدار]`.
+- `cs_challenge` ("challenge", the decision-card label): FA `[جانگهدار]`.
+- `cs_back` FA is `← [جانگهدار]`; the arrow is kept, the words are not yet written.
+
+### Facts and links
+- The links item shows `[placeholder]` / `[جانگهدار]` while `links.apk`, `links.github`
+  and `links.demo` are unset (see the MUST FIX list above).
+
+### Not yet built
+- Case-study pages do not render `images` yet. Frames are placeholders only.
+- The design's bottom nav ("← all work") is replaced by previous/next links. The
+  "all work" link stays in the header.
+- The site footer is not on case-study pages (the design has none).

@@ -101,7 +101,7 @@ a {
  * or uppercase styles of the EN chrome (letter-spacing breaks Arabic joins).
  * English-only mono pieces (the language toggle) keep the mono face.
  */
-html[lang='fa'] :is(.site-header, .status, .meta, .period, .proof, .layer, .footer) {
+html[lang='fa'] :is(.site-header, .status, .meta, .period, .proof, .layer, .footer, .label, .challenge) {
   font-family: var(--font-fa);
 }
 

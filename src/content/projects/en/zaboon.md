@@ -1,6 +1,10 @@
 ---
 name: "Zaboon"
 tagline: "Gamified English-learning app for Persian speakers"
+pitch: "[placeholder]"
+platform: "React Native (Expo) + Python API"
+hosting: "[placeholder]"
+period: "[placeholder]"
 role: "mobile · solo"
 status: "shipped"
 team: false

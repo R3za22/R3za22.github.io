@@ -1,0 +1,13 @@
+---
+import { getCollection } from 'astro:content';
+import CaseStudy from '../../layouts/CaseStudy.astro';
+import { caseStudyPaths } from '../../lib/caseStudy';
+
+export async function getStaticPaths() {
+  return caseStudyPaths('en', await getCollection('projects'));
+}
+
+const { project, prev, next } = Astro.props;
+---
+
+<CaseStudy lang="en" project={project} prev={prev} next={next} />

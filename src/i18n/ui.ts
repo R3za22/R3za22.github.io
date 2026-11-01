@@ -81,6 +81,11 @@ export const en = {
   cs_result: '04 / result',
   cs_stack: '05 / stack',
   cs_differently: "What I'd do differently:",
+  cs_team_project: 'team project',
+  cs_challenge: 'challenge',
+  cs_shot_library: '[Library screen video]',
+  cs_shot_reader: '[Reader screen]',
+  cs_shot_plus: '[Plus subscription]',
 } as const;
 
 export const fa = {
@@ -151,7 +156,7 @@ export const fa = {
   footer_built: '[جانگهدار]',
   footer_military: 'وضعیت نظام وظیفه: [وارد کنید]',
 
-  cs_back: '[جانگهدار]',
+  cs_back: '← [جانگهدار]',
   cs_next: '[جانگهدار]',
   cs_fact_role: '[جانگهدار]',
   cs_fact_platform: '[جانگهدار]',
@@ -163,6 +168,11 @@ export const fa = {
   cs_result: '[جانگهدار]',
   cs_stack: '[جانگهدار]',
   cs_differently: '[جانگهدار]',
+  cs_team_project: '[جانگهدار]',
+  cs_challenge: '[جانگهدار]',
+  cs_shot_library: '[جانگهدار]',
+  cs_shot_reader: '[جانگهدار]',
+  cs_shot_plus: '[جانگهدار]',
 } satisfies Record<keyof typeof en, string>;
 
 export const ui = { en, fa } as const;

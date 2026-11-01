@@ -23,6 +23,12 @@ export const projectSchema = z.object({
   order: z.number().int(),
   featured: z.boolean(),
   images: z.array(z.string().min(1)).default([]),
+  // Case-study fields. Optional so that a project can ship without them; the
+  // case-study page shows `[placeholder]` for any that are missing.
+  pitch: z.string().min(1).optional(),
+  platform: z.string().min(1).optional(),
+  hosting: z.string().min(1).optional(),
+  period: z.string().min(1).optional(),
   architecture: z
     .object({
       nodes: z.array(z.object({ title: z.string().min(1), detail: z.string().min(1) })),
