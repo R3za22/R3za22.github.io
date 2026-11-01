@@ -1,0 +1,102 @@
+---
+import { t, type Lang } from '../i18n/ui';
+import WhoAmI from './WhoAmI.astro';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+---
+
+<section class="container hero">
+  <div class="copy">
+    <p class="status">
+      <span class="dot" aria-hidden="true"></span>
+      {t(lang, 'hero_status')}
+    </p>
+    <h1>
+      {t(lang, 'hero_title')}<br />
+      <span class="sub">{t(lang, 'hero_subtitle')}</span>
+    </h1>
+    <div class="ctas">
+      <a class="btn primary" href="/resume-en.pdf">{t(lang, 'cta_resume')}</a>
+      <a class="btn secondary" href="#work">{t(lang, 'cta_work')}</a>
+    </div>
+  </div>
+  <WhoAmI lang={lang} />
+</section>
+
+<style>
+  .hero {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 48px;
+    align-items: flex-end;
+    padding-block: 112px 96px;
+  }
+
+  .copy {
+    flex: 1 1 620px;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    min-inline-size: 0;
+  }
+
+  .status {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  .dot {
+    flex: none;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+
+  h1 {
+    margin: 0;
+    font-weight: 600;
+    font-size: clamp(44px, 6vw, 84px);
+    line-height: 1.02;
+    letter-spacing: -0.035em;
+  }
+
+  .sub {
+    color: var(--dim);
+  }
+
+  .ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .btn {
+    padding: 13px 22px;
+    border-radius: var(--r-btn);
+    font-size: 15px;
+    text-decoration: none;
+  }
+
+  .primary {
+    background: var(--accent);
+    color: var(--on-accent);
+    font-weight: 600;
+  }
+
+  .secondary {
+    color: var(--text);
+    background: var(--surface);
+    border: 1px solid var(--control);
+    font-weight: 500;
+  }
+</style>

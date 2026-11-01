@@ -1,0 +1,65 @@
+---
+import { t, type Lang, type UiKey } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+
+// Labels are padded with dots to one width, as in the design.
+const rows: { label: UiKey; value: UiKey; accent?: boolean }[] = [
+  { label: 'whoami_name', value: 'val_name' },
+  { label: 'whoami_based', value: 'val_based' },
+  { label: 'whoami_in_prod', value: 'val_in_prod', accent: true },
+  { label: 'whoami_shipped', value: 'val_shipped' },
+  { label: 'whoami_stack', value: 'val_stack' },
+  { label: 'whoami_languages', value: 'val_languages' },
+];
+const LEADER_WIDTH = 13;
+const leader = (label: string) => '.'.repeat(Math.max(3, LEADER_WIDTH - label.length - 1));
+---
+
+<div class="panel">
+  <div class="cmd">{t(lang, 'whoami_cmd')}</div>
+  {
+    rows.map((row) => {
+      const label = t(lang, row.label);
+      return (
+        <div class="row">
+          {label} {leader(label)}{' '}
+          <span class={row.accent ? 'accent' : 'value'}>{t(lang, row.value)}</span>
+        </div>
+      );
+    })
+  }
+</div>
+
+<style>
+  .panel {
+    flex: 1 1 320px;
+    min-inline-size: 0;
+    max-inline-size: 100%;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--r-card);
+    padding: 20px;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    line-height: 2;
+    color: var(--muted);
+  }
+
+  .cmd {
+    color: var(--text);
+    margin-block-end: 8px;
+  }
+
+  .value {
+    color: var(--text);
+  }
+
+  .accent {
+    color: var(--accent);
+  }
+</style>

@@ -1,0 +1,108 @@
+---
+import { t, type Lang } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const arrow = t(lang, 'arrow');
+// Handles for LinkedIn and Telegram are not known yet: shown as text, no href.
+---
+
+<section id="contact" class="container contact">
+  <div class="panel">
+    <div class="intro">
+      <h2>{t(lang, 'contact_title')}</h2>
+      <p>{t(lang, 'contact_text')}</p>
+    </div>
+    <div class="links">
+      <a class="link" href="mailto:rezaghamar20@gmail.com">
+        {t(lang, 'contact_email')} {arrow} rezaghamar20@gmail.com
+      </a>
+      <span class="link unlinked">
+        {t(lang, 'contact_linkedin')} {arrow} {t(lang, 'placeholder')}
+      </span>
+      <span class="link unlinked">
+        {t(lang, 'contact_telegram')} {arrow} {t(lang, 'placeholder')}
+      </span>
+      <a class="link" href="https://github.com/R3za22">
+        {t(lang, 'contact_github')} {arrow} R3za22
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .contact {
+    padding-block: 0 96px;
+  }
+
+  .panel {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 48px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--r-panel);
+  }
+
+  .intro {
+    flex: 1 1 420px;
+    min-inline-size: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  h2 {
+    margin: 0;
+    font-weight: 600;
+    font-size: 40px;
+    letter-spacing: -0.03em;
+  }
+
+  .intro p {
+    margin: 0;
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--muted);
+  }
+
+  .links {
+    flex: 1 1 320px;
+    min-inline-size: 0;
+    max-inline-size: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-family: var(--font-mono);
+    font-size: 14px;
+  }
+
+  .link {
+    padding: 14px 16px;
+    border: 1px solid var(--control);
+    border-radius: var(--r-btn);
+    color: var(--text);
+    text-decoration: none;
+    overflow-wrap: anywhere;
+  }
+
+  .unlinked {
+    color: var(--dim);
+  }
+
+  @media (max-width: 640px) {
+    .panel {
+      padding: 28px;
+    }
+
+    h2 {
+      font-size: 32px;
+    }
+  }
+</style>

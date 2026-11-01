@@ -1,14 +1,40 @@
 ---
+import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import FeaturedWork from '../components/FeaturedWork.astro';
+import MoreProjects from '../components/MoreProjects.astro';
+import SkillGrid from '../components/SkillGrid.astro';
+import Timeline from '../components/Timeline.astro';
+import ContactPanel from '../components/ContactPanel.astro';
+import Footer from '../components/Footer.astro';
+import skillsEn from '../data/skills.en.json';
+import timelineEn from '../data/timeline.en.json';
+import { skillSchema, timelineSchema } from '../lib/schema';
+
+const lang = 'en' as const;
+const projects = (await getCollection('projects')).filter((project) =>
+  project.id.startsWith('en/'),
+);
+const skills = skillSchema.parse(skillsEn);
+const timeline = timelineSchema.parse(timelineEn);
 ---
 
 <Base
-  lang="en"
-  title="Reza Ghamar"
-  description="Mobile and full-stack developer."
+  lang={lang}
+  title="Reza Ghamar — Mobile & Full-Stack Developer"
+  description="Mobile and full-stack developer. I ship complete apps: Android, web and backend."
   alternate="/fa/"
 >
+  <Header lang={lang} />
   <main>
-    <h1>Reza Ghamar</h1>
+    <Hero lang={lang} />
+    <FeaturedWork lang={lang} projects={projects} />
+    <MoreProjects lang={lang} projects={projects} />
+    <SkillGrid lang={lang} skills={skills} />
+    <Timeline lang={lang} items={timeline} />
+    <ContactPanel lang={lang} />
   </main>
+  <Footer lang={lang} />
 </Base>

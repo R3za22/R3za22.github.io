@@ -1,5 +1,5 @@
 ---
-name: "ShahContract"
+name: "ShahContract + ETH Wallet"
 tagline: "Shahnameh adventure on Ethereum, plus a multi-sig wallet with guardian recovery."
 role: "[placeholder]"
 status: "shipped"
