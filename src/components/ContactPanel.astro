@@ -6,7 +6,9 @@ interface Props {
 }
 
 const { lang } = Astro.props;
-const arrow = t(lang, 'arrow');
+// The links sit in an LTR block, so the arrow points forward in LTR for both
+// languages (as in the design). `t(lang, 'arrow')` is RTL-facing for FA.
+const arrow = '→';
 // Handles for LinkedIn and Telegram are not known yet: shown as text, no href.
 ---
 
@@ -16,7 +18,7 @@ const arrow = t(lang, 'arrow');
       <h2>{t(lang, 'contact_title')}</h2>
       <p>{t(lang, 'contact_text')}</p>
     </div>
-    <div class="links">
+    <div class="links" dir="ltr" data-contact-links>
       <a class="link" href="mailto:rezaghamar20@gmail.com">
         {t(lang, 'contact_email')} {arrow} rezaghamar20@gmail.com
       </a>

@@ -7,6 +7,7 @@ interface Props {
 }
 
 const { lang } = Astro.props;
+const resumeHref = lang === 'fa' ? '/resume-fa.pdf' : '/resume-en.pdf';
 ---
 
 <section class="container hero">
@@ -20,7 +21,7 @@ const { lang } = Astro.props;
       <span class="sub">{t(lang, 'hero_subtitle')}</span>
     </h1>
     <div class="ctas">
-      <a class="btn primary" href="/resume-en.pdf">{t(lang, 'cta_resume')}</a>
+      <a class="btn primary" href={resumeHref}>{t(lang, 'cta_resume')}</a>
       <a class="btn secondary" href="#work">{t(lang, 'cta_work')}</a>
     </div>
   </div>

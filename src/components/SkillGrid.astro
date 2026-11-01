@@ -20,7 +20,7 @@ const { lang, skills } = Astro.props;
       skills.map((skill) => (
         <article class="card" data-skill={skill.layer}>
           <p class="layer">{skill.layer}</p>
-          <p class="items">{skill.items.join(' · ')}</p>
+          <p class="items" dir="ltr" data-skill-items>{skill.items.join(' · ')}</p>
           <p class="proof" data-proof>{t(lang, 'proof_label')} {t(lang, 'arrow')} {skill.proof}</p>
         </article>
       ))
@@ -69,6 +69,11 @@ const { lang, skills } = Astro.props;
     font-size: 16px;
     line-height: 1.6;
     color: var(--text);
+  }
+
+  /* LTR list inside an RTL page: align to the reading-order end (the right), as in the FA design. */
+  html[dir='rtl'] .items {
+    text-align: end;
   }
 
   .proof {

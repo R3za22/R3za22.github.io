@@ -21,7 +21,7 @@ const navItems = [
 
 <header class="container site-header">
   <a class="brand" href={home}>
-    {t(lang, 'brand')}{lang === 'en' && <span class="cursor" aria-hidden="true">_</span>}
+    {t(lang, 'brand')}<span class="cursor" aria-hidden="true">_</span>
   </a>
   <nav class="nav" aria-label="Primary">
     {navItems.map((item) => <a href={item.href}>{item.label}</a>)}

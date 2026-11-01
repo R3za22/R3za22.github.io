@@ -20,7 +20,7 @@ const LEADER_WIDTH = 13;
 const leader = (label: string) => '.'.repeat(Math.max(3, LEADER_WIDTH - label.length - 1));
 ---
 
-<div class="panel">
+<div class="panel" dir="ltr" data-whoami>
   <div class="cmd">{t(lang, 'whoami_cmd')}</div>
   {
     rows.map((row) => {
