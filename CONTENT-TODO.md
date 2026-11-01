@@ -8,10 +8,6 @@ design's own `[وارد کنید]`.
 
 ## MUST FIX before launch
 
-- **MangaTranslator credit URL** (`links.credit.url` in `src/content/projects/{en,fa}/mangaro-factory.md`).
-  The design only says "built on the open-source MangaTranslator". No URL exists
-  in the design files, so the value is `https://example.com/TODO-mangatranslator`.
-  Replace with the real repository URL.
 - **Mangaro APK link.** The design has "Download APK" with `href="#"`. No URL exists,
   so `links.apk` is omitted from `en/mangaro.md` and `fa/mangaro.md`. Add the URL
   there, or drop the link.
