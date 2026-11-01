@@ -1,0 +1,32 @@
+[
+  {
+    "layer": "Mobile",
+    "items": ["Kotlin", "Jetpack Compose", "Android SDK", "SQLDelight", "React Native", "Expo"],
+    "proof": "Mangaro, Zaboon"
+  },
+  {
+    "layer": "Web frontend",
+    "items": ["TypeScript", "React", "Next.js", "Tailwind CSS", "Vue.js"],
+    "proof": "Profit, TrapClub"
+  },
+  {
+    "layer": "Backend",
+    "items": ["Python", "Django", "Django REST Framework", "PostgreSQL", "REST APIs"],
+    "proof": "Mangaro API, ZaboonAPI"
+  },
+  {
+    "layer": "Product & infra",
+    "items": ["Zarinpal payments", "SMS/OTP auth", "GitHub Actions", "Docker", "Liara"],
+    "proof": "Mangaro"
+  },
+  {
+    "layer": "Web3",
+    "items": ["Solidity", "Ethereum", "Hardhat"],
+    "proof": "ShahContract, ETH Wallet"
+  },
+  {
+    "layer": "Specialty",
+    "items": ["RTL and Persian-first UX", "i18n"],
+    "proof": "every product above"
+  }
+]
