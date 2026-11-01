@@ -158,3 +158,26 @@ Placeholders added by the case-study pages. The page renders each one as visible
 - The design's bottom nav ("← all work") is replaced by previous/next links. The
   "all work" link stays in the header.
 - The site footer is not on case-study pages (the design has none).
+
+## Resume, 404 and SEO (Task 6)
+
+### Placeholders
+- `public/resume-en.pdf` and `public/resume-fa.pdf` are placeholder one-page PDFs
+  that read "Resume PDF placeholder - export from the resume doc". Replace both with
+  the exported resume before launch. The Hero and resume pages link to these paths.
+- `public/og.png` is placeholder art: the wordmark `reza.ghamar_` on `#0B0D10`.
+  Replace it with the designed share image when there is one.
+- FA resume summary (`resume_summary_text` in `src/i18n/ui.ts`) is `[جانگهدار]`. The
+  EN summary is the profile bio from the old `content.json`. No Persian copy exists.
+
+### Decisions to confirm
+- The resume languages line is taken from the earlier resume notes in this file:
+  Persian (native), English (fluent), Arabic (advanced), Japanese (basic). The FA
+  whoami panel says "FA · EN · AR" and does not list Japanese. Pick one list.
+- The FA languages line is a translation of the EN line and is not from the design.
+- Resume experience and education are split by position in `timeline.*.json`:
+  experience is items 0 and 4 (product work and freelance design); education is items
+  1, 2 and 3 (B.Sc., self-study, associate degree). Self-study sits under education.
+- The 404 page is EN only, as in the design brief. Its FA dictionary entries exist for
+  parity but no FA 404 page is built. It is `noindex`, so it has no canonical or
+  hreflang links.

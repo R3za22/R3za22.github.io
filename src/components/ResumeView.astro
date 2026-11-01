@@ -1,0 +1,181 @@
+---
+import { t, type Lang } from '../i18n/ui';
+import { toPersianDigits } from '../i18n/digits';
+import type { Skill, TimelineItem } from '../lib/schema';
+
+interface Props {
+  lang: Lang;
+  pdfHref: string;
+  skills: Skill[];
+  timeline: TimelineItem[];
+}
+
+const { lang, pdfHref, skills, timeline } = Astro.props;
+const isFa = lang === 'fa';
+const fmt = (s: string) => (isFa ? toPersianDigits(s) : s);
+
+// Order of timeline.*.json: 0 product work, 1 B.Sc., 2 self-study,
+// 3 associate degree, 4 freelance design work.
+const experience = [timeline[0], timeline[4]];
+const education = [timeline[1], timeline[2], timeline[3]];
+---
+
+<article class="container resume">
+  <header class="head">
+    <h1>{t(lang, 'resume_title')}</h1>
+    <a class="btn" href={pdfHref}>{t(lang, 'resume_download_pdf')}</a>
+  </header>
+
+  <section class="block">
+    <div class="section-head"><h2>{t(lang, 'resume_summary')}</h2></div>
+    <p class="prose">{t(lang, 'resume_summary_text')}</p>
+  </section>
+
+  <section class="block">
+    <div class="section-head"><h2>{t(lang, 'resume_experience')}</h2></div>
+    <ul class="list">
+      {
+        experience.map((item) => (
+          <li class="entry">
+            <p class="period">{fmt(item.period)}</p>
+            <div>
+              <h3>{item.title}</h3>
+              <p class="prose">{item.detail}</p>
+            </div>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <section class="block">
+    <div class="section-head"><h2>{t(lang, 'resume_education')}</h2></div>
+    <ul class="list">
+      {
+        education.map((item) => (
+          <li class="entry">
+            <p class="period">{fmt(item.period)}</p>
+            <div>
+              <h3>{item.title}</h3>
+              <p class="prose">{item.detail}</p>
+            </div>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <section class="block">
+    <div class="section-head"><h2>{t(lang, 'resume_skills')}</h2></div>
+    <ul class="list">
+      {
+        skills.map((skill) => (
+          <li class="entry">
+            <h3>{skill.layer}</h3>
+            <div>
+              <p class="prose">{skill.items.join(' · ')}</p>
+              <p class="proof">{t(lang, 'proof_label')}: {skill.proof}</p>
+            </div>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <section class="block">
+    <div class="section-head"><h2>{t(lang, 'resume_languages')}</h2></div>
+    <p class="prose">{t(lang, 'resume_languages_value')}</p>
+  </section>
+</article>
+
+<style>
+  .resume {
+    display: flex;
+    flex-direction: column;
+    gap: 56px;
+    padding-block: 64px 80px;
+  }
+
+  .head {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+
+  h1 {
+    margin: 0;
+    font-weight: 600;
+    font-size: clamp(40px, 6vw, 64px);
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+  }
+
+  .btn {
+    padding: 13px 22px;
+    border-radius: var(--r-btn);
+    background: var(--accent);
+    color: var(--on-accent);
+    font-weight: 600;
+    font-size: 15px;
+    text-decoration: none;
+  }
+
+  .block {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .block .section-head {
+    margin: 0;
+  }
+
+  .list {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .entry {
+    display: grid;
+    grid-template-columns: minmax(0, 180px) minmax(0, 1fr);
+    gap: 8px 24px;
+  }
+
+  .entry h3 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+  }
+
+  .entry > div {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-inline-size: 0;
+  }
+
+  .period,
+  .proof {
+    margin: 0;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  .prose {
+    margin: 0;
+    color: var(--prose);
+  }
+
+  @media (max-width: 640px) {
+    .entry {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+</style>

@@ -11,7 +11,7 @@ import ContactPanel from '../components/ContactPanel.astro';
 import Footer from '../components/Footer.astro';
 import skillsEn from '../data/skills.en.json';
 import timelineEn from '../data/timeline.en.json';
-import { skillSchema, timelineSchema } from '../lib/schema';
+import { personJsonLd, skillSchema, timelineSchema } from '../lib/schema';
 
 const lang = 'en' as const;
 const projects = (await getCollection('projects')).filter((project) =>
@@ -26,6 +26,7 @@ const timeline = timelineSchema.parse(timelineEn);
   title="Reza Ghamar — Mobile & Full-Stack Developer"
   description="Mobile and full-stack developer. I ship complete apps: Android, web and backend."
   alternate="/fa/"
+  jsonLd={personJsonLd}
 >
   <Header lang={lang} />
   <main>

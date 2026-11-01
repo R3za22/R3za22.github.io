@@ -11,7 +11,7 @@ import ContactPanel from '../../components/ContactPanel.astro';
 import Footer from '../../components/Footer.astro';
 import skillsFa from '../../data/skills.fa.json';
 import timelineFa from '../../data/timeline.fa.json';
-import { skillSchema, timelineSchema } from '../../lib/schema';
+import { personJsonLd, skillSchema, timelineSchema } from '../../lib/schema';
 import { t } from '../../i18n/ui';
 
 const lang = 'fa' as const;
@@ -27,6 +27,7 @@ const timeline = timelineSchema.parse(timelineFa);
   title="رضا قمر — خانه"
   description={`${t(lang, 'hero_title')} ${t(lang, 'hero_subtitle')}`}
   alternate="/"
+  jsonLd={personJsonLd}
 >
   <Header lang={lang} />
   <main>

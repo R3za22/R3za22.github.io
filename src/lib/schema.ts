@@ -57,6 +57,16 @@ export const timelineSchema = z
   )
   .length(5);
 
+// Person JSON-LD for the home pages (rendered by Seo.astro).
+export const personJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Reza Ghamar',
+  jobTitle: 'Mobile & Full-Stack Developer',
+  url: 'https://rezaghamar.ir',
+  sameAs: ['https://github.com/R3za22'],
+};
+
 export type Project = z.infer<typeof projectSchema>;
 export type Skill = z.infer<typeof skillSchema>[number];
 export type TimelineItem = z.infer<typeof timelineSchema>[number];

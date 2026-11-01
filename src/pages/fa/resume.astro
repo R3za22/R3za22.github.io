@@ -1,0 +1,27 @@
+---
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import ResumeView from '../../components/ResumeView.astro';
+import Footer from '../../components/Footer.astro';
+import skillsFa from '../../data/skills.fa.json';
+import timelineFa from '../../data/timeline.fa.json';
+import { skillSchema, timelineSchema } from '../../lib/schema';
+import { t } from '../../i18n/ui';
+
+const lang = 'fa' as const;
+const skills = skillSchema.parse(skillsFa);
+const timeline = timelineSchema.parse(timelineFa);
+---
+
+<Base
+  lang={lang}
+  title={`${t(lang, 'resume_title')} — ${t(lang, 'brand')}`}
+  description={t(lang, 'resume_description')}
+  alternate="/resume"
+>
+  <Header lang={lang} />
+  <main>
+    <ResumeView lang={lang} pdfHref="/resume-fa.pdf" skills={skills} timeline={timeline} />
+  </main>
+  <Footer lang={lang} />
+</Base>

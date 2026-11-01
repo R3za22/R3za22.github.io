@@ -3,6 +3,7 @@ import '@fontsource-variable/geist';
 import '@fontsource-variable/geist-mono';
 import '@fontsource-variable/vazirmatn';
 import '../styles/global.css';
+import Seo from '../components/Seo.astro';
 
 interface Props {
   lang: 'en' | 'fa';
@@ -10,11 +11,20 @@ interface Props {
   description: string;
   alternate: string;
   wide?: boolean;
+  jsonLd?: object;
+  noindex?: boolean;
 }
 
-const { lang, title, description, alternate, wide = true } = Astro.props;
+const {
+  lang,
+  title,
+  description,
+  alternate,
+  wide = true,
+  jsonLd,
+  noindex = false,
+} = Astro.props;
 const dir = lang === 'fa' ? 'rtl' : 'ltr';
-const otherLang = lang === 'fa' ? 'en' : 'fa';
 const containerStyle = wide ? undefined : '--container: 1100px';
 ---
 
@@ -23,9 +33,15 @@ const containerStyle = wide ? undefined : '--container: 1100px';
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content={description} />
-    <link rel="alternate" hreflang={otherLang} href={alternate} />
-    <title>{title}</title>
+    <Seo
+      title={title}
+      description={description}
+      lang={lang}
+      path={Astro.url.pathname}
+      alternate={alternate}
+      jsonLd={jsonLd}
+      noindex={noindex}
+    />
   </head>
   <body>
     <slot />

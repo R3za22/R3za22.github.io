@@ -86,6 +86,23 @@ export const en = {
   cs_shot_library: '[Library screen video]',
   cs_shot_reader: '[Reader screen]',
   cs_shot_plus: '[Plus subscription]',
+
+  resume_title: 'Resume',
+  resume_description: 'Web version of the resume: summary, experience, education and skills. The PDF is linked on the page.',
+  resume_download_pdf: 'Download PDF',
+  resume_summary: 'Summary',
+  resume_experience: 'Experience',
+  resume_education: 'Education',
+  resume_skills: 'Skills',
+  resume_languages: 'Languages',
+  resume_summary_text:
+    'Self-taught developer from Ahvaz, Iran, shipping production apps end-to-end: native Android (Kotlin + Jetpack Compose), React Native, and web frontends backed by Django REST APIs — including billing, OTP auth, and deployment.',
+  resume_languages_value: 'Persian (native) · English (fluent) · Arabic (advanced) · Japanese (basic)',
+
+  not_found_title: 'Page not found',
+  not_found_text: 'The page you are looking for does not exist or has moved.',
+  not_found_home: 'Back to home',
+  not_found_fa: 'Persian version',
 } as const;
 
 export const fa = {
@@ -173,6 +190,22 @@ export const fa = {
   cs_shot_library: '[جانگهدار]',
   cs_shot_reader: '[جانگهدار]',
   cs_shot_plus: '[جانگهدار]',
+
+  resume_title: 'رزومه',
+  resume_description: 'نسخه وب رزومه: خلاصه، تجربه، تحصیلات و مهارت‌ها. نسخه PDF هم در صفحه قرار دارد.',
+  resume_download_pdf: 'دانلود PDF',
+  resume_summary: 'خلاصه',
+  resume_experience: 'تجربه',
+  resume_education: 'تحصیلات',
+  resume_skills: 'مهارت‌ها',
+  resume_languages: 'زبان‌ها',
+  resume_summary_text: '[جانگهدار]',
+  resume_languages_value: 'فارسی (مادری) · انگلیسی (مسلط) · عربی (پیشرفته) · ژاپنی (مقدماتی)',
+
+  not_found_title: 'صفحه پیدا نشد',
+  not_found_text: 'صفحه‌ای که دنبالش هستید وجود ندارد یا جابه‌جا شده است.',
+  not_found_home: 'بازگشت به خانه',
+  not_found_fa: 'نسخه فارسی',
 } satisfies Record<keyof typeof en, string>;
 
 export const ui = { en, fa } as const;

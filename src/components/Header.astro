@@ -12,10 +12,10 @@ const home = lang === 'fa' ? '/fa/' : '/';
 const otherLang = lang === 'fa' ? 'en' : 'fa';
 const toggleHref = alternatePath(Astro.url.pathname, routes);
 const navItems = [
-  { href: '#work', label: t(lang, 'nav_work') },
-  { href: '#skills', label: t(lang, 'nav_skills') },
-  { href: '#experience', label: t(lang, 'nav_experience') },
-  { href: '#contact', label: t(lang, 'nav_contact') },
+  { href: `${home}#work`, label: t(lang, 'nav_work') },
+  { href: `${home}#skills`, label: t(lang, 'nav_skills') },
+  { href: `${home}#experience`, label: t(lang, 'nav_experience') },
+  { href: `${home}#contact`, label: t(lang, 'nav_contact') },
 ];
 ---
 
