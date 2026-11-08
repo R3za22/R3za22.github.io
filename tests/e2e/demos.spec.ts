@@ -27,11 +27,13 @@ test.describe('demo routes', () => {
 test.describe('demo links on cards', () => {
   for (const [card, demo] of Object.entries(CARDS)) {
     for (const [path, label] of [['/', 'Live demo ↗'], ['/fa/', 'دموی زنده ↗']] as const) {
-      test(`${path} ${card} links to /demos/${demo}/`, async ({ page }) => {
+      const built = present.includes(demo);
+      test(`${path} ${card} ${built ? 'links to' : 'hides missing'} /demos/${demo}/`, async ({ page }) => {
         await page.goto(path);
         const link = page.locator(`[data-project="${card}"] a[href="/demos/${demo}/"]`);
-        await expect(link).toHaveCount(1);
-        await expect(link).toHaveText(label);
+        // A demo the build did not produce must not render as a broken link.
+        await expect(link).toHaveCount(built ? 1 : 0);
+        if (built) await expect(link).toHaveText(label);
       });
     }
   }
