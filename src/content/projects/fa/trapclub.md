@@ -10,6 +10,16 @@ links:
 order: 4
 featured: false
 images: []
+media:
+  - type: image
+    src: "projects/trapclub/1.webp"
+    alt: "صفحه اصلی فروشگاه ترپ‌کلاب"
+  - type: image
+    src: "projects/trapclub/2.webp"
+    alt: "فهرست محصولات ترپ‌کلاب"
+  - type: image
+    src: "projects/trapclub/3.webp"
+    alt: "صفحه پرداخت ترپ‌کلاب"
 ---
 
 ## ۰۱ نمای کلی

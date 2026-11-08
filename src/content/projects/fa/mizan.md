@@ -10,6 +10,16 @@ links:
 order: 7
 featured: false
 images: []
+media:
+  - type: image
+    src: "projects/mizan/1.webp"
+    alt: "صفحه اصلی میزان"
+  - type: image
+    src: "projects/mizan/2.webp"
+    alt: "فهرست قهوه‌های میزان"
+  - type: image
+    src: "projects/mizan/3.webp"
+    alt: "صفحه آموزش میزان"
 demoNote: "رابط فارسی"
 ---
 

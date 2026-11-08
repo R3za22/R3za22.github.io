@@ -3,8 +3,6 @@ name: "Zaboon"
 tagline: "Gamified English-learning app for Persian speakers. Expo app with a mock/live API client."
 pitch: "An English course for Persian speakers: a lesson path with hearts, streaks and a leaderboard, built Persian-first and right-to-left on Expo."
 platform: "React Native (Expo 53) + Python API"
-hosting: "[placeholder]"
-period: "[placeholder]"
 role: "mobile · solo"
 status: "shipped"
 team: false
@@ -14,6 +12,16 @@ links:
 order: 2
 featured: true
 images: []
+media:
+  - type: image
+    src: "projects/zaboon/1.webp"
+    alt: "Zaboon home screen on a phone"
+  - type: image
+    src: "projects/zaboon/2.webp"
+    alt: "Zaboon learning path on a phone"
+  - type: image
+    src: "projects/zaboon/3.webp"
+    alt: "Zaboon profile screen on a phone"
 architecture:
   nodes:
     - title: "Expo app"

@@ -6,10 +6,18 @@ status: "shipped"
 team: false
 stack: ["React", "TypeScript", "Vite", "Vitest", "Playwright"]
 links:
+  github: "https://github.com/R3za22/Sofia-Shop-2023"
   demo: "/demos/sofia-shop/"
 order: 20
 featured: false
 images: []
+media:
+  - type: image
+    src: "projects/sofia-shop/1.webp"
+    alt: "صفحه اصلی فروشگاه سوفیا"
+  - type: image
+    src: "projects/sofia-shop/2.webp"
+    alt: "فروشگاه سوفیا در موبایل"
 early: true
 ---
 

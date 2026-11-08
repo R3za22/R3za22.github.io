@@ -1,6 +1,6 @@
 ---
 import { availableDemo } from '../lib/demos';
-import { Image } from 'astro:assets';
+import { shotsOf } from '../lib/media';
 import Base from './Base.astro';
 import FactsBar from '../components/FactsBar.astro';
 import PhoneFrames from '../components/PhoneFrames.astro';
@@ -11,7 +11,6 @@ import ProjectNav from '../components/ProjectNav.astro';
 import { t, type Lang, type UiKey } from '../i18n/ui';
 import {
   decisionOf,
-  isPlaceholder,
   sectionsOf,
   segmentsOf,
   slugOf,
@@ -29,15 +28,14 @@ const { lang, project, prev, next } = Astro.props;
 const { data } = project;
 const slug = slugOf(project);
 const isFa = lang === 'fa';
-const placeholder = t(lang, 'placeholder');
 const home = isFa ? '/fa/' : '/';
 const otherLang = isFa ? 'en' : 'fa';
 const alternate = isFa ? `/work/${slug}` : `/fa/work/${slug}`;
 const siteName = isFa ? t(lang, 'brand') : t(lang, 'val_name');
 
-const pitch = data.pitch ?? placeholder;
+const pitch = data.pitch;
 const title = `${data.name} — ${t(lang, 'case_study')} | ${siteName}`;
-const description = isPlaceholder(pitch) ? data.tagline : pitch;
+const description = pitch ?? data.tagline;
 
 const STATUS_KEYS = {
   production: 'status_production',
@@ -47,7 +45,7 @@ const STATUS_KEYS = {
 const statusLine = [
   `● ${t(lang, STATUS_KEYS[data.status])}`,
   data.team ? t(lang, 'cs_team_project') : undefined,
-  data.period ?? placeholder,
+  data.period,
 ]
   .filter((part): part is string => part !== undefined)
   .join(' · ');
@@ -63,17 +61,12 @@ if (data.links.credit) links.push({ label: data.links.credit.label, href: data.l
 
 const facts = [
   { key: 'role', label: t(lang, 'cs_fact_role'), value: data.role },
-  { key: 'platform', label: t(lang, 'cs_fact_platform'), value: data.platform ?? placeholder },
-  { key: 'hosting', label: t(lang, 'cs_fact_hosting'), value: data.hosting ?? placeholder },
-  { key: 'links', label: t(lang, 'cs_fact_links'), value: placeholder, links },
+  ...(data.platform ? [{ key: 'platform', label: t(lang, 'cs_fact_platform'), value: data.platform }] : []),
+  ...(data.hosting ? [{ key: 'hosting', label: t(lang, 'cs_fact_hosting'), value: data.hosting }] : []),
+  ...(links.length > 0 ? [{ key: 'links', label: t(lang, 'cs_fact_links'), value: '', links }] : []),
 ];
 
-// Screenshots are not in the repo yet, so every frame is a Placeholder.
-// The Mangaro frame labels come from the design.
-const frameLabels =
-  slug === 'mangaro'
-    ? [t(lang, 'cs_shot_library'), t(lang, 'cs_shot_reader'), t(lang, 'cs_shot_plus')]
-    : [placeholder, placeholder, placeholder];
+const shots = shotsOf(data.media);
 
 // Sections are matched by position: 01 overview, 02 architecture,
 // 03 key decisions, 04 result. The 05 stack section comes from frontmatter.
@@ -88,14 +81,6 @@ const decisionText = decisionBlocks.filter((block) => !decisionOf(block));
 
 const architecture = data.architecture;
 
-// Media `src` is a path under src/assets (for example projects/aiprofit/panel.png).
-const assets = import.meta.glob<{ default: ImageMetadata }>('/src/assets/**/*.{png,jpg,jpeg,webp}', {
-  eager: true,
-});
-const media = (data.media ?? []).flatMap((item) => {
-  const found = item.type === 'image' ? assets[`/src/assets/${item.src}`] : undefined;
-  return found ? [{ image: found.default, alt: item.alt }] : [];
-});
 ---
 
 <Base
@@ -119,21 +104,15 @@ const media = (data.media ?? []).flatMap((item) => {
     <section class="hero">
       <div class="status" data-status>{statusLine}</div>
       <h1>{data.name}</h1>
-      <p class="pitch" dir="auto">{pitch}</p>
+      {pitch && <p class="pitch" dir="auto">{pitch}</p>}
       <FactsBar facts={facts} />
       {data.demoNote && <p class="demo-note" dir="auto">{data.demoNote}</p>}
     </section>
 
-    <section class="shots">
-      <PhoneFrames labels={frameLabels} />
-    </section>
-
     {
-      media.length > 0 && (
-        <section class="media" data-media>
-          {media.map((item) => (
-            <Image src={item.image} alt={item.alt} widths={[480, 800]} sizes="(max-width: 720px) 100vw, 380px" />
-          ))}
+      shots.length > 0 && (
+        <section class="shots">
+          <PhoneFrames shots={shots} />
         </section>
       )
     }

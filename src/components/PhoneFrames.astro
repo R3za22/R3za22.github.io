@@ -1,26 +1,31 @@
 ---
-import Placeholder from './Placeholder.astro';
+import { Image } from 'astro:assets';
+import type { Shot } from '../lib/media';
 
 interface Props {
-  // One label per frame. The design shows three frames.
-  labels: string[];
+  shots: Shot[];
 }
 
-// Frame is 240 x 500 with an 8px bezel, so the screen is 224 x 484. The
-// Placeholder gets the exact screen height, so a missing screenshot causes no
-// layout shift.
-const SCREEN_HEIGHT = 484;
-
-const { labels } = Astro.props;
+// Portrait screenshots sit in a phone frame (240px wide). Landscape ones span
+// the row in a plain frame. Sizes follow the aspect ratio, so nothing is cropped.
+const { shots } = Astro.props;
 ---
 
 <div class="frames">
   {
-    labels.map((label) => (
-      <div class="frame" data-phone-frame>
-        <Placeholder label={label} height={SCREEN_HEIGHT} />
-      </div>
-    ))
+    shots.map(({ image, alt }) => {
+      const portrait = image.width < image.height;
+      return (
+        <figure class:list={['frame', portrait ? 'portrait' : 'landscape']} data-phone-frame>
+          <Image
+            src={image}
+            alt={alt}
+            widths={[480, 800]}
+            sizes={portrait ? '240px' : '(max-width: 720px) 100vw, 800px'}
+          />
+        </figure>
+      );
+    })
   }
 </div>
 
@@ -37,13 +42,28 @@ const { labels } = Astro.props;
   }
 
   .frame {
-    flex: 0 1 240px;
+    margin: 0;
     min-inline-size: 0;
-    height: 500px;
-    padding: 0;
+    overflow: hidden;
+  }
+
+  .frame img {
+    display: block;
+    inline-size: 100%;
+    block-size: auto;
+  }
+
+  .portrait {
+    flex: 0 1 240px;
+    padding: 8px;
     border: 8px solid var(--border);
     border-radius: 36px;
-    overflow: hidden;
+  }
+
+  .landscape {
+    flex: 1 1 100%;
+    border: 1px solid var(--border);
+    border-radius: var(--r-panel);
   }
 
   @media (max-width: 600px) {

@@ -1,7 +1,7 @@
 /* Demo banner. Fixed, dismissible. Persian copy when the page is RTL/fa. */
 (function () {
   var fa = /^fa/i.test(document.documentElement.lang || '') || document.documentElement.dir === 'rtl';
-  var text = fa ? 'نسخه نمایشی · داده‌های نمونه · ← rezaghamar.ir' : 'Demo · sample data · ← rezaghamar.ir';
+  var text = fa ? 'نسخه نمایشی · داده‌های نمونه · ← r3za22.github.io' : 'Demo · sample data · ← r3za22.github.io';
   var href = fa ? '/fa/' : '/';
   function mount() {
     if (document.getElementById('demo-banner')) return;

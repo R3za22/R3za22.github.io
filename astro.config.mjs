@@ -3,7 +3,7 @@ import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://rezaghamar.ir',
+  site: 'https://r3za22.github.io',
   integrations: [sitemap()],
   i18n: {
     defaultLocale: 'en',

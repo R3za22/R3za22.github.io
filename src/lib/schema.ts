@@ -1,9 +1,7 @@
 import { z } from 'astro/zod';
 
 // One schema for both languages: a missing or empty FA field fails the build
-// the same way a missing EN field does. Placeholder values such as
-// `[placeholder]` are non-empty strings, so they pass validation and are
-// tracked in CONTENT-TODO.md instead.
+// the same way a missing EN field does. Missing optional fields are hidden on the case study page.
 
 const url = z.string().url();
 
@@ -37,7 +35,7 @@ export const projectSchema = z.object({
   early: z.boolean().optional(),
   images: z.array(z.string().min(1)).default([]),
   // Case-study fields. Optional so that a project can ship without them; the
-  // case-study page shows `[placeholder]` for any that are missing.
+  // case-study page hides any that are missing.
   pitch: z.string().min(1).optional(),
   demoNote: z.string().min(1).optional(),
   media: z
@@ -80,7 +78,7 @@ export const personJsonLd = {
   '@type': 'Person',
   name: 'Reza Ghamar',
   jobTitle: 'Mobile & Full-Stack Developer',
-  url: 'https://rezaghamar.ir',
+  url: 'https://r3za22.github.io',
   sameAs: ['https://github.com/R3za22'],
 };
 

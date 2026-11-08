@@ -6,10 +6,18 @@ status: "shipped"
 team: false
 stack: ["Next.js", "TypeScript", "Clerk", "MongoDB", "Stripe", "Tailwind"]
 links:
+  github: "https://github.com/R3za22/Evently-2024"
   demo: "/demos/evently/"
 order: 22
 featured: false
 images: []
+media:
+  - type: image
+    src: "projects/evently/1.webp"
+    alt: "Evently home page with upcoming events"
+  - type: image
+    src: "projects/evently/2.webp"
+    alt: "Evently tickets page"
 early: true
 ---
 

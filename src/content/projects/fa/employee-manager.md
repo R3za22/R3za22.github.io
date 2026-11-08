@@ -6,10 +6,15 @@ status: "shipped"
 team: false
 stack: ["React", "TypeScript", "Vite", "Vitest", "Playwright"]
 links:
+  github: "https://github.com/R3za22/Employee-Manager-2023"
   demo: "/demos/employee-manager/"
 order: 23
 featured: false
 images: []
+media:
+  - type: image
+    src: "projects/employee-manager/1.webp"
+    alt: "داشبورد مدیریت کارمندان"
 early: true
 ---
 

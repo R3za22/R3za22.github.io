@@ -6,6 +6,7 @@ status: "shipped"
 team: false
 stack: ["Solidity", "Hardhat", "Ethereum", "TypeScript", "ethers"]
 links:
+  github: "https://github.com/R3za22/ShahContract"
   demo: "/demos/shahnameh/"
   credit:
     label: "Idea inspired by Adventureum by anallergytoanalogy; contract rewritten from scratch"
@@ -13,6 +14,10 @@ links:
 order: 5
 featured: false
 images: []
+media:
+  - type: image
+    src: "projects/shahcontract/1.webp"
+    alt: "صفحه اصلی شاه‌کانترکت"
 ---
 
 ## ۰۱ نمای کلی

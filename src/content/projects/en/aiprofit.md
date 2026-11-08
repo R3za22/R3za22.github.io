@@ -61,4 +61,4 @@ I designed and built it alone: design, frontend and backend. The demo on this si
 
 ## 04 Result
 
-The app is in its hardening and launch phases, with the Liara deploy path prepared. [placeholder] launch date.
+The app is in its hardening and launch phases, with the Liara deploy path prepared.

@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-const SITE = 'https://rezaghamar.ir';
+const SITE = 'https://r3za22.github.io';
 
 const ROUTES = [
   '/',
@@ -81,7 +81,7 @@ test.describe('SEO head', () => {
       for (const lang of ['en', 'fa']) {
         const alternate = page.locator(`link[rel="alternate"][hreflang="${lang}"]`);
         await expect(alternate, `hreflang ${lang}`).toHaveCount(1);
-        expect(await alternate.getAttribute('href')).toMatch(/^https:\/\/rezaghamar\.ir\//);
+        expect(await alternate.getAttribute('href')).toMatch(/^https:\/\/r3za22\.github\.io\//);
       }
 
       await expect(page.locator('meta[property="og:title"]')).toHaveCount(1);
