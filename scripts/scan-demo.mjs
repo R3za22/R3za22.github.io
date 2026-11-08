@@ -14,7 +14,7 @@ const URL_TEXT_RE = /https?:\/\/[^\s"'<>]*/gi;
 // Library and documentation hosts that appear as plain strings in bundled
 // framework code (never requested at runtime). Matches the host or a subdomain.
 export const DEFAULT_ALLOW_HOSTS = [
-  'w3.org', 'react.dev', 'reactjs.org', 'nextjs.org', 'reactrouter.com', 'redux.js.org',
+  'rezaghamar.ir', 'r3za22.github.io', 'w3.org', 'react.dev', 'reactjs.org', 'nextjs.org', 'reactrouter.com', 'redux.js.org',
   'redux-toolkit.js.org', 'tailwindcss.com', 'github.com', 'bit.ly', 'tinyurl.com',
   'reactnavigation.org', 'expo.dev', 'docs.expo.dev', 'feross.org', 'unpkg.com',
   'cdn.jsdelivr.net', 'dev.to', 'fonts.googleapis.com', 'typekit.net', 'localhost',
