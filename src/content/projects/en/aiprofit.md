@@ -4,10 +4,10 @@ tagline: "Persian RTL platform for retail investors: analysed opportunities, cou
 pitch: "A Persian, right-to-left platform for Iranian retail investors: curated market opportunities with explicit levels, courses with licensed video, articles, a paid bot subscription and consultation."
 platform: "Web (Next.js, RTL)"
 hosting: "Liara (Iran), deploy path prepared"
-period: "[placeholder]"
-role: "[placeholder: confirm role] · team"
+period: "2026-08 — now"
+role: "Sole developer: design, frontend, backend"
 status: "shipped"
-team: true
+team: false
 stack: ["Next.js", "React", "TypeScript", "Drizzle", "PostgreSQL", "Zarinpal"]
 links:
   demo: "/demos/aiprofit/"
@@ -47,7 +47,7 @@ demoNote: "Persian UI · static snapshot"
 
 AIProfit is a Persian, right-to-left platform for Iranian retail investors. Each market opportunity is published with an entry level, targets and a stop level, so readers see the analysis and make their own decision. Around that sit courses and short videos, articles, a paid investment-bot subscription, paid one-to-one consultation and a user panel.
 
-It is a team project. The demo on this site is a static snapshot of the public marketing pages, crawled from the running app.
+I designed and built it alone: design, frontend and backend. The demo on this site is a static snapshot of the public marketing pages, crawled from the running app.
 
 ## 02 Architecture
 
@@ -61,4 +61,4 @@ It is a team project. The demo on this site is a static snapshot of the public m
 
 ## 04 Result
 
-The app is in its hardening and launch phases, with the Liara deploy path prepared. [placeholder] role and contribution, launch date.
+The app is in its hardening and launch phases, with the Liara deploy path prepared. [placeholder] launch date.

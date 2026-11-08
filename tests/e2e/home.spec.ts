@@ -39,7 +39,7 @@ test.describe('home at 1440x900', () => {
     await expect(cards.nth(1).locator('h3')).toHaveText('Zaboon');
     await expect(cards.nth(2)).toHaveAttribute('data-project', 'aiprofit');
     await expect(cards.nth(2).locator('h3')).toHaveText('AIProfit');
-    await expect(page.locator('[data-project="aiprofit"]')).toContainText('team');
+    await expect(page.locator('[data-project="aiprofit"]')).not.toContainText('team');
     await expect(cards.nth(3)).toHaveAttribute('data-project', 'profit');
     await expect(cards.nth(3).locator('h3')).toHaveText('Profit');
   });
