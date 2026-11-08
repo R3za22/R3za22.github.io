@@ -6,7 +6,6 @@ const MOBILE = { width: 375, height: 812 };
 // Copy from src/i18n/ui.ts (fa) and src/data/timeline.fa.json.
 const HERO_TITLE = 'توسعه‌دهنده موبایل و فول‌استک';
 const FIRST_PERIOD = '۱۴۰۱ — اکنون';
-const MILITARY_STATUS = 'وضعیت نظام وظیفه';
 
 test.describe('FA home at 1440x900', () => {
   test.use({ viewport: DESKTOP });
@@ -53,9 +52,9 @@ test.describe('FA home at 1440x900', () => {
     }
   });
 
-  test('footer shows the military service status', async ({ page }) => {
+  test('footer has no military service line', async ({ page }) => {
     await page.goto('/fa/');
-    await expect(page.locator('footer')).toContainText(MILITARY_STATUS);
+    await expect(page.locator('footer')).not.toContainText('نظام وظیفه');
   });
 
   test('first featured card links to the FA case study', async ({ page }) => {

@@ -5,5 +5,4 @@ dist
 test-results
 playwright-report
 .lighthouseci
-public/demos/
 dist-demos/

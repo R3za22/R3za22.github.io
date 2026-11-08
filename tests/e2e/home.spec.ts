@@ -1,4 +1,4 @@
-import { test, expect, type Page, type Locator } from '@playwright/test';
+import { test, expect, type Locator } from '@playwright/test';
 
 const DESKTOP = { width: 1440, height: 900 };
 const MOBILE = { width: 375, height: 812 };
@@ -47,28 +47,15 @@ test.describe('home at 1440x900', () => {
   test('more projects lists the non-featured projects', async ({ page }) => {
     await page.goto('/');
     const cards = page.locator('#more article[data-project]');
-    await expect(cards).toHaveCount(4);
+    await expect(cards).toHaveCount(3);
     await expect(page.locator('#more [data-project="mizan"] h3')).toHaveText('Mizan');
     await expect(page.locator('#more [data-project="mizan"]')).toContainText('Persian UI');
     await expect(page.locator('#more [data-project="trapclub"] h3')).toHaveText('TrapClub');
     // The collection name is "ShahContract"; the design heading adds "+ ETH Wallet".
     await expect(page.locator('#more [data-project="shahcontract"] h3')).toContainText('ShahContract');
-    await expect(page.locator('#more [data-project="mangaro-factory"] h3')).toHaveText('Mangaro Factory');
   });
 
-  test('Mangaro Factory card links to MangaTranslator', async ({ page }) => {
-    await page.goto('/');
-    const card = page.locator('[data-project="mangaro-factory"]');
-    const link = card.locator('a', { hasText: 'MangaTranslator' });
-    await expect(link).toHaveCount(1);
-    await expect(link).toHaveAttribute('href', /^https:\/\//);
-  });
 
-  test('a project without a demo has no live demo link', async ({ page }) => {
-    await page.goto('/');
-    const card = page.locator('[data-project="mangaro-factory"]');
-    await expect(card.getByRole('link', { name: /live demo/i })).toHaveCount(0);
-  });
 
   test('skills section has six cards, each with a proof line', async ({ page }) => {
     await page.goto('/');
@@ -88,7 +75,7 @@ test.describe('home at 1440x900', () => {
 
   test('contact has the email and GitHub links', async ({ page }) => {
     await page.goto('/');
-    await expect(page.locator('#contact a[href="mailto:rezaghamar20@gmail.com"]')).toHaveCount(1);
+    await expect(page.locator('#contact a[href="mailto:alireza80atef@gmail.com"]')).toHaveCount(1);
     await expect(page.locator('#contact a[href="https://github.com/R3za22"]')).toHaveCount(1);
   });
 
@@ -120,25 +107,19 @@ test.describe('home at 375x812', () => {
   });
 });
 
-test.describe('missing screenshot placeholder', () => {
-  async function slotAndPlaceholder(page: Page) {
-    const card = page.locator('[data-project="mangaro"]');
-    const placeholder = card.locator('[data-placeholder]');
-    const slot = card.locator('[data-image-slot]');
-    await expect(placeholder).toHaveCount(1);
-    const [slotBox, placeholderBox] = await Promise.all([slot.boundingBox(), placeholder.boundingBox()]);
-    return { slotHeight: slotBox?.height ?? -1, placeholderHeight: placeholderBox?.height ?? -1 };
-  }
-
-  test('placeholder fills the image slot at both widths without layout shift', async ({ page }) => {
+test.describe('card image slot', () => {
+  test('the card image fills its slot at both widths without layout shift', async ({ page }) => {
     await page.goto('/');
     const heights: number[] = [];
     for (const viewport of [DESKTOP, MOBILE]) {
       await page.setViewportSize(viewport);
-      const { slotHeight, placeholderHeight } = await slotAndPlaceholder(page);
-      expect(slotHeight).toBeGreaterThan(0);
-      expect(placeholderHeight).toBe(slotHeight);
-      heights.push(slotHeight);
+      const card = page.locator('[data-project="mangaro"]');
+      await expect(card.locator('[data-image-slot] img')).toHaveCount(1);
+      const slot = await card.locator('[data-image-slot]').boundingBox();
+      const img = await card.locator('[data-image-slot] img').boundingBox();
+      expect(slot?.height ?? -1).toBeGreaterThan(0);
+      expect(img?.height).toBe(slot?.height);
+      heights.push(slot?.height ?? -1);
     }
     expect(heights[0]).toBe(heights[1]);
   });

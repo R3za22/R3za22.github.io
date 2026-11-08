@@ -10,6 +10,16 @@ links:
 order: 7
 featured: false
 images: []
+media:
+  - type: image
+    src: "projects/mizan/1.webp"
+    alt: "Mizan home screen"
+  - type: image
+    src: "projects/mizan/2.webp"
+    alt: "Mizan coffee list"
+  - type: image
+    src: "projects/mizan/3.webp"
+    alt: "Mizan learn page"
 demoNote: "Persian UI"
 ---
 

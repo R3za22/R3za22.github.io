@@ -10,6 +10,16 @@ links:
 order: 4
 featured: false
 images: []
+media:
+  - type: image
+    src: "projects/trapclub/1.webp"
+    alt: "TrapClub storefront home page"
+  - type: image
+    src: "projects/trapclub/2.webp"
+    alt: "TrapClub product catalogue"
+  - type: image
+    src: "projects/trapclub/3.webp"
+    alt: "TrapClub checkout page"
 ---
 
 ## 01 Overview

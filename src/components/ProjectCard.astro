@@ -2,7 +2,8 @@
 import { availableDemo } from '../lib/demos';
 import type { CollectionEntry } from 'astro:content';
 import { t, type Lang, type UiKey } from '../i18n/ui';
-import Placeholder from './Placeholder.astro';
+import { Image } from 'astro:assets';
+import { shotsOf } from '../lib/media';
 
 interface Props {
   lang: Lang;
@@ -17,22 +18,13 @@ const slug = project.id.replace(/^(en|fa)\//, '');
 const caseStudyHref = `${lang === 'fa' ? '/fa' : ''}/work/${slug}`;
 
 const SLOT_HEIGHT = { large: 340, small: 120 } as const;
-const SHOT_KEYS: Record<string, UiKey> = {
-  mangaro: 'shot_mangaro',
-  zaboon: 'shot_zaboon',
-  aiprofit: 'shot_profit',
-};
 const STATUS_KEYS = {
   production: 'status_production',
   shipped: 'status_shipped',
   archived: 'status_archived',
 } as const satisfies Record<string, UiKey>;
 
-// Screenshot slot. Until a project has entries in `images`, the slot shows a
-// Placeholder of the reserved height. When images exist, render an Astro
-// <Image> inside the same slot (same height, so the layout does not move).
-const shotKey = SHOT_KEYS[slug];
-const shotLabel = shotKey ? t(lang, shotKey) : `[${data.name} — screenshots]`;
+const shot = shotsOf(data.media)[0];
 
 const readLabel = t(lang, size === 'large' ? 'read_case_study' : 'case_study');
 const { demo: demoHref, github, apk, credit } = data.links;
@@ -80,9 +72,7 @@ const adminDemo = availableDemo(data.links.adminDemo);
 {
   size === 'large' && (
     <article class="card large" data-project={slug}>
-      <div class="slot" data-image-slot style={`height:${SLOT_HEIGHT.large}px`}>
-        <Placeholder label={shotLabel} height={SLOT_HEIGHT.large} />
-      </div>
+      {shot && (<div class="slot" data-image-slot style={`height:${SLOT_HEIGHT.large}px`}><Image src={shot.image} alt={shot.alt} widths={[480, 800]} sizes="(max-width: 720px) 100vw, 480px" /></div>)}
       <div class="body">
         <div class="head">
           <h3>{data.name}</h3>
@@ -117,9 +107,7 @@ const adminDemo = availableDemo(data.links.adminDemo);
 {
   size === 'small' && (
     <article class="card small" data-project={slug}>
-      <div class="slot" data-image-slot style={`height:${SLOT_HEIGHT.small}px`}>
-        <Placeholder label={shotLabel} height={SLOT_HEIGHT.small} />
-      </div>
+      {shot && (<div class="slot" data-image-slot style={`height:${SLOT_HEIGHT.small}px`}><Image src={shot.image} alt={shot.alt} widths={[480, 800]} sizes="(max-width: 720px) 100vw, 480px" /></div>)}
       <div class="head">
         <h3>{data.name}</h3>
         <span class="meta">{data.role}</span>
@@ -321,5 +309,12 @@ const adminDemo = availableDemo(data.links.adminDemo);
     font-size: 12px;
     color: var(--muted);
     margin: 0;
+  }
+  .slot img {
+    display: block;
+    inline-size: 100%;
+    block-size: 100%;
+    object-fit: cover;
+    object-position: top;
   }
 </style>

@@ -1,7 +1,5 @@
-// All UI copy. Source: brand/design/Home.dc.html (EN), HomeFa.dc.html (FA),
-// CaseStudy.dc.html (EN case-study chrome). Any FA string with no Persian
-// copy in the design files is `[جانگهدار]` and is listed in CONTENT-TODO.md.
-// Arrow glyphs: use `arrow` in templates instead of hard-coding the direction.
+// All UI copy. EN from the design (Home.dc.html, CaseStudy.dc.html); FA from HomeFa.dc.html
+// and FA strings written for the Persian pages. Arrow glyphs: use `arrow` in templates.
 
 export const en = {
   brand: 'reza.ghamar',
@@ -38,12 +36,8 @@ export const en = {
   status_production: 'production',
   status_shipped: 'shipped',
   status_archived: 'archived',
-  placeholder: '[placeholder]',
   read_case_study: 'Read case study',
   case_study: 'Case study',
-  shot_mangaro: '[Mangaro — app screenshots in phone frames]',
-  shot_zaboon: '[Zaboon — screenshots]',
-  shot_profit: '[AIProfit — screenshots]',
 
   more_title: 'More projects',
   more_meta: '02 / demos & code',
@@ -63,13 +57,10 @@ export const en = {
   contact_title: "Let's talk.",
   contact_text: 'Hiring for mobile or full-stack? I reply within a day.',
   contact_email: 'email',
-  contact_linkedin: 'linkedin',
-  contact_telegram: 'telegram',
   contact_github: 'github',
 
   footer_copyright: '© 2026 Reza Ghamar',
   footer_built: 'built with Astro · hosted on GitHub Pages',
-  footer_military: 'military status: [placeholder]',
 
   cs_back: '← all work',
   cs_next: 'Next:',
@@ -85,9 +76,6 @@ export const en = {
   cs_differently: "What I'd do differently:",
   cs_team_project: 'team project',
   cs_challenge: 'challenge',
-  cs_shot_library: '[Library screen video]',
-  cs_shot_reader: '[Reader screen]',
-  cs_shot_plus: '[Plus subscription]',
 
   resume_title: 'Resume',
   resume_description: 'Web version of the resume: summary, experience, education and skills. The PDF is linked on the page.',
@@ -142,17 +130,13 @@ export const fa = {
   work_meta: '۰۱ / مطالعه موردی',
   work_mangaro_status: '● در حال اجرا · انفرادی',
   status_production: 'در حال اجرا',
-  status_shipped: '[جانگهدار]',
-  status_archived: '[جانگهدار]',
-  placeholder: '[جانگهدار]',
+  status_shipped: 'منتشر شده',
+  status_archived: 'بایگانی شده',
   read_case_study: 'مطالعه موردی',
   case_study: 'مطالعه موردی',
-  shot_mangaro: '[تصاویر اپلیکیشن مانگارو]',
-  shot_zaboon: '[تصاویر زبون]',
-  shot_profit: '[تصاویر ای‌آی‌پرافیت]',
 
   more_title: 'پروژه‌های بیشتر',
-  more_meta: '[جانگهدار]',
+  more_meta: '۰۲ / دموها و کدها',
   early_title: 'کارهای اولیه',
   link_live_demo: 'دموی زنده',
   link_admin_demo: 'دموی پنل ادمین',
@@ -169,13 +153,10 @@ export const fa = {
   contact_title: 'در تماس باشیم.',
   contact_text: 'به دنبال توسعه‌دهنده موبایل یا فول‌استک هستید؟ ظرف یک روز پاسخ می‌دهم.',
   contact_email: 'email',
-  contact_linkedin: 'linkedin',
-  contact_telegram: 'telegram',
   contact_github: 'github',
 
   footer_copyright: '© ۱۴۰۵ رضا قمر',
-  footer_built: '[جانگهدار]',
-  footer_military: 'وضعیت نظام وظیفه: [وارد کنید]',
+  footer_built: 'ساخته‌شده با Astro · میزبانی روی GitHub Pages',
 
   cs_back: '← همه کارها',
   cs_next: 'بعدی:',
@@ -191,9 +172,6 @@ export const fa = {
   cs_differently: 'اگر دوباره می‌ساختم:',
   cs_team_project: 'پروژه تیمی',
   cs_challenge: 'چالش',
-  cs_shot_library: '[جانگهدار]',
-  cs_shot_reader: '[جانگهدار]',
-  cs_shot_plus: '[جانگهدار]',
 
   resume_title: 'رزومه',
   resume_description: 'نسخه وب رزومه: خلاصه، تجربه، تحصیلات و مهارت‌ها. نسخه PDF هم در صفحه قرار دارد.',
@@ -203,7 +181,8 @@ export const fa = {
   resume_education: 'تحصیلات',
   resume_skills: 'مهارت‌ها',
   resume_languages: 'زبان‌ها',
-  resume_summary_text: '[جانگهدار]',
+  resume_summary_text:
+    'توسعه‌دهنده خودآموخته اهل اهواز، ایران، که اپلیکیشن‌های واقعی را از ابتدا تا انتها منتشر می‌کند: اندروید بومی با Kotlin و Jetpack Compose، React Native، و فرانت‌اندهای وب با APIهای Django REST، از جمله پرداخت، احراز هویت با کد یک‌بارمصرف و استقرار.',
   resume_languages_value: 'فارسی (مادری) · انگلیسی (مسلط) · عربی (پیشرفته) · ژاپنی (مقدماتی)',
 
   not_found_title: 'صفحه پیدا نشد',

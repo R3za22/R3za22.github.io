@@ -14,6 +14,13 @@ links:
 order: 1
 featured: true
 images: []
+media:
+  - type: image
+    src: "projects/mangaro/1.webp"
+    alt: "Mangaro home screen on a phone"
+  - type: image
+    src: "projects/mangaro/2.webp"
+    alt: "Mangaro home page in a desktop browser"
 architecture:
   nodes:
     - title: "Android app"
@@ -46,6 +53,4 @@ I designed and built the whole system: the Android client, the Django API, phone
 
 ## 04 Result
 
-Live in production on Liara, currently at version 1.13. [placeholder] real numbers (users, subscribers, chapters), if available.
-
-**What I'd do differently:** [placeholder] reflection, one or two sentences.
+Live in production on Liara, currently at version 1.13.

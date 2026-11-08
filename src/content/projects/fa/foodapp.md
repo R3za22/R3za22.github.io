@@ -6,10 +6,15 @@ status: "shipped"
 team: false
 stack: ["Django", "DRF", "React", "TypeScript", "Vite"]
 links:
+  github: "https://github.com/R3za22/FoodApp-api"
   demo: "/demos/foodapp/"
 order: 24
 featured: false
 images: []
+media:
+  - type: image
+    src: "projects/foodapp/1.webp"
+    alt: "فهرست دستور پخت FoodApp"
 early: true
 ---
 

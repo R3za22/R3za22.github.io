@@ -2,7 +2,7 @@
 
 Bilingual (English + Persian/RTL) static site built with [Astro](https://astro.build), deployed to GitHub Pages.
 
-Live: https://r3za22.github.io (later `rezaghamar.ir`)
+Live: https://r3za22.github.io
 
 ## Editing content
 
@@ -15,7 +15,7 @@ Live: https://r3za22.github.io (later `rezaghamar.ir`)
 | Screenshots | `src/assets/projects/<slug>/`, listed in the project's `images` frontmatter |
 | Resume PDFs | `public/resume-en.pdf`, `public/resume-fa.pdf` |
 
-Anything still marked `[placeholder]` is listed in `CONTENT-TODO.md`.
+Open owner items (resume files, domain) are listed in `CONTENT-TODO.md`.
 
 ## Commands
 

@@ -1,0 +1,33 @@
+{
+  "name": "میزان",
+  "short_name": "میزان",
+  "description": "دستیار کالیبراسیون اسپرسو، کاملاً آفلاین",
+  "lang": "fa",
+  "dir": "rtl",
+  "start_url": "/demos/mizan/",
+  "scope": "/demos/mizan/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#F2EDE6",
+  "theme_color": "#2440A6",
+  "icons": [
+    {
+      "src": "/demos/mizan/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/demos/mizan/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/demos/mizan/icons/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

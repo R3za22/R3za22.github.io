@@ -18,6 +18,16 @@ links:
 order: 4
 featured: true
 images: []
+media:
+  - type: image
+    src: "projects/profit/1.webp"
+    alt: "Profit user app home on a phone"
+  - type: image
+    src: "projects/profit/2.webp"
+    alt: "Profit admin course list"
+  - type: image
+    src: "projects/profit/3.webp"
+    alt: "Profit admin channel list"
 architecture:
   nodes:
     - title: "Expo user app"
@@ -56,4 +66,4 @@ It is team and client work from 2024 to 2025. The Laravel backend is entirely by
 
 The completed user app covers phone and OTP sign-in, home, course list and detail, a video player, a simulated purchase sheet, channels with chat, support (chat, tickets, FAQ) and purchase history. The admin website adds a course editor (info, settings, seasons, videos), a channel editor with moderation, and roles and users. Each frontend has unit tests, Playwright end-to-end tests and a CI workflow.
 
-The chat socket server is not in any of the repositories, so the chat contract is assumed. [placeholder] real usage numbers, if the client shares them.
+The chat socket server is not in any of the repositories, so the chat contract is assumed.
