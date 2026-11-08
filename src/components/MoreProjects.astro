@@ -1,4 +1,5 @@
 ---
+import { availableDemo } from '../lib/demos';
 import type { CollectionEntry } from 'astro:content';
 import { t, type Lang } from '../i18n/ui';
 import ProjectCard from './ProjectCard.astro';
@@ -34,8 +35,8 @@ const slugOf = (id: string) => id.replace(/^(en|fa)\//, '');
             <li data-project={slugOf(project.id)}>
               <span class="name">{project.data.name}</span>
               <span class="cap">{project.data.tagline}</span>
-              {project.data.links.demo && (
-                <a href={project.data.links.demo}>
+              {availableDemo(project.data.links.demo) && (
+                <a href={availableDemo(project.data.links.demo)}>
                   {t(lang, 'link_live_demo')} ↗
                 </a>
               )}

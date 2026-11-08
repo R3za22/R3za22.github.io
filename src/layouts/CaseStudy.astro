@@ -1,4 +1,5 @@
 ---
+import { availableDemo } from '../lib/demos';
 import { Image } from 'astro:assets';
 import Base from './Base.astro';
 import FactsBar from '../components/FactsBar.astro';
@@ -54,7 +55,8 @@ const statusLine = [
 const links: { label: string; href: string }[] = [];
 if (data.links.apk) links.push({ label: t(lang, 'link_download_apk'), href: data.links.apk });
 if (data.links.github) links.push({ label: t(lang, 'link_github'), href: data.links.github });
-if (data.links.demo) links.push({ label: t(lang, 'link_live_demo'), href: data.links.demo });
+const demoLink = availableDemo(data.links.demo);
+if (demoLink) links.push({ label: t(lang, 'link_live_demo'), href: demoLink });
 
 const facts = [
   { key: 'role', label: t(lang, 'cs_fact_role'), value: data.role },
