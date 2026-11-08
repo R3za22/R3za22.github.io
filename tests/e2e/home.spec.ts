@@ -60,6 +60,12 @@ test.describe('home at 1440x900', () => {
     await expect(link).toHaveAttribute('href', /^https:\/\//);
   });
 
+  test('a project without a demo has no live demo link', async ({ page }) => {
+    await page.goto('/');
+    const card = page.locator('[data-project="zaboon"]');
+    await expect(card.getByRole('link', { name: /live demo/i })).toHaveCount(0);
+  });
+
   test('skills section has six cards, each with a proof line', async ({ page }) => {
     await page.goto('/');
     const skills = page.locator('#skills [data-skill]');

@@ -64,6 +64,7 @@ const { demo, github, apk, credit } = data.links;
           </a>
         )}
       </div>
+      {data.demoNote && <p class="note">{data.demoNote}</p>}
     </article>
   )
 }
@@ -265,5 +266,11 @@ const { demo, github, apk, credit } = data.links;
   .links a {
     color: var(--accent);
     text-decoration: none;
+  }
+
+  .note {
+    font-size: 12px;
+    color: var(--muted);
+    margin: 0;
   }
 </style>

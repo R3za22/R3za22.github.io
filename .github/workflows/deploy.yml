@@ -23,9 +23,15 @@ jobs:
       - run: npm run build
       - run: npx playwright test
 
-  deploy:
-    needs: ci
+  demos:
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    uses: ./.github/workflows/demos.yml
+    secrets: inherit
+
+  deploy:
+    needs: [ci, demos]
+    # demos is not in the success condition: a failed demo build must not block the site.
+    if: ${{ !cancelled() && needs.ci.result == 'success' && github.event_name == 'push' && github.ref == 'refs/heads/main' }}
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -39,6 +45,34 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Download demo artifacts
+        uses: actions/download-artifact@v4
+        continue-on-error: true
+        with:
+          pattern: demo-*
+          path: dist-demos
+          merge-multiple: false
+      - name: Rename demo artifact folders to slugs
+        run: |
+          for d in dist-demos/demo-*; do
+            if [ -d "$d" ]; then mv "$d" "dist-demos/${d#dist-demos/demo-}"; fi
+          done
+      # Limitation: a previously deployed demo cannot be restored from the live site
+      # (directories are not fetchable from GitHub Pages). If a demo failed to build
+      # in this run it is left out of public/demos, so it disappears from this deploy
+      # until the demos workflow succeeds again.
+      - name: Warn about demos missing from this run
+        run: |
+          for slug in $(node -e "for (const d of JSON.parse(require('fs').readFileSync('demos.config.json','utf8'))) console.log(d.slug)"); do
+            if [ ! -d "dist-demos/$slug" ]; then
+              echo "::warning::demo $slug missing, previous deployed copy cannot be restored automatically"
+            fi
+          done
+      - name: Scan and copy demos into public/demos
+        run: node scripts/fetch-demos.mjs
       - uses: withastro/action@v3
         with:
           node-version: 22

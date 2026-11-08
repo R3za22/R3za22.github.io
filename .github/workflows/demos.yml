@@ -1,0 +1,67 @@
+name: Build demos
+
+on:
+  workflow_dispatch:
+  workflow_call:
+
+permissions:
+  contents: read
+
+jobs:
+  matrix:
+    runs-on: ubuntu-latest
+    outputs:
+      list: ${{ steps.read.outputs.list }}
+      any: ${{ steps.read.outputs.any }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: read
+        run: |
+          echo "list=$(node -e "process.stdout.write(JSON.stringify(JSON.parse(require('fs').readFileSync('demos.config.json','utf8'))))")" >> "$GITHUB_OUTPUT"
+          echo "any=$(node -e "process.stdout.write(String(JSON.parse(require('fs').readFileSync('demos.config.json','utf8')).length > 0))")" >> "$GITHUB_OUTPUT"
+
+  build:
+    needs: matrix
+    if: needs.matrix.outputs.any == 'true'
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    strategy:
+      fail-fast: false
+      matrix:
+        demo: ${{ fromJSON(needs.matrix.outputs.list) }}
+    steps:
+      # The site repo goes into the workspace root so scripts/scan-demo.mjs exists.
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          path: src-demo
+          repository: ${{ matrix.demo.repo }}
+          ref: ${{ matrix.demo.ref }}
+          token: ${{ secrets.DEMOS_READ_TOKEN }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install demo dependencies
+        working-directory: src-demo/${{ matrix.demo.workdir }}
+        run: npm ci
+      - name: Build demo
+        working-directory: src-demo/${{ matrix.demo.workdir }}
+        run: npm run build
+      # gitleaks/gitleaks-action@v2 scans only GITHUB_WORKSPACE (the site repo here),
+      # so the demo checkout is scanned with the same engine via docker below.
+      - name: Gitleaks (site repo)
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITLEAKS_ENABLE_SUMMARY: true
+      - name: Gitleaks (demo output)
+        run: >
+          docker run --rm -v "${{ github.workspace }}/src-demo/${{ matrix.demo.outDir }}:/path"
+          zricethezav/gitleaks:latest detect --source /path --no-git --no-banner --redact
+      - name: Scan demo output for leaks and unlisted hosts
+        run: node scripts/scan-demo.mjs src-demo/${{ matrix.demo.outDir }} --allow "${{ join(matrix.demo.allowHosts, ',') }}"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: demo-${{ matrix.demo.slug }}
+          path: src-demo/${{ matrix.demo.outDir }}
+          if-no-files-found: error
