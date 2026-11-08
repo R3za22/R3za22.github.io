@@ -102,9 +102,9 @@ test.describe('mangaro case study at 1440x900', () => {
 test.describe('aiprofit case study', () => {
   test.use({ viewport: DESKTOP });
 
-  test('shows the team project label', async ({ page }) => {
+  test('is a solo product, not labelled team project', async ({ page }) => {
     await page.goto('/work/aiprofit');
-    await expect(page.locator('[data-status]')).toContainText('team project');
+    await expect(page.locator('[data-status]')).not.toContainText('team project');
   });
 });
 
