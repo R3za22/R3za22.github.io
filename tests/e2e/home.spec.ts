@@ -44,8 +44,10 @@ test.describe('home at 1440x900', () => {
 
   test('more projects lists the non-featured projects', async ({ page }) => {
     await page.goto('/');
-    const cards = page.locator('#more [data-project]');
-    await expect(cards).toHaveCount(3);
+    const cards = page.locator('#more article[data-project]');
+    await expect(cards).toHaveCount(4);
+    await expect(page.locator('#more [data-project="mizan"] h3')).toHaveText('Mizan');
+    await expect(page.locator('#more [data-project="mizan"]')).toContainText('Persian UI');
     await expect(page.locator('#more [data-project="trapclub"] h3')).toHaveText('TrapClub');
     // The collection name is "ShahContract"; the design heading adds "+ ETH Wallet".
     await expect(page.locator('#more [data-project="shahcontract"] h3')).toContainText('ShahContract');
@@ -58,6 +60,12 @@ test.describe('home at 1440x900', () => {
     const link = card.locator('a', { hasText: 'MangaTranslator' });
     await expect(link).toHaveCount(1);
     await expect(link).toHaveAttribute('href', /^https:\/\//);
+  });
+
+  test('a project without a demo has no live demo link', async ({ page }) => {
+    await page.goto('/');
+    const card = page.locator('[data-project="mangaro-factory"]');
+    await expect(card.getByRole('link', { name: /live demo/i })).toHaveCount(0);
   });
 
   test('skills section has six cards, each with a proof line', async ({ page }) => {

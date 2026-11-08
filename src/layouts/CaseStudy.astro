@@ -1,4 +1,6 @@
 ---
+import { availableDemo } from '../lib/demos';
+import { Image } from 'astro:assets';
 import Base from './Base.astro';
 import FactsBar from '../components/FactsBar.astro';
 import PhoneFrames from '../components/PhoneFrames.astro';
@@ -53,7 +55,8 @@ const statusLine = [
 const links: { label: string; href: string }[] = [];
 if (data.links.apk) links.push({ label: t(lang, 'link_download_apk'), href: data.links.apk });
 if (data.links.github) links.push({ label: t(lang, 'link_github'), href: data.links.github });
-if (data.links.demo) links.push({ label: t(lang, 'link_live_demo'), href: data.links.demo });
+const demoLink = availableDemo(data.links.demo);
+if (demoLink) links.push({ label: t(lang, 'link_live_demo'), href: demoLink });
 
 const facts = [
   { key: 'role', label: t(lang, 'cs_fact_role'), value: data.role },
@@ -81,6 +84,15 @@ const decisionCards = decisionBlocks.flatMap((block) => {
 const decisionText = decisionBlocks.filter((block) => !decisionOf(block));
 
 const architecture = data.architecture;
+
+// Media `src` is a path under src/assets (for example projects/profit/panel.png).
+const assets = import.meta.glob<{ default: ImageMetadata }>('/src/assets/**/*.{png,jpg,jpeg,webp}', {
+  eager: true,
+});
+const media = (data.media ?? []).flatMap((item) => {
+  const found = item.type === 'image' ? assets[`/src/assets/${item.src}`] : undefined;
+  return found ? [{ image: found.default, alt: item.alt }] : [];
+});
 ---
 
 <Base
@@ -106,11 +118,22 @@ const architecture = data.architecture;
       <h1>{data.name}</h1>
       <p class="pitch" dir="auto">{pitch}</p>
       <FactsBar facts={facts} />
+      {data.demoNote && <p class="demo-note" dir="auto">{data.demoNote}</p>}
     </section>
 
     <section class="shots">
       <PhoneFrames labels={frameLabels} />
     </section>
+
+    {
+      media.length > 0 && (
+        <section class="media" data-media>
+          {media.map((item) => (
+            <Image src={item.image} alt={item.alt} widths={[480, 800]} sizes="(max-width: 720px) 100vw, 380px" />
+          ))}
+        </section>
+      )
+    }
 
     <section class="block">
       <h2 class="label" data-section-label>{t(lang, 'cs_overview')}</h2>
@@ -168,6 +191,27 @@ const architecture = data.architecture;
 </Base>
 
 <style>
+  .demo-note {
+    margin: 12px 0 0;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  .media {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+    margin-block: 32px;
+  }
+
+  .media :global(img) {
+    inline-size: 100%;
+    block-size: auto;
+    border: 1px solid var(--border);
+    border-radius: var(--r-card);
+  }
+
   .site-header {
     display: flex;
     flex-wrap: wrap;

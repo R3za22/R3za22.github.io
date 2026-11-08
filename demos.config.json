@@ -1,0 +1,112 @@
+[
+  {
+    "slug": "mizan",
+    "repo": "R3za22/mizan",
+    "ref": "demo-mode",
+    "workdir": "web",
+    "install": "npm ci",
+    "build": "npm run build:demo",
+    "outDir": "web/dist-demo",
+    "allowHosts": []
+  },
+  {
+    "slug": "zaboon",
+    "repo": "R3za22/Zaboon",
+    "ref": "demo-mode",
+    "workdir": ".",
+    "install": "npm ci --legacy-peer-deps --ignore-scripts",
+    "build": "npm run build:demo",
+    "outDir": "dist-demo",
+    "allowHosts": [
+      "classic-assets.eascdn.net",
+      "phony.example",
+      "placeholder.base",
+      "reactnative.dev",
+      "docs.swmansion.com"
+    ]
+  },
+  {
+    "slug": "mangaro",
+    "repo": "R3za22/Mangaro",
+    "ref": "demo-mode",
+    "workdir": "backend/dashboard-ui",
+    "install": "npm ci",
+    "build": "npm run build:demo",
+    "outDir": "dist-demo",
+    "allowHosts": []
+  },
+  {
+    "slug": "profit",
+    "repo": "R3za22/profit",
+    "ref": "demo-mode",
+    "workdir": ".",
+    "install": "npm ci",
+    "build": "npm run build:demo -- --no-media",
+    "outDir": "dist-demo",
+    "allowHosts": []
+  },
+  {
+    "slug": "trapclub",
+    "repo": "R3za22/TrapClub-Front",
+    "ref": "demo-mode",
+    "workdir": ".",
+    "install": "npm ci",
+    "build": "npm run build:demo",
+    "outDir": "dist-demo",
+    "allowHosts": [
+      "fonts.gstatic.com"
+    ]
+  },
+  {
+    "slug": "shahnameh",
+    "repo": "R3za22/ShahContract",
+    "ref": "demo-mode",
+    "workdir": ".",
+    "install": "npm ci",
+    "build": "npm run build:demo",
+    "outDir": "demo/dist-demo",
+    "allowHosts": []
+  },
+  {
+    "slug": "sofia-shop",
+    "repo": "R3za22/Sofia-Shop-2023",
+    "ref": "demo-mode",
+    "workdir": ".",
+    "install": "",
+    "build": "bash demo/build.sh",
+    "outDir": "dist-demo",
+    "allowHosts": []
+  },
+  {
+    "slug": "tic-tac-toe",
+    "repo": "R3za22/Tic-Tac-Toe-2024",
+    "ref": "demo-mode",
+    "workdir": ".",
+    "install": "npm ci",
+    "build": "npm run build:demo",
+    "outDir": "dist-demo",
+    "allowHosts": []
+  },
+  {
+    "slug": "evently",
+    "repo": "R3za22/Evently-2024",
+    "ref": "demo-mode",
+    "workdir": ".",
+    "install": "npm ci",
+    "build": "npm run build:demo",
+    "outDir": "dist-demo",
+    "allowHosts": [
+      "fonts.gstatic.com"
+    ]
+  },
+  {
+    "slug": "employee-manager",
+    "repo": "R3za22/Employee-Manager-2023",
+    "ref": "demo-mode",
+    "workdir": ".",
+    "install": "",
+    "build": "bash demo/build.sh",
+    "outDir": "dist-demo",
+    "allowHosts": []
+  }
+]

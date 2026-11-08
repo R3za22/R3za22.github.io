@@ -9,7 +9,8 @@ role: "[جانگهدار]"
 status: "production"
 team: false
 stack: ["Kotlin", "Jetpack Compose", "SQLDelight", "Django", "DRF", "PostgreSQL", "Zarinpal", "GitHub Actions", "Liara"]
-links: {}
+links:
+  demo: "/demos/mangaro/"
 order: 1
 featured: true
 images: []

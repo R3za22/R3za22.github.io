@@ -9,10 +9,25 @@ role: "موبایل + وب · تیمی"
 status: "shipped"
 team: true
 stack: ["React Native", "Expo", "TypeScript", "Next.js"]
-links: {}
+links:
+  demo: "/demos/profit/"
 order: 3
 featured: true
 images: []
+media:
+  - type: image
+    src: "projects/profit/panel.png"
+    alt: "پنل کاربری پرافیت"
+  - type: image
+    src: "projects/profit/admin-dashboard.png"
+    alt: "داشبورد ادمین پرافیت"
+  - type: image
+    src: "projects/profit/admin-opportunities.png"
+    alt: "فهرست فرصت‌های سرمایه‌گذاری در پنل ادمین"
+  - type: image
+    src: "projects/profit/admin-articles.png"
+    alt: "فهرست مقالات در پنل ادمین"
+demoNote: "رابط فارسی · نسخه ایستا"
 ---
 
 ## ۰۱ [جانگهدار]

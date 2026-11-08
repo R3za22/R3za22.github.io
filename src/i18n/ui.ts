@@ -47,7 +47,8 @@ export const en = {
 
   more_title: 'More projects',
   more_meta: '02 / demos & code',
-  link_live_demo: 'live demo',
+  early_title: 'Early work',
+  link_live_demo: 'Live demo',
   link_github: 'github',
   link_download_apk: 'Download APK',
 
@@ -151,7 +152,8 @@ export const fa = {
 
   more_title: '[جانگهدار]',
   more_meta: '[جانگهدار]',
-  link_live_demo: '[جانگهدار]',
+  early_title: 'کارهای اولیه',
+  link_live_demo: 'دموی زنده',
   link_github: 'github',
   link_download_apk: '[جانگهدار]',
 

@@ -24,7 +24,7 @@ const readFront = (lang: string, slug: string) => {
 const readJson = (name: string) =>
   JSON.parse(fs.readFileSync(path.join(root, 'src/data', name), 'utf8')) as unknown[];
 
-const PARITY_FIELDS = ['stack', 'links', 'order', 'featured', 'status', 'team'] as const;
+const PARITY_FIELDS = ['stack', 'links', 'order', 'featured', 'status', 'team', 'early'] as const;
 
 describe('projects content parity', () => {
   it('has the same slugs in en and fa', () => {

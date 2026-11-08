@@ -16,16 +16,27 @@ export const projectSchema = z.object({
   stack: z.array(z.string().min(1)),
   links: z.object({
     github: url.optional(),
-    demo: url.optional(),
+    // Absolute URL, or a root-relative path such as /demos/mizan/ for a static demo.
+    demo: z
+      .string()
+      .min(1)
+      .refine((v) => v.startsWith('/') || /^https?:\/\//.test(v))
+      .optional(),
     apk: url.optional(),
     credit: z.object({ label: z.string().min(1), url }).optional(),
   }),
   order: z.number().int(),
   featured: z.boolean(),
+  // Early-work entries render as a small list under More projects.
+  early: z.boolean().optional(),
   images: z.array(z.string().min(1)).default([]),
   // Case-study fields. Optional so that a project can ship without them; the
   // case-study page shows `[placeholder]` for any that are missing.
   pitch: z.string().min(1).optional(),
+  demoNote: z.string().min(1).optional(),
+  media: z
+    .array(z.object({ type: z.enum(['video', 'image']), src: z.string().min(1), alt: z.string().min(1) }))
+    .optional(),
   platform: z.string().min(1).optional(),
   hosting: z.string().min(1).optional(),
   period: z.string().min(1).optional(),
