@@ -1,0 +1,1 @@
+var e={broken_image:`Broken / not loading`,low_quality:`Blurry / low quality`,wrong_order:`Wrong order`,missing_translation:`Not translated`,bad_translation:`Wrong translation`,other:`Other`,bad_inpainting:`Bad inpainting`,typo:`Typo`,bad_typesetting:`Bad typesetting`},t=t=>e[t]??t,n=e=>`ch. ${e.chapter_number??`?`} · p. ${e.page_index==null?`?`:e.page_index+1}`;export{n,t};
