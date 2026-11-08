@@ -27,6 +27,8 @@ export const projectSchema = z.object({
   }),
   order: z.number().int(),
   featured: z.boolean(),
+  // Early-work entries render as a small list under More projects.
+  early: z.boolean().optional(),
   images: z.array(z.string().min(1)).default([]),
   // Case-study fields. Optional so that a project can ship without them; the
   // case-study page shows `[placeholder]` for any that are missing.

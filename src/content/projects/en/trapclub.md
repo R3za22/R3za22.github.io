@@ -5,7 +5,8 @@ role: "[placeholder]"
 status: "shipped"
 team: false
 stack: ["TypeScript"]
-links: {}
+links:
+  demo: "/demos/trapclub/"
 order: 4
 featured: false
 images: []

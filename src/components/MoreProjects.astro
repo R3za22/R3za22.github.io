@@ -9,9 +9,12 @@ interface Props {
 }
 
 const { lang, projects } = Astro.props;
-const more = projects
+const rest = projects
   .filter((project) => !project.data.featured)
   .sort((a, b) => a.data.order - b.data.order);
+const more = rest.filter((project) => !project.data.early);
+const early = rest.filter((project) => project.data.early);
+const slugOf = (id: string) => id.replace(/^(en|fa)\//, '');
 ---
 
 <section id="more" class="container more">
@@ -22,6 +25,26 @@ const more = projects
   <div class="grid">
     {more.map((project) => <ProjectCard lang={lang} project={project} size="compact" />)}
   </div>
+  {
+    early.length > 0 && (
+      <div class="early" id="early">
+        <h3>{t(lang, 'early_title')}</h3>
+        <ul>
+          {early.map((project) => (
+            <li data-project={slugOf(project.id)}>
+              <span class="name">{project.data.name}</span>
+              <span class="cap">{project.data.tagline}</span>
+              {project.data.links.demo && (
+                <a href={project.data.links.demo}>
+                  {t(lang, 'link_live_demo')} ↗
+                </a>
+              )}
+            </li>
+          ))}
+        </ul>
+      </div>
+    )
+  }
 </section>
 
 <style>
@@ -37,5 +60,47 @@ const more = projects
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
+  }
+
+  .early h3 {
+    margin: 0 0 8px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--muted);
+  }
+
+  .early ul {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-size: 14px;
+  }
+
+  .early li {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 16px;
+    align-items: baseline;
+    padding-block: 8px;
+    border-top: 1px solid var(--border);
+  }
+
+  .early .name {
+    font-weight: 500;
+    min-inline-size: 150px;
+  }
+
+  .early .cap {
+    flex: 1 1 280px;
+    color: var(--muted);
+  }
+
+  .early a {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--accent);
+    text-decoration: none;
   }
 </style>

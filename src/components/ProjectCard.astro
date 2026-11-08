@@ -86,9 +86,16 @@ const { demo, github, apk, credit } = data.links;
         <ul class="chips">
           {data.stack.map((item) => <li>{item}</li>)}
         </ul>
-        <a class="read stretched" href={caseStudyHref}>
-          {readLabel} {t(lang, 'arrow')}
-        </a>
+        <div class="row">
+          <a class="read stretched" href={caseStudyHref}>
+            {readLabel} {t(lang, 'arrow')}
+          </a>
+          {demo && (
+            <a class="demo" href={demo}>
+              {t(lang, 'link_live_demo')} ↗
+            </a>
+          )}
+        </div>
       </div>
     </article>
   )
@@ -105,14 +112,38 @@ const { demo, github, apk, credit } = data.links;
         <span class="meta">{data.role}</span>
       </div>
       <p class="tagline">{data.tagline}</p>
-      <a class="read" href={caseStudyHref}>
-        {readLabel} {t(lang, 'arrow')}
-      </a>
+      <div class="row">
+        <a class="read" href={caseStudyHref}>
+          {readLabel} {t(lang, 'arrow')}
+        </a>
+        {demo && (
+          <a class="demo" href={demo}>
+            {t(lang, 'link_live_demo')} ↗
+          </a>
+        )}
+      </div>
     </article>
   )
 }
 
 <style>
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 20px;
+    align-items: baseline;
+  }
+
+  /* Sits above the stretched case-study link so it stays clickable. */
+  .demo {
+    position: relative;
+    z-index: 1;
+    color: var(--accent);
+    font-family: var(--font-mono);
+    font-size: 13px;
+    text-decoration: none;
+  }
+
   .card {
     display: flex;
     flex-direction: column;

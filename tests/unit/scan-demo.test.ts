@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { scanDemo } from '../../scripts/scan-demo.mjs';
+import { scanDemo, DEFAULT_ALLOW_HOSTS } from '../../scripts/scan-demo.mjs';
 
 const fixtures = fileURLToPath(new URL('../fixtures/scan', import.meta.url));
 
@@ -32,6 +32,22 @@ describe('scanDemo', () => {
     try {
       expect(scanDemo(dir, ['fonts.example'])).toEqual([]);
       expect(scanDemo(dir)).toHaveLength(1);
+    } finally {
+      fs.rmSync(dir, { recursive: true, force: true });
+    }
+  });
+
+  it('passes default library hosts and their subdomains but still blocks deploy hosts', () => {
+    const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'scan-demo-'));
+    try {
+      expect(DEFAULT_ALLOW_HOSTS).toContain('react.dev');
+      fs.writeFileSync(
+        path.join(dir, 'a.js'),
+        'x="https://www.w3.org/2000/svg";y="https://react.dev/errors/1";z="http://localhost:3000/"',
+      );
+      expect(scanDemo(dir)).toEqual([]);
+      fs.writeFileSync(path.join(dir, 'b.js'), 'a="https://app.liara.run/x";b="https://site.vercel.app/y";c="https://evilw3.org/"');
+      expect(scanDemo(dir).map((f) => f.match).sort()).toEqual(['app.liara.run', 'evilw3.org', 'site.vercel.app']);
     } finally {
       fs.rmSync(dir, { recursive: true, force: true });
     }

@@ -5,3 +5,4 @@ export interface ScanFinding {
 }
 
 export function scanDemo(dir: string, allowHosts?: string[]): ScanFinding[];
+export const DEFAULT_ALLOW_HOSTS: string[];

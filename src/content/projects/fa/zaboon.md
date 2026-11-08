@@ -9,7 +9,8 @@ role: "موبایل · انفرادی"
 status: "shipped"
 team: false
 stack: ["React Native", "Expo", "TypeScript", "Python", "Lottie"]
-links: {}
+links:
+  demo: "/demos/zaboon/"
 order: 2
 featured: true
 images: []

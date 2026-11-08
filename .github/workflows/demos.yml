@@ -32,35 +32,59 @@ jobs:
     steps:
       # The site repo goes into the workspace root so scripts/scan-demo.mjs exists.
       - uses: actions/checkout@v4
+      # A ref that is not pushed yet (owner review pending) is skipped, not failed.
+      - name: Check demo ref exists
+        id: ref
+        env:
+          GH_TOKEN: ${{ secrets.DEMOS_READ_TOKEN }}
+        run: |
+          if git ls-remote --exit-code "https://x-access-token:${GH_TOKEN}@github.com/${{ matrix.demo.repo }}.git" "${{ matrix.demo.ref }}" >/dev/null 2>&1; then
+            echo "ok=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "ok=false" >> "$GITHUB_OUTPUT"
+            echo "::warning::skipping ${{ matrix.demo.slug }}: ${{ matrix.demo.repo }}@${{ matrix.demo.ref }} not found"
+          fi
       - uses: actions/checkout@v4
+        if: steps.ref.outputs.ok == 'true'
         with:
           path: src-demo
           repository: ${{ matrix.demo.repo }}
           ref: ${{ matrix.demo.ref }}
           token: ${{ secrets.DEMOS_READ_TOKEN }}
       - uses: actions/setup-node@v4
+        if: steps.ref.outputs.ok == 'true'
         with:
           node-version: 22
       - name: Install demo dependencies
+        if: steps.ref.outputs.ok == 'true' && matrix.demo.install != ''
         working-directory: src-demo/${{ matrix.demo.workdir }}
-        run: npm ci
+        run: ${{ matrix.demo.install }}
+      - name: Install Playwright Chromium (profit)
+        if: steps.ref.outputs.ok == 'true' && matrix.demo.slug == 'profit'
+        working-directory: src-demo/${{ matrix.demo.workdir }}
+        run: npx playwright install --with-deps chromium
       - name: Build demo
+        if: steps.ref.outputs.ok == 'true'
         working-directory: src-demo/${{ matrix.demo.workdir }}
-        run: npm run build
+        run: ${{ matrix.demo.build }}
       # gitleaks/gitleaks-action@v2 scans only GITHUB_WORKSPACE (the site repo here),
       # so the demo checkout is scanned with the same engine via docker below.
       - name: Gitleaks (site repo)
+        if: steps.ref.outputs.ok == 'true'
         uses: gitleaks/gitleaks-action@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITLEAKS_ENABLE_SUMMARY: true
       - name: Gitleaks (demo output)
+        if: steps.ref.outputs.ok == 'true'
         run: >
           docker run --rm -v "${{ github.workspace }}/src-demo/${{ matrix.demo.outDir }}:/path"
           zricethezav/gitleaks:latest detect --source /path --no-git --no-banner --redact
       - name: Scan demo output for leaks and unlisted hosts
+        if: steps.ref.outputs.ok == 'true'
         run: node scripts/scan-demo.mjs src-demo/${{ matrix.demo.outDir }} --allow "${{ join(matrix.demo.allowHosts, ',') }}"
       - uses: actions/upload-artifact@v4
+        if: steps.ref.outputs.ok == 'true'
         with:
           name: demo-${{ matrix.demo.slug }}
           path: src-demo/${{ matrix.demo.outDir }}
