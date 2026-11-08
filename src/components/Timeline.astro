@@ -1,0 +1,80 @@
+---
+import { t, type Lang } from '../i18n/ui';
+import type { TimelineItem } from '../lib/schema';
+
+interface Props {
+  lang: Lang;
+  items: TimelineItem[];
+}
+
+const { lang, items } = Astro.props;
+---
+
+<section id="experience" class="container timeline">
+  <div class="section-head">
+    <h2>{t(lang, 'timeline_title')}</h2>
+    <span class="meta">{t(lang, 'timeline_meta')}</span>
+  </div>
+  <div class="rows">
+    {
+      items.map((item) => (
+        <div class="row" data-timeline-row>
+          <div class="period">{item.period}</div>
+          <div class="content">
+            <div class="title">{item.title}</div>
+            <div class="detail">{item.detail}</div>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding-block: 0 96px;
+  }
+
+  .rows {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 32px;
+    padding-block: 20px;
+    border-bottom: 1px solid var(--grid);
+  }
+
+  .period {
+    flex: 0 0 160px;
+    padding-top: 3px;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  .content {
+    flex: 1 1 480px;
+    min-inline-size: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .title {
+    font-size: 18px;
+    font-weight: 600;
+  }
+
+  .detail {
+    font-size: 15px;
+    line-height: 1.55;
+    color: var(--muted);
+  }
+</style>

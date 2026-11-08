@@ -1,0 +1,29 @@
+---
+import { t, type Lang } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+---
+
+<footer class="container footer">
+  <span>{t(lang, 'footer_copyright')}</span>
+  <span>{t(lang, 'footer_built')}</span>
+  {lang === 'fa' && <span>{t(lang, 'footer_military')}</span>}
+</footer>
+
+<style>
+  .footer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: space-between;
+    padding-block: 24px 40px;
+    border-top: 1px solid var(--border);
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--muted);
+  }
+</style>

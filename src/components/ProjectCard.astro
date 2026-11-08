@@ -1,0 +1,269 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { t, type Lang, type UiKey } from '../i18n/ui';
+import Placeholder from './Placeholder.astro';
+
+interface Props {
+  lang: Lang;
+  project: CollectionEntry<'projects'>;
+  size: 'large' | 'small' | 'compact';
+}
+
+const { lang, project, size } = Astro.props;
+const { data } = project;
+// Entry ids are `<lang>/<slug>`.
+const slug = project.id.replace(/^(en|fa)\//, '');
+const caseStudyHref = `${lang === 'fa' ? '/fa' : ''}/work/${slug}`;
+
+const SLOT_HEIGHT = { large: 340, small: 120 } as const;
+const SHOT_KEYS: Record<string, UiKey> = {
+  mangaro: 'shot_mangaro',
+  zaboon: 'shot_zaboon',
+  profit: 'shot_profit',
+};
+const STATUS_KEYS = {
+  production: 'status_production',
+  shipped: 'status_shipped',
+  archived: 'status_archived',
+} as const satisfies Record<string, UiKey>;
+
+// Screenshot slot. Until a project has entries in `images`, the slot shows a
+// Placeholder of the reserved height. When images exist, render an Astro
+// <Image> inside the same slot (same height, so the layout does not move).
+const shotKey = SHOT_KEYS[slug];
+const shotLabel = shotKey ? t(lang, shotKey) : `[${data.name} — screenshots]`;
+
+const readLabel = t(lang, size === 'large' ? 'read_case_study' : 'case_study');
+const { demo, github, apk, credit } = data.links;
+---
+
+{
+  size === 'compact' && (
+    <article class="card compact" data-project={slug}>
+      <h3>{data.name}</h3>
+      <p class="tagline">{data.tagline}</p>
+      <div class="links">
+        {demo && (
+          <a href={demo}>
+            {t(lang, 'link_live_demo')} ↗
+          </a>
+        )}
+        {github && (
+          <a href={github}>
+            {t(lang, 'link_github')} ↗
+          </a>
+        )}
+        {apk && (
+          <a href={apk}>
+            {t(lang, 'link_download_apk')} ↗
+          </a>
+        )}
+        {credit && (
+          <a href={credit.url}>
+            {credit.label} ↗
+          </a>
+        )}
+      </div>
+    </article>
+  )
+}
+
+{
+  size === 'large' && (
+    <article class="card large" data-project={slug}>
+      <div class="slot" data-image-slot style={`height:${SLOT_HEIGHT.large}px`}>
+        <Placeholder label={shotLabel} height={SLOT_HEIGHT.large} />
+      </div>
+      <div class="body">
+        <div class="head">
+          <h3>{data.name}</h3>
+          <span class="meta">
+            <span class="accent">● {t(lang, STATUS_KEYS[data.status])}</span> · {data.role}
+          </span>
+        </div>
+        <p class="tagline">{data.tagline}</p>
+        <ul class="chips">
+          {data.stack.map((item) => <li>{item}</li>)}
+        </ul>
+        <a class="read stretched" href={caseStudyHref}>
+          {readLabel} {t(lang, 'arrow')}
+        </a>
+      </div>
+    </article>
+  )
+}
+
+{
+  size === 'small' && (
+    <article class="card small" data-project={slug}>
+      <div class="slot" data-image-slot style={`height:${SLOT_HEIGHT.small}px`}>
+        <Placeholder label={shotLabel} height={SLOT_HEIGHT.small} />
+      </div>
+      <div class="head">
+        <h3>{data.name}</h3>
+        <span class="meta">{data.role}</span>
+      </div>
+      <p class="tagline">{data.tagline}</p>
+      <a class="read" href={caseStudyHref}>
+        {readLabel} {t(lang, 'arrow')}
+      </a>
+    </article>
+  )
+}
+
+<style>
+  .card {
+    display: flex;
+    flex-direction: column;
+    min-inline-size: 0;
+    max-inline-size: 100%;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--r-card);
+    overflow: hidden;
+  }
+
+  .head {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: baseline;
+  }
+
+  h3 {
+    margin: 0;
+    font-weight: 600;
+  }
+
+  .tagline {
+    margin: 0;
+    color: var(--muted);
+  }
+
+  .meta {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  .accent {
+    color: var(--accent);
+  }
+
+  .read {
+    color: var(--accent);
+    font-weight: 500;
+    text-decoration: none;
+  }
+
+  .slot {
+    inline-size: 100%;
+  }
+
+  /* Featured, large: image slot is full-bleed, body has the padding. */
+  .large {
+    flex: 2 1 640px;
+    position: relative;
+  }
+
+  .large .body {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 24px;
+  }
+
+  .large h3 {
+    font-size: 24px;
+  }
+
+  .large .tagline {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  .large .read {
+    font-size: 15px;
+  }
+
+  /* Makes the whole large card clickable through the case-study link. */
+  .stretched::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+  }
+
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--text);
+  }
+
+  .chips li {
+    border: 1px solid var(--control);
+    padding: 4px 8px;
+    border-radius: var(--r-tag);
+  }
+
+  /* Featured, small: sits in the right-hand column, padded as one block. */
+  .small {
+    flex: 1 1 auto;
+    gap: 12px;
+    padding: 24px;
+  }
+
+  .small .slot {
+    border-radius: var(--r-btn);
+    overflow: hidden;
+  }
+
+  .small h3 {
+    font-size: 20px;
+  }
+
+  .small .tagline {
+    font-size: 15px;
+    line-height: 1.55;
+  }
+
+  .small .read {
+    font-size: 14px;
+  }
+
+  /* More projects: text-only, no image slot. */
+  .compact {
+    flex: 1 1 300px;
+    gap: 10px;
+    padding: 20px;
+    background: var(--bg);
+  }
+
+  .compact h3 {
+    font-size: 18px;
+  }
+
+  .compact .tagline {
+    font-size: 14px;
+    line-height: 1.55;
+  }
+
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    font-family: var(--font-mono);
+    font-size: 13px;
+  }
+
+  .links a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+</style>

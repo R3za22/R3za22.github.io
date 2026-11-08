@@ -1,0 +1,32 @@
+[
+  {
+    "layer": "موبایل",
+    "items": ["Kotlin", "Jetpack Compose", "SQLDelight", "React Native", "Expo"],
+    "proof": "مانگارو، زبون"
+  },
+  {
+    "layer": "فرانت‌اند وب",
+    "items": ["TypeScript", "React", "Next.js", "Tailwind CSS"],
+    "proof": "پرافیت، ترپ‌کلاب"
+  },
+  {
+    "layer": "بک‌اند",
+    "items": ["Python", "Django", "DRF", "PostgreSQL"],
+    "proof": "API مانگارو و زبون"
+  },
+  {
+    "layer": "محصول و زیرساخت",
+    "items": ["Zarinpal", "SMS OTP", "GitHub Actions", "Docker", "Liara"],
+    "proof": "مانگارو"
+  },
+  {
+    "layer": "وب۳",
+    "items": ["Solidity", "Ethereum", "Hardhat"],
+    "proof": "شاه‌کانترکت، کیف پول"
+  },
+  {
+    "layer": "تخصص",
+    "items": ["RTL", "i18n"],
+    "proof": "همه محصولات"
+  }
+]

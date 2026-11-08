@@ -1,0 +1,76 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { t } from '../i18n/ui';
+
+const lang = 'en' as const;
+---
+
+<Base
+  lang={lang}
+  title={`${t(lang, 'not_found_title')} — ${t(lang, 'val_name')}`}
+  description={t(lang, 'not_found_text')}
+  alternate="/fa/"
+  noindex
+>
+  <Header lang={lang} />
+  <main class="container not-found">
+    <h1>{t(lang, 'not_found_title')}</h1>
+    <p class="prose">{t(lang, 'not_found_text')}</p>
+    <div class="actions">
+      <a class="btn primary" href="/">{t(lang, 'not_found_home')}</a>
+      <a class="btn secondary" href="/fa/">{t(lang, 'not_found_fa')}</a>
+    </div>
+  </main>
+  <Footer lang={lang} />
+</Base>
+
+<style>
+  .not-found {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    padding-block: 96px 112px;
+  }
+
+  h1 {
+    margin: 0;
+    font-weight: 600;
+    font-size: clamp(40px, 6vw, 64px);
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+  }
+
+  .prose {
+    margin: 0;
+    color: var(--prose);
+  }
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .btn {
+    padding: 13px 22px;
+    border-radius: var(--r-btn);
+    font-size: 15px;
+    text-decoration: none;
+  }
+
+  .primary {
+    background: var(--accent);
+    color: var(--on-accent);
+    font-weight: 600;
+  }
+
+  .secondary {
+    color: var(--text);
+    background: var(--surface);
+    border: 1px solid var(--control);
+    font-weight: 500;
+  }
+</style>

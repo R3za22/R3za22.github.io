@@ -1,0 +1,127 @@
+@import './tokens.css';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  color-scheme: dark;
+  -webkit-text-size-adjust: 100%;
+}
+
+html[lang='en'] body {
+  font-family: var(--font-en);
+}
+
+html[lang='fa'] body {
+  font-family: var(--font-fa);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--text);
+  background-color: var(--bg);
+  background-image:
+    linear-gradient(to right, var(--grid) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid) 1px, transparent 1px);
+  background-size: 48px 48px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-wrap: break-word;
+}
+
+code,
+kbd,
+pre,
+.mono {
+  font-family: var(--font-mono);
+}
+
+img,
+svg,
+video {
+  display: block;
+  max-inline-size: 100%;
+}
+
+a {
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.container {
+  max-inline-size: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.section-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 12px;
+  border-bottom: 1px solid var(--border);
+  padding-block-end: 16px;
+}
+
+.section-head h2 {
+  margin: 0;
+  font-weight: 600;
+  font-size: var(--h2-size, 28px);
+  letter-spacing: -0.02em;
+}
+
+.section-head .meta {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/*
+ * Persian pages: Persian text uses the Persian face, not the tracked mono
+ * or uppercase styles of the EN chrome (letter-spacing breaks Arabic joins).
+ * English-only mono pieces (the language toggle) keep the mono face.
+ */
+html[lang='fa'] :is(.site-header, .status, .meta, .period, .proof, .layer, .footer, .label, .challenge) {
+  font-family: var(--font-fa);
+}
+
+html[lang='fa'] .site-header .lang {
+  font-family: var(--font-mono);
+}
+
+html[lang='fa'] :is(h1, h2, h3, .layer) {
+  letter-spacing: 0;
+}
+
+/* Design FA headings: bold, with taller lines so Persian marks are not clipped. */
+html[lang='fa'] :is(h1, h2, h3) {
+  font-weight: 700;
+}
+
+html[lang='fa'] h1 {
+  line-height: 1.25;
+}
+
+html[lang='fa'] .layer {
+  text-transform: none;
+}

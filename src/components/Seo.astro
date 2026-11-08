@@ -1,0 +1,49 @@
+---
+// Document head metadata for every page. Base renders this inside <head>.
+// `alternate` is the path of the other-language twin; the en/fa URLs are built
+// from `path` and `alternate` so both hreflang links are always absolute.
+
+interface Props {
+  title: string;
+  description: string;
+  lang: 'en' | 'fa';
+  path: string;
+  alternate: string;
+  jsonLd?: object;
+  noindex?: boolean;
+}
+
+const SITE = 'https://rezaghamar.ir';
+const { title, description, lang, path, alternate, jsonLd, noindex = false } = Astro.props;
+
+// The build writes each page as a directory, and sitemap-0.xml lists URLs with
+// a trailing slash. Canonical and hreflang URLs use the same form.
+const withSlash = (p: string) => (p.endsWith('/') ? p : `${p}/`);
+const canonicalUrl = `${SITE}${withSlash(path)}`;
+const enUrl = `${SITE}${withSlash(lang === 'en' ? path : alternate)}`;
+const faUrl = `${SITE}${withSlash(lang === 'fa' ? path : alternate)}`;
+const ogLocale = lang === 'fa' ? 'fa_IR' : 'en_US';
+---
+
+<title>{title}</title>
+<meta name="description" content={description} />
+{
+  noindex ? (
+    <meta name="robots" content="noindex" />
+  ) : (
+    <>
+      <link rel="canonical" href={canonicalUrl} />
+      <link rel="alternate" hreflang="en" href={enUrl} />
+      <link rel="alternate" hreflang="fa" href={faUrl} />
+      <link rel="alternate" hreflang="x-default" href={enUrl} />
+    </>
+  )
+}
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:type" content="website" />
+<meta property="og:url" content={canonicalUrl} />
+<meta property="og:image" content={`${SITE}/og.png`} />
+<meta property="og:locale" content={ogLocale} />
+<meta name="twitter:card" content="summary_large_image" />
+{jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}

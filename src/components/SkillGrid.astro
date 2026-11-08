@@ -1,0 +1,85 @@
+---
+import { t, type Lang } from '../i18n/ui';
+import type { Skill } from '../lib/schema';
+
+interface Props {
+  lang: Lang;
+  skills: Skill[];
+}
+
+const { lang, skills } = Astro.props;
+---
+
+<section id="skills" class="container skills">
+  <div class="section-head">
+    <h2>{t(lang, 'skills_title')}</h2>
+    <span class="meta">{t(lang, 'skills_meta')}</span>
+  </div>
+  <div class="grid">
+    {
+      skills.map((skill) => (
+        <article class="card" data-skill={skill.layer}>
+          <p class="layer">{skill.layer}</p>
+          <p class="items" dir="ltr" data-skill-items>{skill.items.join(' · ')}</p>
+          <p class="proof" data-proof>{t(lang, 'proof_label')} {t(lang, 'arrow')} {skill.proof}</p>
+        </article>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .skills {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding-block: 0 96px;
+  }
+
+  .grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .card {
+    flex: 1 1 340px;
+    min-inline-size: 0;
+    max-inline-size: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 20px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--r-card);
+  }
+
+  .layer {
+    margin: 0;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .items {
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--text);
+  }
+
+  /* LTR list inside an RTL page: align to the reading-order end (the right), as in the FA design. */
+  html[dir='rtl'] .items {
+    text-align: end;
+  }
+
+  .proof {
+    margin: 0;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--muted);
+  }
+</style>

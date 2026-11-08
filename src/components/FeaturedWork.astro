@@ -1,0 +1,53 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { t, type Lang } from '../i18n/ui';
+import ProjectCard from './ProjectCard.astro';
+
+interface Props {
+  lang: Lang;
+  projects: CollectionEntry<'projects'>[];
+}
+
+const { lang, projects } = Astro.props;
+const featured = projects
+  .filter((project) => project.data.featured)
+  .sort((a, b) => a.data.order - b.data.order);
+const [lead, ...rest] = featured;
+---
+
+<section id="work" class="container work">
+  <div class="section-head">
+    <h2>{t(lang, 'work_title')}</h2>
+    <span class="meta">{t(lang, 'work_meta')}</span>
+  </div>
+  <div class="grid">
+    {lead && <ProjectCard lang={lang} project={lead} size="large" />}
+    <div class="stack">
+      {rest.map((project) => <ProjectCard lang={lang} project={project} size="small" />)}
+    </div>
+  </div>
+</section>
+
+<style>
+  .work {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    padding-block: 40px 72px;
+  }
+
+  .grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .stack {
+    flex: 1 1 340px;
+    min-inline-size: 0;
+    max-inline-size: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+</style>

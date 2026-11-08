@@ -1,0 +1,41 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { t, type Lang } from '../i18n/ui';
+import ProjectCard from './ProjectCard.astro';
+
+interface Props {
+  lang: Lang;
+  projects: CollectionEntry<'projects'>[];
+}
+
+const { lang, projects } = Astro.props;
+const more = projects
+  .filter((project) => !project.data.featured)
+  .sort((a, b) => a.data.order - b.data.order);
+---
+
+<section id="more" class="container more">
+  <div class="section-head">
+    <h2>{t(lang, 'more_title')}</h2>
+    <span class="meta">{t(lang, 'more_meta')}</span>
+  </div>
+  <div class="grid">
+    {more.map((project) => <ProjectCard lang={lang} project={project} size="compact" />)}
+  </div>
+</section>
+
+<style>
+  .more {
+    --h2-size: 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-block: 0 96px;
+  }
+
+  .grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+</style>

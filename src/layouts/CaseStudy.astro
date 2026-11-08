@@ -1,0 +1,312 @@
+---
+import Base from './Base.astro';
+import FactsBar from '../components/FactsBar.astro';
+import PhoneFrames from '../components/PhoneFrames.astro';
+import ArchitectureDiagram from '../components/ArchitectureDiagram.astro';
+import DecisionCards from '../components/DecisionCards.astro';
+import StackTags from '../components/StackTags.astro';
+import ProjectNav from '../components/ProjectNav.astro';
+import { t, type Lang, type UiKey } from '../i18n/ui';
+import {
+  decisionOf,
+  isPlaceholder,
+  sectionsOf,
+  segmentsOf,
+  slugOf,
+  type Project,
+} from '../lib/caseStudy';
+
+interface Props {
+  lang: Lang;
+  project: Project;
+  prev: Project;
+  next: Project;
+}
+
+const { lang, project, prev, next } = Astro.props;
+const { data } = project;
+const slug = slugOf(project);
+const isFa = lang === 'fa';
+const placeholder = t(lang, 'placeholder');
+const home = isFa ? '/fa/' : '/';
+const otherLang = isFa ? 'en' : 'fa';
+const alternate = isFa ? `/work/${slug}` : `/fa/work/${slug}`;
+const siteName = isFa ? t(lang, 'brand') : t(lang, 'val_name');
+
+const pitch = data.pitch ?? placeholder;
+const title = `${data.name} — ${t(lang, 'case_study')} | ${siteName}`;
+const description = isPlaceholder(pitch) ? data.tagline : pitch;
+
+const STATUS_KEYS = {
+  production: 'status_production',
+  shipped: 'status_shipped',
+  archived: 'status_archived',
+} as const satisfies Record<string, UiKey>;
+const statusLine = [
+  `● ${t(lang, STATUS_KEYS[data.status])}`,
+  data.team ? t(lang, 'cs_team_project') : undefined,
+  data.period ?? placeholder,
+]
+  .filter((part): part is string => part !== undefined)
+  .join(' · ');
+
+const links: { label: string; href: string }[] = [];
+if (data.links.apk) links.push({ label: t(lang, 'link_download_apk'), href: data.links.apk });
+if (data.links.github) links.push({ label: t(lang, 'link_github'), href: data.links.github });
+if (data.links.demo) links.push({ label: t(lang, 'link_live_demo'), href: data.links.demo });
+
+const facts = [
+  { key: 'role', label: t(lang, 'cs_fact_role'), value: data.role },
+  { key: 'platform', label: t(lang, 'cs_fact_platform'), value: data.platform ?? placeholder },
+  { key: 'hosting', label: t(lang, 'cs_fact_hosting'), value: data.hosting ?? placeholder },
+  { key: 'links', label: t(lang, 'cs_fact_links'), value: placeholder, links },
+];
+
+// Screenshots are not in the repo yet, so every frame is a Placeholder.
+// The Mangaro frame labels come from the design.
+const frameLabels =
+  slug === 'mangaro'
+    ? [t(lang, 'cs_shot_library'), t(lang, 'cs_shot_reader'), t(lang, 'cs_shot_plus')]
+    : [placeholder, placeholder, placeholder];
+
+// Sections are matched by position: 01 overview, 02 architecture,
+// 03 key decisions, 04 result. The 05 stack section comes from frontmatter.
+const [overview = [], architectureText = [], decisionBlocks = [], resultText = []] = sectionsOf(
+  project.body ?? '',
+);
+const decisionCards = decisionBlocks.flatMap((block) => {
+  const decision = decisionOf(block);
+  return decision ? [decision] : [];
+});
+const decisionText = decisionBlocks.filter((block) => !decisionOf(block));
+
+const architecture = data.architecture;
+---
+
+<Base
+  lang={lang}
+  title={title}
+  description={description}
+  alternate={alternate}
+  wide={false}
+>
+  <header class="container site-header">
+    <a class="brand" href={home}>
+      {t(lang, 'brand')}<span class="cursor" aria-hidden="true">_</span>
+    </a>
+    <nav class="nav" aria-label="Case study">
+      <a class="back" href={`${home}#work`}>{t(lang, 'cs_back')}</a>
+      <a class="lang" href={alternate} hreflang={otherLang}>{t(lang, 'lang_switch')}</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="status" data-status>{statusLine}</div>
+      <h1>{data.name}</h1>
+      <p class="pitch" dir="auto">{pitch}</p>
+      <FactsBar facts={facts} />
+    </section>
+
+    <section class="shots">
+      <PhoneFrames labels={frameLabels} />
+    </section>
+
+    <section class="block">
+      <h2 class="label" data-section-label>{t(lang, 'cs_overview')}</h2>
+      <div class="content prose">
+        {overview.map((block) => <p dir="auto">{segmentsOf(block).map((run) => (run.strong ? <strong>{run.text}</strong> : run.text))}</p>)}
+      </div>
+    </section>
+
+    <section class="block">
+      <h2 class="label" data-section-label>{t(lang, 'cs_architecture')}</h2>
+      <div class="content">
+        {architecture && (
+          <ArchitectureDiagram
+            lang={lang}
+            nodes={architecture.nodes}
+            services={architecture.services}
+          />
+        )}
+        {architectureText.length > 0 && (
+          <div class="prose">
+            {architectureText.map((block) => <p dir="auto">{segmentsOf(block).map((run) => (run.strong ? <strong>{run.text}</strong> : run.text))}</p>)}
+          </div>
+        )}
+      </div>
+    </section>
+
+    <section class="block">
+      <h2 class="label" data-section-label>{t(lang, 'cs_decisions')}</h2>
+      <div class="content">
+        <DecisionCards lang={lang} items={decisionCards} />
+        {decisionText.length > 0 && (
+          <div class="prose">
+            {decisionText.map((block) => <p dir="auto">{segmentsOf(block).map((run) => (run.strong ? <strong>{run.text}</strong> : run.text))}</p>)}
+          </div>
+        )}
+      </div>
+    </section>
+
+    <section class="block">
+      <h2 class="label" data-section-label>{t(lang, 'cs_result')}</h2>
+      <div class="content prose">
+        {resultText.map((block) => <p dir="auto">{segmentsOf(block).map((run) => (run.strong ? <strong>{run.text}</strong> : run.text))}</p>)}
+      </div>
+    </section>
+
+    <section class="block">
+      <h2 class="label" data-section-label>{t(lang, 'cs_stack')}</h2>
+      <div class="content">
+        <StackTags stack={data.stack} />
+      </div>
+    </section>
+
+    <ProjectNav lang={lang} prev={prev} next={next} />
+  </main>
+</Base>
+
+<style>
+  .site-header {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: space-between;
+    align-items: center;
+    padding-block: 24px;
+    font-family: var(--font-mono);
+    font-size: 13px;
+  }
+
+  .brand {
+    color: var(--text);
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .cursor {
+    color: var(--accent);
+  }
+
+  .nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    align-items: center;
+  }
+
+  .nav .back {
+    color: var(--muted);
+    text-decoration: none;
+  }
+
+  .nav .lang {
+    color: var(--text);
+    border: 1px solid var(--control);
+    padding: 6px 10px;
+    border-radius: var(--r-tag);
+    text-decoration: none;
+  }
+
+  html[lang='fa'] .site-header,
+  html[lang='fa'] .status {
+    font-family: var(--font-fa);
+  }
+
+  html[lang='fa'] .site-header .lang {
+    font-family: var(--font-mono);
+  }
+
+  html[lang='fa'] h1 {
+    font-weight: 700;
+  }
+
+  .hero {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding-block: 80px 72px;
+  }
+
+  .status {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--accent);
+  }
+
+  h1 {
+    margin: 0;
+    font-weight: 600;
+    font-size: clamp(44px, 6vw, 80px);
+    line-height: 1.02;
+    letter-spacing: -0.035em;
+  }
+
+  html[lang='fa'] h1 {
+    letter-spacing: 0;
+  }
+
+  .pitch {
+    margin: 0;
+    max-inline-size: 760px;
+    font-size: 22px;
+    line-height: 1.5;
+    color: var(--muted);
+  }
+
+  .shots {
+    padding-block-end: 72px;
+  }
+
+  .block {
+    display: grid;
+    grid-template-columns: 200px minmax(0, 1fr);
+    gap: 40px;
+    padding-block-end: 72px;
+  }
+
+  .label {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    font-weight: 400;
+    margin: 0;
+    color: var(--muted);
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    min-inline-size: 0;
+  }
+
+  .prose {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    font-size: 18px;
+    line-height: 1.7;
+    color: var(--prose);
+  }
+
+  .prose p {
+    margin: 0;
+  }
+
+  .prose strong {
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  @media (max-width: 720px) {
+    .block {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 16px;
+    }
+
+    .hero {
+      padding-block: 48px 48px;
+    }
+  }
+</style>
