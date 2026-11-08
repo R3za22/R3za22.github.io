@@ -59,8 +59,8 @@ jobs:
         if: steps.ref.outputs.ok == 'true' && matrix.demo.install != ''
         working-directory: src-demo/${{ matrix.demo.workdir }}
         run: ${{ matrix.demo.install }}
-      - name: Install Playwright Chromium (profit)
-        if: steps.ref.outputs.ok == 'true' && matrix.demo.slug == 'profit'
+      - name: Install Playwright Chromium (aiprofit)
+        if: steps.ref.outputs.ok == 'true' && matrix.demo.slug == 'aiprofit'
         working-directory: src-demo/${{ matrix.demo.workdir }}
         run: npx playwright install --with-deps chromium
       - name: Build demo

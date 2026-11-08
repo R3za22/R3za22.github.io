@@ -4,7 +4,9 @@
       "staticDistDir": "./dist",
       "url": [
         "http://localhost/index.html",
-        "http://localhost/work/mangaro/index.html"
+        "http://localhost/fa/index.html",
+        "http://localhost/work/mangaro/index.html",
+        "http://localhost/work/profit/index.html"
       ],
       "numberOfRuns": 1,
       "settings": {

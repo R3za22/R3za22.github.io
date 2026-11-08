@@ -28,18 +28,20 @@ test.describe('home at 1440x900', () => {
     expect(await isAboveFold(work, DESKTOP.height)).toBe(true);
   });
 
-  test('selected work lists Mangaro, Zaboon, Profit in order', async ({ page }) => {
+  test('selected work lists Mangaro, Zaboon, AIProfit, Profit in order', async ({ page }) => {
     await page.goto('/');
     const cards = page.locator('#work [data-project]');
-    await expect(cards).toHaveCount(3);
+    await expect(cards).toHaveCount(4);
     await expect(cards.nth(0)).toHaveAttribute('data-project', 'mangaro');
     await expect(cards.nth(0).locator('h3')).toHaveText('Mangaro');
     await expect(cards.nth(0)).toContainText('production');
     await expect(cards.nth(1)).toHaveAttribute('data-project', 'zaboon');
     await expect(cards.nth(1).locator('h3')).toHaveText('Zaboon');
-    await expect(cards.nth(2)).toHaveAttribute('data-project', 'profit');
-    await expect(cards.nth(2).locator('h3')).toHaveText('Profit');
-    await expect(page.locator('[data-project="profit"]')).toContainText('team');
+    await expect(cards.nth(2)).toHaveAttribute('data-project', 'aiprofit');
+    await expect(cards.nth(2).locator('h3')).toHaveText('AIProfit');
+    await expect(page.locator('[data-project="aiprofit"]')).not.toContainText('team');
+    await expect(cards.nth(3)).toHaveAttribute('data-project', 'profit');
+    await expect(cards.nth(3).locator('h3')).toHaveText('Profit');
   });
 
   test('more projects lists the non-featured projects', async ({ page }) => {

@@ -2,7 +2,7 @@
   {
     "slug": "mizan",
     "repo": "R3za22/mizan",
-    "ref": "demo-mode",
+    "ref": "complete-v1",
     "workdir": "web",
     "install": "npm ci",
     "build": "npm run build:demo",
@@ -12,7 +12,7 @@
   {
     "slug": "zaboon",
     "repo": "R3za22/Zaboon",
-    "ref": "demo-mode",
+    "ref": "complete-v1",
     "workdir": ".",
     "install": "npm ci --legacy-peer-deps --ignore-scripts",
     "build": "npm run build:demo",
@@ -36,19 +36,19 @@
     "allowHosts": []
   },
   {
-    "slug": "profit",
+    "slug": "aiprofit",
     "repo": "R3za22/profit",
     "ref": "demo-mode",
     "workdir": ".",
     "install": "npm ci",
-    "build": "npm run build:demo -- --no-media",
+    "build": "npm run build:demo -- --no-media && find dist-demo -type f \\( -name '*.html' -o -name '*.css' -o -name '*.js' -o -name '*.json' -o -name '*.xml' -o -name '*.txt' -o -name '*.svg' \\) -exec perl -pi -e 's#/demos/profit(?![\\w-])#/demos/aiprofit#g' {} +",
     "outDir": "dist-demo",
     "allowHosts": []
   },
   {
     "slug": "trapclub",
     "repo": "R3za22/TrapClub-Front",
-    "ref": "demo-mode",
+    "ref": "complete-v1",
     "workdir": ".",
     "install": "npm ci",
     "build": "npm run build:demo",
@@ -60,27 +60,31 @@
   {
     "slug": "shahnameh",
     "repo": "R3za22/ShahContract",
-    "ref": "demo-mode",
+    "ref": "complete-v1",
     "workdir": ".",
     "install": "npm ci",
     "build": "npm run build:demo",
     "outDir": "demo/dist-demo",
-    "allowHosts": []
+    "allowHosts": [
+      "gateway.ipfs.io",
+      "gasstation.polygon.technology",
+      "gasstation-testnet.polygon.technology"
+    ]
   },
   {
     "slug": "sofia-shop",
     "repo": "R3za22/Sofia-Shop-2023",
-    "ref": "demo-mode",
+    "ref": "complete-v1",
     "workdir": ".",
-    "install": "",
-    "build": "bash demo/build.sh",
+    "install": "npm ci",
+    "build": "npm run build:demo",
     "outDir": "dist-demo",
     "allowHosts": []
   },
   {
     "slug": "tic-tac-toe",
     "repo": "R3za22/Tic-Tac-Toe-2024",
-    "ref": "demo-mode",
+    "ref": "complete-v1",
     "workdir": ".",
     "install": "npm ci",
     "build": "npm run build:demo",
@@ -90,23 +94,64 @@
   {
     "slug": "evently",
     "repo": "R3za22/Evently-2024",
-    "ref": "demo-mode",
+    "ref": "complete-v1",
     "workdir": ".",
     "install": "npm ci",
     "build": "npm run build:demo",
     "outDir": "dist-demo",
     "allowHosts": [
-      "fonts.gstatic.com"
+      "fonts.gstatic.com",
+      "www.youtube.com"
     ]
   },
   {
     "slug": "employee-manager",
     "repo": "R3za22/Employee-Manager-2023",
-    "ref": "demo-mode",
+    "ref": "complete-v1",
     "workdir": ".",
-    "install": "",
-    "build": "bash demo/build.sh",
+    "install": "npm ci",
+    "build": "npm run build:demo",
     "outDir": "dist-demo",
+    "allowHosts": []
+  },
+  {
+    "slug": "profit-app",
+    "repo": "R3za22/profit_app_main",
+    "ref": "complete-v1",
+    "workdir": ".",
+    "install": "npm ci --legacy-peer-deps",
+    "build": "npm run build:demo",
+    "outDir": "dist-demo",
+    "allowHosts": [
+      "classic-assets.eascdn.net",
+      "eitaa.com",
+      "fb.me",
+      "fonts.gstatic.com",
+      "necolas.github.io",
+      "phony.example",
+      "placeholder.base"
+    ]
+  },
+  {
+    "slug": "profit-admin",
+    "repo": "R3za22/Profit_Admin_Website_Front",
+    "ref": "complete-v1",
+    "workdir": ".",
+    "install": "npm ci",
+    "build": "npm run build:demo",
+    "outDir": "dist-demo",
+    "allowHosts": [
+      "spam.example"
+    ]
+  },
+  {
+    "slug": "foodapp",
+    "repo": "R3za22/FoodApp-api",
+    "ref": "complete-v1",
+    "workdir": "web",
+    "install": "npm ci",
+    "build": "npm run build:demo",
+    "outDir": "web/dist-demo",
     "allowHosts": []
   }
 ]
