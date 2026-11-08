@@ -57,6 +57,9 @@ if (data.links.apk) links.push({ label: t(lang, 'link_download_apk'), href: data
 if (data.links.github) links.push({ label: t(lang, 'link_github'), href: data.links.github });
 const demoLink = availableDemo(data.links.demo);
 if (demoLink) links.push({ label: t(lang, 'link_live_demo'), href: demoLink });
+const adminLink = availableDemo(data.links.adminDemo);
+if (adminLink) links.push({ label: t(lang, 'link_admin_demo'), href: adminLink });
+if (data.links.credit) links.push({ label: data.links.credit.label, href: data.links.credit.url });
 
 const facts = [
   { key: 'role', label: t(lang, 'cs_fact_role'), value: data.role },
@@ -85,7 +88,7 @@ const decisionText = decisionBlocks.filter((block) => !decisionOf(block));
 
 const architecture = data.architecture;
 
-// Media `src` is a path under src/assets (for example projects/profit/panel.png).
+// Media `src` is a path under src/assets (for example projects/aiprofit/panel.png).
 const assets = import.meta.glob<{ default: ImageMetadata }>('/src/assets/**/*.{png,jpg,jpeg,webp}', {
   eager: true,
 });

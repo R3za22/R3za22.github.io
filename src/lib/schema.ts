@@ -22,6 +22,12 @@ export const projectSchema = z.object({
       .min(1)
       .refine((v) => v.startsWith('/') || /^https?:\/\//.test(v))
       .optional(),
+    // Second demo for a project that ships two apps (user app + admin).
+    adminDemo: z
+      .string()
+      .min(1)
+      .refine((v) => v.startsWith('/') || /^https?:\/\//.test(v))
+      .optional(),
     apk: url.optional(),
     credit: z.object({ label: z.string().min(1), url }).optional(),
   }),

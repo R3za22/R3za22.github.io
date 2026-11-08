@@ -3,8 +3,8 @@ import { test, expect, type Page } from '@playwright/test';
 const DESKTOP = { width: 1440, height: 900 };
 const MOBILE = { width: 375, height: 812 };
 
-const EN_ROUTES = ['/work/mangaro', '/work/zaboon', '/work/profit'];
-const FA_ROUTES = ['/fa/work/mangaro', '/fa/work/zaboon', '/fa/work/profit'];
+const EN_ROUTES = ['/work/mangaro', '/work/zaboon', '/work/aiprofit', '/work/profit'];
+const FA_ROUTES = ['/fa/work/mangaro', '/fa/work/zaboon', '/fa/work/aiprofit', '/fa/work/profit'];
 const ALL_ROUTES = [...EN_ROUTES, ...FA_ROUTES];
 
 const SECTION_LABELS = [
@@ -99,12 +99,27 @@ test.describe('mangaro case study at 1440x900', () => {
   });
 });
 
-test.describe('profit case study', () => {
+test.describe('aiprofit case study', () => {
   test.use({ viewport: DESKTOP });
 
   test('shows the team project label', async ({ page }) => {
+    await page.goto('/work/aiprofit');
+    await expect(page.locator('[data-status]')).toContainText('team project');
+  });
+});
+
+test.describe('profit case study', () => {
+  test.use({ viewport: DESKTOP });
+
+  test('credits the backend author and is labelled team work', async ({ page }) => {
     await page.goto('/work/profit');
     await expect(page.locator('[data-status]')).toContainText('team project');
+    await expect(page.getByRole('link', { name: /Ali Sabet Imani/ })).toHaveAttribute(
+      'href',
+      'https://github.com/Ali1375SI',
+    );
+    await page.goto('/fa/work/profit');
+    await expect(page.locator('[data-status]')).toContainText('پروژه تیمی');
   });
 });
 

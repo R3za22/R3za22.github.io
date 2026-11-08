@@ -20,7 +20,7 @@ const SLOT_HEIGHT = { large: 340, small: 120 } as const;
 const SHOT_KEYS: Record<string, UiKey> = {
   mangaro: 'shot_mangaro',
   zaboon: 'shot_zaboon',
-  profit: 'shot_profit',
+  aiprofit: 'shot_profit',
 };
 const STATUS_KEYS = {
   production: 'status_production',
@@ -37,6 +37,7 @@ const shotLabel = shotKey ? t(lang, shotKey) : `[${data.name} — screenshots]`;
 const readLabel = t(lang, size === 'large' ? 'read_case_study' : 'case_study');
 const { demo: demoHref, github, apk, credit } = data.links;
 const demo = availableDemo(demoHref);
+const adminDemo = availableDemo(data.links.adminDemo);
 ---
 
 {
@@ -48,6 +49,11 @@ const demo = availableDemo(demoHref);
         {demo && (
           <a href={demo}>
             {t(lang, 'link_live_demo')} ↗
+          </a>
+        )}
+        {adminDemo && (
+          <a href={adminDemo}>
+            {t(lang, 'link_admin_demo')} ↗
           </a>
         )}
         {github && (
@@ -97,6 +103,11 @@ const demo = availableDemo(demoHref);
               {t(lang, 'link_live_demo')} ↗
             </a>
           )}
+          {adminDemo && (
+            <a class="demo" href={adminDemo}>
+              {t(lang, 'link_admin_demo')} ↗
+            </a>
+          )}
         </div>
       </div>
     </article>
@@ -121,6 +132,11 @@ const demo = availableDemo(demoHref);
         {demo && (
           <a class="demo" href={demo}>
             {t(lang, 'link_live_demo')} ↗
+          </a>
+        )}
+        {adminDemo && (
+          <a class="demo" href={adminDemo}>
+            {t(lang, 'link_admin_demo')} ↗
           </a>
         )}
       </div>

@@ -8,9 +8,9 @@ const present = config.map((c) => c.slug).filter((slug) => fs.existsSync(`public
 
 // Project card slug -> demo slug.
 const CARDS: Record<string, string> = {
-  mizan: 'mizan', zaboon: 'zaboon', mangaro: 'mangaro', profit: 'profit', trapclub: 'trapclub',
+  mizan: 'mizan', zaboon: 'zaboon', mangaro: 'mangaro', aiprofit: 'aiprofit', profit: 'profit-app', trapclub: 'trapclub',
   shahcontract: 'shahnameh', 'sofia-shop': 'sofia-shop', 'tic-tac-toe': 'tic-tac-toe',
-  evently: 'evently', 'employee-manager': 'employee-manager',
+  evently: 'evently', 'employee-manager': 'employee-manager', foodapp: 'foodapp',
 };
 
 test.describe('demo routes', () => {
@@ -38,16 +38,22 @@ test.describe('demo links on cards', () => {
     }
   }
 
+  test('profit card also links to the admin demo when it was built', async ({ page }) => {
+    await page.goto('/');
+    const link = page.locator('[data-project="profit"] a[href="/demos/profit-admin/"]');
+    await expect(link).toHaveCount(present.includes('profit-admin') ? 1 : 0);
+  });
+
   test('early work is a separate list', async ({ page }) => {
     await page.goto('/');
     await expect(page.locator('#early h3')).toHaveText('Early work');
-    await expect(page.locator('#early [data-project]')).toHaveCount(4);
+    await expect(page.locator('#early [data-project]')).toHaveCount(5);
     await page.goto('/fa/');
     await expect(page.locator('#early h3')).toHaveText('کارهای اولیه');
   });
 
-  test('profit case study shows four screenshots and the note', async ({ page }) => {
-    await page.goto('/work/profit');
+  test('aiprofit case study shows four screenshots and the note', async ({ page }) => {
+    await page.goto('/work/aiprofit');
     await expect(page.locator('[data-media] img')).toHaveCount(4);
     await expect(page.locator('.demo-note')).toHaveText('Persian UI · static snapshot');
   });

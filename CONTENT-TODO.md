@@ -177,3 +177,16 @@ Placeholders added by the case-study pages. The page renders each one as visible
 - The 404 page is EN only, as in the design brief. Its FA dictionary entries exist for
   parity but no FA 404 page is built. It is `noindex`, so it has no canonical or
   hreflang links.
+
+## Completed-apps pass (site-complete-v1)
+
+Owner review needed:
+
+- **All Persian copy** in `fa/*.md` and the newly filled FA case-study labels in `src/i18n/ui.ts` (`cs_*`, `more_title`, `link_download_apk`, `link_admin_demo`) is a draft written for natural reading, not reviewed by a native editor.
+- **AIProfit** (`aiprofit.md`): `role`, `period` and Reza's contribution are placeholders. The local repo history is mostly another author (alireza80atef), so confirm the "team" label and role.
+- **Profit** (old, `profit.md`): team/client work; the backend credit points to github.com/Ali1375SI (confirm this is Ali Sabet Imani). `status`, `period` (2024 — 25) and "most of the admin app" come from the brief and the audit.
+- **ShahContract**: the credit now reads "idea inspired by Adventureum, rewritten from scratch"; remove it if the owner prefers. Persian story text is machine-drafted.
+- **TrapClub**: `role` "Frontend" is assumed (was a placeholder).
+- `/work/profit` now means the old Profit app; AIProfit moved to `/work/aiprofit`, so no redirect was added.
+- Demo `allowHosts` additions are inert library strings, plus outbound links: `eitaa.com` (Profit support channel) and `www.youtube.com` (Evently tutorial credit).
+- The AIProfit demo repo hard-codes `/demos/profit`; `demos.config.json` rewrites it to `/demos/aiprofit` after the build.

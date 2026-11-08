@@ -28,4 +28,11 @@ describe('projectSchema demo fields', () => {
     const result = projectSchema.safeParse({ ...base, links: { demo: 'mizan' } });
     expect(result.success).toBe(false);
   });
+
+  it('accepts a second (admin) demo path and rejects a bad one', () => {
+    const ok = projectSchema.safeParse({ ...base, links: { demo: '/demos/profit-app/', adminDemo: '/demos/profit-admin/' } });
+    expect(ok.success).toBe(true);
+    const bad = projectSchema.safeParse({ ...base, links: { adminDemo: 'admin' } });
+    expect(bad.success).toBe(false);
+  });
 });
