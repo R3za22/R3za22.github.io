@@ -9,7 +9,19 @@ links:
   demo: "/demos/foodapp/"
 order: 24
 featured: false
-images: []
+media:
+  - type: image
+    src: "projects/foodapp/1.webp"
+    alt: "FoodApp recipe list with tag and ingredient filters"
+  - type: image
+    src: "projects/foodapp/2.webp"
+    alt: "FoodApp recipe detail with photo, ingredients and method"
+  - type: image
+    src: "projects/foodapp/3.webp"
+    alt: "Tags and ingredients manager with usage counts and rename actions"
+  - type: image
+    src: "projects/foodapp/4.webp"
+    alt: "New recipe form with basics, photo upload and tags"
 early: true
 ---
 

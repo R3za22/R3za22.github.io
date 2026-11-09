@@ -17,7 +17,22 @@ links:
     url: "https://github.com/Ali1375SI"
 order: 4
 featured: true
-images: []
+media:
+  - type: image
+    src: "projects/profit/1.webp"
+    alt: "صفحه اصلی اپ کاربر Profit روی گوشی: خوش‌آمدگویی، دوره پیشنهادی و کانال‌ها"
+  - type: image
+    src: "projects/profit/2.webp"
+    alt: "فهرست دوره‌های Profit روی گوشی با جستجو و فیلتر دسته‌بندی"
+  - type: image
+    src: "projects/profit/3.webp"
+    alt: "گفتگوی کانال ویژه در اپ Profit روی گوشی با یک پیام ارسال‌شده"
+  - type: image
+    src: "projects/profit/4.webp"
+    alt: "داشبورد پنل ادمین Profit: شاخص‌های کاربر، دوره و فروش با آخرین سفارش‌ها"
+  - type: image
+    src: "projects/profit/5.webp"
+    alt: "فهرست دوره‌ها در پنل ادمین Profit با قیمت، وضعیت و عملیات ویرایش"
 architecture:
   nodes:
     - title: "اپ کاربری Expo"

@@ -9,7 +9,19 @@ links:
   demo: "/demos/sofia-shop/"
 order: 20
 featured: false
-images: []
+media:
+  - type: image
+    src: "projects/sofia-shop/1.webp"
+    alt: "صفحه اصلی فروشگاه سوفیا با بنر اصلی و دسته‌بندی بر اساس اتاق"
+  - type: image
+    src: "projects/sofia-shop/2.webp"
+    alt: "فهرست محصولات اتاق نشیمن در سوفیا با فیلتر و مرتب‌سازی"
+  - type: image
+    src: "projects/sofia-shop/3.webp"
+    alt: "صفحه محصول سوفیا با گزینه‌ها، قیمت و افزودن به سبد"
+  - type: image
+    src: "projects/sofia-shop/4.webp"
+    alt: "سبد خرید سوفیا با یک کالا، خلاصه سفارش و دکمه تسویه حساب"
 early: true
 ---
 

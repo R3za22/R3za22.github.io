@@ -9,7 +9,10 @@ links:
   demo: "/demos/tic-tac-toe/"
 order: 21
 featured: false
-images: []
+media:
+  - type: image
+    src: "projects/tic-tac-toe/1.webp"
+    alt: "Tic-Tac-Toe mid-game board with scores, undo and restart controls"
 early: true
 ---
 

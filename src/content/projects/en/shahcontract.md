@@ -12,7 +12,13 @@ links:
     url: "https://github.com/anallergytoanalogy/blockchain-adventure"
 order: 5
 featured: false
-images: []
+media:
+  - type: image
+    src: "projects/shahcontract/1.webp"
+    alt: "ShahContract home: an on-chain Shahnameh story hero and reading entry"
+  - type: image
+    src: "projects/shahcontract/2.webp"
+    alt: "ShahContract reader showing a retold episode with reader path choices"
 ---
 
 ## 01 Overview

@@ -9,7 +9,19 @@ links:
   demo: "/demos/sofia-shop/"
 order: 20
 featured: false
-images: []
+media:
+  - type: image
+    src: "projects/sofia-shop/1.webp"
+    alt: "Sofia home page with hero banner and shop-by-room tiles"
+  - type: image
+    src: "projects/sofia-shop/2.webp"
+    alt: "Sofia product listing for the living room with filters and sorting"
+  - type: image
+    src: "projects/sofia-shop/3.webp"
+    alt: "Sofia product page with options, price and add-to-cart"
+  - type: image
+    src: "projects/sofia-shop/4.webp"
+    alt: "Sofia cart with an item, order summary and checkout button"
 early: true
 ---
 

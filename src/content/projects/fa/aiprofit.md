@@ -29,17 +29,14 @@ architecture:
     - "لیارا ← میزبانی"
 media:
   - type: image
-    src: "projects/aiprofit/panel.png"
-    alt: "پنل کاربری ای‌آی‌پرافیت"
+    src: "projects/aiprofit/1.webp"
+    alt: "صفحه اصلی AIProfit با بنر فرصت‌های سرمایه‌گذاری و کارت‌های تحلیل"
   - type: image
-    src: "projects/aiprofit/admin-dashboard.png"
-    alt: "داشبورد ادمین ای‌آی‌پرافیت"
+    src: "projects/aiprofit/2.webp"
+    alt: "صفحه ربات سرمایه‌گذار AIProfit با مقایسه پلن‌ها و خلاصه سیگنال‌ها"
   - type: image
-    src: "projects/aiprofit/admin-opportunities.png"
-    alt: "فهرست فرصت‌های سرمایه‌گذاری در پنل ادمین"
-  - type: image
-    src: "projects/aiprofit/admin-articles.png"
-    alt: "فهرست مقالات در پنل ادمین"
+    src: "projects/aiprofit/3.webp"
+    alt: "صفحه یادگیری AIProfit با کارت دوره‌ها و پیشرفت"
 demoNote: "رابط فارسی · نسخه ایستا"
 ---
 

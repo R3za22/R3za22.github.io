@@ -9,7 +9,19 @@ links:
   demo: "/demos/mizan/"
 order: 7
 featured: false
-images: []
+media:
+  - type: image
+    src: "projects/mizan/1.webp"
+    alt: "Mizan home on a phone: current coffee, dial-in settings and recent shots"
+  - type: image
+    src: "projects/mizan/2.webp"
+    alt: "Mizan coffee library with status tags and recent dial-in notes"
+  - type: image
+    src: "projects/mizan/3.webp"
+    alt: "Mizan shot timer on a phone with dose, time, yield and ratio readouts"
+  - type: image
+    src: "projects/mizan/4.webp"
+    alt: "Mizan learning page with short explainers on extraction and grind"
 demoNote: "Persian UI"
 ---
 

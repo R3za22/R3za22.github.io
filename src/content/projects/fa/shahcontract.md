@@ -12,7 +12,13 @@ links:
     url: "https://github.com/anallergytoanalogy/blockchain-adventure"
 order: 5
 featured: false
-images: []
+media:
+  - type: image
+    src: "projects/shahcontract/1.webp"
+    alt: "صفحه اصلی ShahContract: بنر داستان زنجیره‌ای شاهنامه و ورود به خواندن"
+  - type: image
+    src: "projects/shahcontract/2.webp"
+    alt: "خواننده ShahContract با یک قسمت بازگفت‌شده و انتخاب‌های مسیر خواننده"
 ---
 
 ## ۰۱ نمای کلی

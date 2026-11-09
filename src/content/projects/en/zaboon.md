@@ -13,7 +13,13 @@ links:
   demo: "/demos/zaboon/"
 order: 2
 featured: true
-images: []
+media:
+  - type: image
+    src: "projects/zaboon/1.webp"
+    alt: "Zaboon home on a phone: current unit, lesson path and hearts"
+  - type: image
+    src: "projects/zaboon/2.webp"
+    alt: "Zaboon matching exercise: pair each English word with its Persian meaning"
 architecture:
   nodes:
     - title: "Expo app"

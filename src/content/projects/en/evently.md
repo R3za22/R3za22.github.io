@@ -9,7 +9,19 @@ links:
   demo: "/demos/evently/"
 order: 22
 featured: false
-images: []
+media:
+  - type: image
+    src: "projects/evently/1.webp"
+    alt: "Evently home with event search, category filters and upcoming events"
+  - type: image
+    src: "projects/evently/2.webp"
+    alt: "Evently event page with date, venue, price and ticket purchase"
+  - type: image
+    src: "projects/evently/3.webp"
+    alt: "Create event form with details, category and when-and-where fields"
+  - type: image
+    src: "projects/evently/4.webp"
+    alt: "My tickets page listing attending and organised events"
 early: true
 ---
 

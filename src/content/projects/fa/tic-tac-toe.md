@@ -9,7 +9,10 @@ links:
   demo: "/demos/tic-tac-toe/"
 order: 21
 featured: false
-images: []
+media:
+  - type: image
+    src: "projects/tic-tac-toe/1.webp"
+    alt: "صفحه بازی دوز در میانه بازی با امتیازها و دکمه‌های بازگشت و شروع مجدد"
 early: true
 ---
 

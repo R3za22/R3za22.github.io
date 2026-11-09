@@ -13,7 +13,13 @@ links:
   demo: "/demos/zaboon/"
 order: 2
 featured: true
-images: []
+media:
+  - type: image
+    src: "projects/zaboon/1.webp"
+    alt: "صفحه اصلی زبون روی گوشی: واحد جاری، مسیر درس‌ها و قلب‌ها"
+  - type: image
+    src: "projects/zaboon/2.webp"
+    alt: "تمرین تطبیق در زبون: جفت‌کردن هر لغت انگلیسی با معنای فارسی‌اش"
 architecture:
   nodes:
     - title: "اپ Expo"

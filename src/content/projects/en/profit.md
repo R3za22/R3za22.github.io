@@ -17,7 +17,22 @@ links:
     url: "https://github.com/Ali1375SI"
 order: 4
 featured: true
-images: []
+media:
+  - type: image
+    src: "projects/profit/1.webp"
+    alt: "Profit user app home on a phone: greeting, featured course and channels"
+  - type: image
+    src: "projects/profit/2.webp"
+    alt: "Profit course catalogue on a phone with search and category chips"
+  - type: image
+    src: "projects/profit/3.webp"
+    alt: "Profit premium channel chat on a phone with a sent message"
+  - type: image
+    src: "projects/profit/4.webp"
+    alt: "Profit admin dashboard: user, course and sales KPIs with recent orders"
+  - type: image
+    src: "projects/profit/5.webp"
+    alt: "Profit admin course list with price, status and edit actions"
 architecture:
   nodes:
     - title: "Expo user app"

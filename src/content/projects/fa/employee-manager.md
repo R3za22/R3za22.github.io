@@ -9,7 +9,19 @@ links:
   demo: "/demos/employee-manager/"
 order: 23
 featured: false
-images: []
+media:
+  - type: image
+    src: "projects/employee-manager/1.webp"
+    alt: "داشبورد Employee Manager با تعداد نفرات هر بخش و فهرست شیفت امروز"
+  - type: image
+    src: "projects/employee-manager/2.webp"
+    alt: "جدول کارکنان با جستجو، فیلتر، مرتب‌سازی و صفحه‌بندی"
+  - type: image
+    src: "projects/employee-manager/3.webp"
+    alt: "صفحه جزئیات کارمند با اطلاعات شخصی، شیفت هفتگی و تاریخچه"
+  - type: image
+    src: "projects/employee-manager/4.webp"
+    alt: "جدول برنامه شیفت هفتگی برای هر گروه"
 early: true
 ---
 
