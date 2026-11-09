@@ -31,7 +31,11 @@ jobs:
         demo: ${{ fromJSON(needs.matrix.outputs.list) }}
     steps:
       # The site repo goes into the workspace root so scripts/scan-demo.mjs exists.
+      # Full history: gitleaks on push events scans the before..after range, and a
+      # shallow clone lacks the before commit ("unknown revision"), failing the step.
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       # A ref that is not pushed yet (owner review pending) is skipped, not failed.
       - name: Check demo ref exists
         id: ref
