@@ -9,17 +9,16 @@ links:
   demo: "/demos/trapclub/"
 order: 4
 featured: false
-images: []
 media:
   - type: image
     src: "projects/trapclub/1.webp"
-    alt: "صفحه اصلی فروشگاه ترپ‌کلاب"
+    alt: "صفحه اصلی TrapClub با بنر اصلی، کالکشن جدید و دسته‌بندی‌ها"
   - type: image
     src: "projects/trapclub/2.webp"
-    alt: "فهرست محصولات ترپ‌کلاب"
+    alt: "شبکه محصولات TrapClub با فیلتر دسته‌بندی و قیمت‌ها"
   - type: image
     src: "projects/trapclub/3.webp"
-    alt: "صفحه پرداخت ترپ‌کلاب"
+    alt: "صفحه محصول TrapClub با گزینه رنگ و سایز و گالری تصاویر"
 ---
 
 ## ۰۱ نمای کلی

@@ -6,15 +6,22 @@ status: "shipped"
 team: false
 stack: ["React", "TypeScript", "Vite", "Vitest", "Playwright"]
 links:
-  github: "https://github.com/R3za22/Employee-Manager-2023"
   demo: "/demos/employee-manager/"
 order: 23
 featured: false
-images: []
 media:
   - type: image
     src: "projects/employee-manager/1.webp"
-    alt: "Employee Manager dashboard"
+    alt: "Employee Manager dashboard with headcount by department and on-shift list"
+  - type: image
+    src: "projects/employee-manager/2.webp"
+    alt: "Employee table with search, filters, sorting and pagination"
+  - type: image
+    src: "projects/employee-manager/3.webp"
+    alt: "Employee detail page with personal details, weekly shift and history"
+  - type: image
+    src: "projects/employee-manager/4.webp"
+    alt: "Weekly shift schedule grid for each group"
 early: true
 ---
 

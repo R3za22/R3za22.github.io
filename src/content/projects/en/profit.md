@@ -1,11 +1,11 @@
 ---
 name: "Profit"
-tagline: "Persian trading-education platform: OTP login, paid video courses and premium mentor chat. Team and client project."
-pitch: "A Persian trading-education platform built with a client team: phone-OTP login, paid video courses and premium chat channels run by mentors. I built the Expo user app, most of the admin app and the user website; the Laravel backend is by Ali Sabet Imani."
+tagline: "Persian trading-education platform: OTP login, paid video courses and premium mentor chat. Built as programming team lead."
+pitch: "A Persian trading-education platform built by a full-time programming team I led: phone-OTP login, paid video courses and premium chat channels run by mentors. I led the team and built the Expo user app, most of the admin app and the user website; the Laravel backend is by Ali Sabet Imani."
 platform: "Expo app (Android + web) · Next.js admin and landing sites"
-hosting: "Client-owned (backend on Liara)"
+hosting: "Startup-owned (backend on Liara)"
 period: "2024 — 25"
-role: "Mobile + web frontends · team, client work"
+role: "Programming team lead · full-time"
 status: "shipped"
 team: true
 stack: ["React Native", "Expo", "TypeScript", "Next.js", "Zustand", "socket.io"]
@@ -17,17 +17,22 @@ links:
     url: "https://github.com/Ali1375SI"
 order: 4
 featured: true
-images: []
 media:
   - type: image
     src: "projects/profit/1.webp"
-    alt: "Profit user app home on a phone"
+    alt: "Profit user app home on a phone: greeting, featured course and channels"
   - type: image
     src: "projects/profit/2.webp"
-    alt: "Profit admin course list"
+    alt: "Profit course catalogue on a phone with search and category chips"
   - type: image
     src: "projects/profit/3.webp"
-    alt: "Profit admin channel list"
+    alt: "Profit premium channel chat on a phone with a sent message"
+  - type: image
+    src: "projects/profit/4.webp"
+    alt: "Profit admin dashboard: user, course and sales KPIs with recent orders"
+  - type: image
+    src: "projects/profit/5.webp"
+    alt: "Profit admin course list with price, status and edit actions"
 architecture:
   nodes:
     - title: "Expo user app"
@@ -48,7 +53,7 @@ demoNote: "Persian UI · demo data, no backend"
 
 Profit is a Persian trading-education platform. Users sign in with a phone number and a one-time code, buy video courses, and join paid premium chat channels run by mentors. Admins manage courses, channels, users and roles.
 
-It is team and client work from 2024 to 2025. The Laravel backend is entirely by Ali Sabet Imani; the brand and accounts belong to the client team. I wrote the Expo user app, most of the admin app and the user website, and shared the admin website with Ali.
+I was the programming team lead, working full-time on the project for about a year, 2024 to 2025, at the Profit startup. The Laravel backend is entirely by Ali Sabet Imani. I led the frontend work, wrote the Expo user app, most of the admin app and the user website, and shared the admin website with Ali.
 
 ## 02 Architecture
 
@@ -66,4 +71,4 @@ It is team and client work from 2024 to 2025. The Laravel backend is entirely by
 
 The completed user app covers phone and OTP sign-in, home, course list and detail, a video player, a simulated purchase sheet, channels with chat, support (chat, tickets, FAQ) and purchase history. The admin website adds a course editor (info, settings, seasons, videos), a channel editor with moderation, and roles and users. Each frontend has unit tests, Playwright end-to-end tests and a CI workflow.
 
-The chat socket server is not in any of the repositories, so the chat contract is assumed.
+The chat socket server is not in any of the repositories, so the chat contract is assumed. [placeholder] real usage numbers, if the client shares them.

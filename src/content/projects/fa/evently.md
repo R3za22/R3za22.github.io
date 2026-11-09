@@ -6,18 +6,22 @@ status: "shipped"
 team: false
 stack: ["Next.js", "TypeScript", "Clerk", "MongoDB", "Stripe", "Tailwind"]
 links:
-  github: "https://github.com/R3za22/Evently-2024"
   demo: "/demos/evently/"
 order: 22
 featured: false
-images: []
 media:
   - type: image
     src: "projects/evently/1.webp"
-    alt: "صفحه اصلی Evently با رویدادهای پیش‌رو"
+    alt: "صفحه اصلی Evently با جستجوی رویداد، فیلتر دسته‌بندی و رویدادهای پیش‌رو"
   - type: image
     src: "projects/evently/2.webp"
-    alt: "صفحه بلیت‌های Evently"
+    alt: "صفحه رویداد Evently با تاریخ، مکان، قیمت و خرید بلیت"
+  - type: image
+    src: "projects/evently/3.webp"
+    alt: "فرم ساخت رویداد با جزئیات، دسته‌بندی و زمان و مکان"
+  - type: image
+    src: "projects/evently/4.webp"
+    alt: "صفحه بلیت‌های من با فهرست رویدادهای ثبت‌نام‌شده و برگزارشده"
 early: true
 ---
 

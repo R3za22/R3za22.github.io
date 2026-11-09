@@ -6,15 +6,22 @@ status: "shipped"
 team: false
 stack: ["Django", "DRF", "React", "TypeScript", "Vite"]
 links:
-  github: "https://github.com/R3za22/FoodApp-api"
   demo: "/demos/foodapp/"
 order: 24
 featured: false
-images: []
 media:
   - type: image
     src: "projects/foodapp/1.webp"
-    alt: "فهرست دستور پخت FoodApp"
+    alt: "فهرست دستور غذاها در FoodApp با فیلتر برچسب و مواد اولیه"
+  - type: image
+    src: "projects/foodapp/2.webp"
+    alt: "صفحه جزئیات دستور غذا در FoodApp با تصویر، مواد و روش تهیه"
+  - type: image
+    src: "projects/foodapp/3.webp"
+    alt: "مدیریت برچسب‌ها و مواد اولیه با تعداد استفاده و عملیات تغییر نام"
+  - type: image
+    src: "projects/foodapp/4.webp"
+    alt: "فرم دستور غذای جدید با اطلاعات پایه، آپلود عکس و برچسب‌ها"
 early: true
 ---
 

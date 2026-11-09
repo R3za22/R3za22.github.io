@@ -3,6 +3,8 @@ name: "زبون"
 tagline: "آموزش بازی‌گونه زبان انگلیسی برای فارسی‌زبان‌ها. اپ Expo با کلاینت API نمایشی/واقعی."
 pitch: "دوره انگلیسی برای فارسی‌زبان‌ها: مسیر درس‌ها با جان، رکورد روزانه و جدول برترین‌ها، ساخته‌شده با اولویت فارسی و راست‌به‌چپ روی Expo."
 platform: "React Native ‏(Expo 53) + API پایتون"
+hosting: "[جانگهدار]"
+period: "[جانگهدار]"
 role: "موبایل · انفرادی"
 status: "shipped"
 team: false
@@ -11,17 +13,13 @@ links:
   demo: "/demos/zaboon/"
 order: 2
 featured: true
-images: []
 media:
   - type: image
     src: "projects/zaboon/1.webp"
-    alt: "صفحه اصلی زبون در موبایل"
+    alt: "صفحه اصلی زبون روی گوشی: واحد جاری، مسیر درس‌ها و قلب‌ها"
   - type: image
     src: "projects/zaboon/2.webp"
-    alt: "مسیر یادگیری زبون در موبایل"
-  - type: image
-    src: "projects/zaboon/3.webp"
-    alt: "صفحه پروفایل زبون در موبایل"
+    alt: "تمرین تطبیق در زبون: جفت‌کردن هر لغت انگلیسی با معنای فارسی‌اش"
 architecture:
   nodes:
     - title: "اپ Expo"

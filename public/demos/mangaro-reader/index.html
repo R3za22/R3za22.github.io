@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Mangaro · نسخه نمایشی</title>
+<style>
+:root{--bg:#0f1115;--card:#171a21;--line:#262b36;--tx:#e9ecf2;--mut:#9aa3b2;--acc:#ff7a3d;--ok:#3ecf8e}
+*{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:var(--tx);font-family:Vazirmatn,Tahoma,system-ui,sans-serif}
+a{color:inherit;text-decoration:none}
+.bar{background:#ff7a3d;color:#111;font-size:12px;padding:6px 12px;display:flex;justify-content:space-between;gap:8px}
+.bar a{font-weight:700;text-decoration:underline}
+header{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--bg);z-index:2}
+.logo{font-weight:800;font-size:20px;letter-spacing:.2px}.logo b{color:var(--acc)}
+.wrap{max-width:1100px;margin:0 auto;padding:16px}
+.search{width:100%;background:var(--card);border:1px solid var(--line);color:var(--tx);border-radius:12px;padding:12px 14px;font:inherit;font-size:15px}
+.chips{display:flex;gap:8px;overflow-x:auto;padding:12px 0;scrollbar-width:none}
+.chip{flex:none;border:1px solid var(--line);background:var(--card);color:var(--mut);padding:7px 12px;border-radius:999px;font-size:13px;cursor:pointer}
+.chip.on{background:var(--acc);border-color:var(--acc);color:#111;font-weight:700}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+@media(min-width:720px){.grid{grid-template-columns:repeat(4,1fr);gap:18px}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;cursor:pointer}
+.cover{aspect-ratio:3/4;display:flex;align-items:flex-end;padding:12px;font-weight:800;font-size:17px;line-height:1.35;position:relative}
+.cover:after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 40%,rgba(0,0,0,.55))}
+.cover span{position:relative;z-index:1}
+.meta{padding:10px 12px 12px}
+.meta h3{margin:0 0 4px;font-size:15px}
+.meta p{margin:0;font-size:12px;color:var(--mut)}
+.badge{display:inline-block;font-size:11px;background:#222834;color:var(--mut);border-radius:6px;padding:2px 7px;margin-top:6px}
+.detail{display:grid;gap:18px}
+@media(min-width:800px){.detail{grid-template-columns:260px 1fr}}
+.dcover{aspect-ratio:3/4;border-radius:14px;display:flex;align-items:flex-end;padding:16px;font-weight:800;font-size:22px;line-height:1.35;position:relative;overflow:hidden}
+.dcover:after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 40%,rgba(0,0,0,.55))}
+.dcover span{position:relative;z-index:1}
+h1{margin:0 0 6px;font-size:26px}
+.sub{color:var(--mut);font-size:14px;margin:0 0 12px}
+.desc{font-size:14px;line-height:1.9;color:#cfd5e0;margin:12px 0}
+.btns{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0}
+.btn{background:var(--acc);color:#111;font-weight:800;border:0;border-radius:12px;padding:11px 16px;font:inherit;font-weight:800;font-size:14px;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--tx);border:1px solid var(--line)}
+.clist{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--card)}
+.crow{display:flex;justify-content:space-between;align-items:center;padding:13px 14px;border-top:1px solid var(--line);cursor:pointer;font-size:14px}
+.crow:first-child{border-top:0}
+.crow small{color:var(--mut);font-size:12px;display:block;margin-top:2px}
+.crow em{font-style:normal;color:var(--mut);font-size:12px}
+.reader{background:#000;min-height:calc(100vh - 56px);display:flex;flex-direction:column}
+.rtop{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;background:#111;font-size:13px;color:var(--mut)}
+.page{flex:1;display:flex;align-items:center;justify-content:center;padding:12px}
+.sheet{width:min(420px,100%);aspect-ratio:1/1.45;background:#f4efe4;color:#222;border-radius:6px;position:relative;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.5)}
+.sheet .panel{position:absolute;border:3px solid #222;border-radius:4px;background:#fff;padding:8px;font-size:12px;line-height:1.6}
+.sheet .p1{left:7%;top:6%;width:86%;height:40%;background:linear-gradient(135deg,#dfe8f3,#f7e9d4)}
+.sheet .p2{left:7%;top:50%;width:40%;height:44%;background:#e9dcc4}
+.sheet .p3{left:52%;top:50%;width:41%;height:44%;background:#d6e4dc}
+.sheet .bubble{position:absolute;left:14%;top:14%;background:#fff;border:2px solid #222;border-radius:18px;padding:6px 10px;font-size:12px;max-width:60%}
+.sheet .lbl{position:absolute;bottom:8px;left:0;right:0;text-align:center;font-size:12px;color:#555}
+.rbtm{display:flex;justify-content:space-between;gap:8px;padding:12px;background:#111}
+.rbtm button{flex:1;background:var(--card);color:var(--tx);border:1px solid var(--line);border-radius:12px;padding:12px;font:inherit;font-size:14px}
+.prog{height:4px;background:#222;margin:0}.prog i{display:block;height:4px;background:var(--ok)}
+.sec{margin:22px 0 10px;font-size:16px;font-weight:800;display:flex;justify-content:space-between;align-items:center}
+.sec small{color:var(--mut);font-weight:400;font-size:12px}
+.hero{display:flex;gap:14px;align-items:center;background:linear-gradient(120deg,#2a1d17,#171a21);border:1px solid var(--line);border-radius:16px;padding:16px;margin:14px 0}
+.hero b{font-size:16px}.hero p{margin:4px 0 0;color:var(--mut);font-size:13px}
+</style>
+</head>
+<body>
+<div class="bar"><span>نسخه نمایشی · داده‌های نمونه از کاتالوگ آزمایشی · هیچ پرداختی انجام نمی‌شود</span><a href="https://r3za22.github.io/">← r3za22.github.io</a></div>
+<header><div class="logo">Manga<b>ro</b></div><div style="font-size:13px;color:var(--mut)">کتابخانه</div></header>
+<main class="wrap" id="app"></main>
+<script>
+const MANGAS = [{"id": 5011, "title": "Attack on Titan", "fa": "حمله به تایتان", "author": "Hajime Isayama", "year": 2009, "genres": ["Action", "Drama", "Fantasy", "Military", "Shounen"], "desc": "Several hundred years ago, humans were nearly exterminated by giant humanoid Titans. Survivors took refuge behind massive walls. Eren Yeager vows to retake the world after Titans breach Wall Maria and destroy his hometown.", "descFa": "چند صد سال پیش، انسان‌ها تقریبا توسط تایتان‌های غول‌پیکر نابود شدند. بازماندگان پشت دیوارهای عظیم پناه گرفتند. پس از نفوذ تایتان‌ها به دیوار ماریا و ویرانی زادگاهش، ارن یگر سوگند یاد می‌کند دنیا را پس بگیرد.", "chapters": [{"n": 1.0, "name": "به تو، دو هزار سال بعد", "pages": 50}, {"n": 2.0, "name": "آن روز", "pages": 41}, {"n": 3.0, "name": "شب مراسم انحلال", "pages": 42}, {"n": 4.0, "name": "اولین نبرد", "pages": 67}, {"n": 5.0, "name": "نوری کم‌سو در دل ناامیدی", "pages": 38}, {"n": 6.0, "name": "دنیایی که آن دختر دید", "pages": 38}, {"n": 7.0, "name": "تیغ کوچک", "pages": 34}, {"n": 8.0, "name": "غرش", "pages": 29}, {"n": 9.0, "name": "صدای تپش قلب به گوش می‌رسد", "pages": 41}, {"n": 10.0, "name": "کاپیتان لیوای", "pages": 24}, {"n": 11.0, "name": "بازوی چپ کجاست؟", "pages": 43}, {"n": 12.0, "name": "پاسخ", "pages": 41}, {"n": 13.0, "name": "نماد", "pages": 44}, {"n": 14.0, "name": "زخم", "pages": 53}, {"n": 15.0, "name": "غریزهٔ ابتدایی", "pages": 46}, {"n": 16.0, "name": "یکی‌یکی", "pages": 38}, {"n": 17.0, "name": "ضرورت", "pages": 32}, {"n": 18.0, "name": "توهم قدرت", "pages": 34}, {"n": 19.0, "name": "اکنون چه باید کرد؟", "pages": 41}, {"n": 20.0, "name": "دفترچهٔ ایلسه", "pages": 22}, {"n": 21.0, "name": "هنوز نمی‌بینم", "pages": 46}, {"n": 22.0, "name": "دستهٔ عملیات ویژه", "pages": 32}, {"n": 23.0, "name": "گشودن دروازه", "pages": 40}, {"n": 24.0, "name": "آرایش شناسایی دشمن از فاصلهٔ دور", "pages": 20}]}, {"id": 5012, "title": "Goodbye, Eri", "fa": "خداحافظ، اری", "author": "Tatsuki Fujimoto", "year": null, "genres": ["Drama", "Psychological", "Slice of Life"], "desc": "", "descFa": "", "chapters": [{"n": 1.0, "name": "translated", "pages": 202}]}, {"id": 5013, "title": "Look Back", "fa": "نگاه به گذشته", "author": "Tatsuki Fujimoto", "year": null, "genres": ["Drama", "Psychological", "Slice of Life"], "desc": "", "descFa": "", "chapters": [{"n": 1.0, "name": "translated", "pages": 139}]}, {"id": 5014, "title": "All You Need Is Kill", "fa": "تمام آنچه نیاز داری کشتن است", "author": "Hiroshi Sakurazaka", "year": null, "genres": ["Action", "Sci-Fi", "Military"], "desc": "", "descFa": "", "chapters": [{"n": 1.0, "name": "1 - Keiji Kiriya", "pages": 69}, {"n": 2.0, "name": "2 - Rita Vrataski", "pages": 29}, {"n": 3.0, "name": "3 - Loop", "pages": 25}, {"n": 4.0, "name": "4 - Battleaxe", "pages": 17}, {"n": 5.0, "name": "5 - Schedule", "pages": 21}, {"n": 6.0, "name": "6 - Grow Up", "pages": 17}, {"n": 7.0, "name": "7 - Question", "pages": 21}, {"n": 8.0, "name": "9 - Reset", "pages": 19}, {"n": 9.0, "name": "10 - Out", "pages": 9}, {"n": 10.0, "name": "11 - Answer", "pages": 20}, {"n": 11.0, "name": "Chapter 08", "pages": 22}, {"n": 12.0, "name": "Chapter 12", "pages": 21}, {"n": 13.0, "name": "Chapter 13", "pages": 20}, {"n": 14.0, "name": "Chapter 14", "pages": 18}, {"n": 15.0, "name": "Chapter 15", "pages": 15}, {"n": 16.0, "name": "Chapter 16", "pages": 22}, {"n": 17.0, "name": "Chapter 17", "pages": 26}]}, {"id": 5015, "title": "Solanin", "fa": "سولانین", "author": "Inio Asano", "year": null, "genres": ["Drama", "Slice of Life", "Romance"], "desc": "", "descFa": "", "chapters": [{"n": 0.0, "name": "سولانین — پس‌گفتار (Solanin An Epilogue)", "pages": 46}, {"n": 1.0, "name": "Chapter 01", "pages": 25}, {"n": 2.0, "name": "Chapter 02", "pages": 14}, {"n": 3.0, "name": "Chapter 03", "pages": 14}, {"n": 4.0, "name": "Chapter 04", "pages": 14}, {"n": 5.0, "name": "Chapter 05", "pages": 14}, {"n": 6.0, "name": "Chapter 06", "pages": 14}, {"n": 7.0, "name": "Chapter 07", "pages": 14}, {"n": 8.0, "name": "Chapter 08", "pages": 14}, {"n": 9.0, "name": "Chapter 09", "pages": 16}, {"n": 10.0, "name": "Chapter 10", "pages": 14}, {"n": 11.0, "name": "Chapter 11", "pages": 14}, {"n": 12.0, "name": "Chapter 12", "pages": 14}, {"n": 13.0, "name": "Chapter 13", "pages": 14}, {"n": 14.0, "name": "Chapter 14", "pages": 14}, {"n": 15.0, "name": "Chapter 15", "pages": 22}, {"n": 16.0, "name": "Chapter 16", "pages": 14}, {"n": 17.0, "name": "Chapter 17", "pages": 14}, {"n": 18.0, "name": "Chapter 18", "pages": 14}, {"n": 19.0, "name": "Chapter 19", "pages": 14}, {"n": 20.0, "name": "Chapter 20", "pages": 14}, {"n": 21.0, "name": "Chapter 21", "pages": 14}, {"n": 22.0, "name": "Chapter 22", "pages": 14}, {"n": 23.0, "name": "Chapter 23", "pages": 14}, {"n": 24.0, "name": "Chapter 24", "pages": 14}, {"n": 25.0, "name": "Chapter 25", "pages": 14}, {"n": 26.0, "name": "Chapter 26", "pages": 19}, {"n": 27.0, "name": "Chapter 27", "pages": 18}, {"n": 28.0, "name": "Chapter 28", "pages": 18}]}];
+const GENRES = ['همه', ...new Set(MANGAS.flatMap(m => m.genres))];
+const PALETTE = [['#7a1f2b','#e8a25b'],['#1f4e5a','#8ad1c2'],['#3b2a6b','#c9a7f2'],['#5a3a1f','#f0c27a'],['#1d3b2e','#9ad9a8']];
+const cover = (m, i, cls) => `<div class="${cls}" style="background:linear-gradient(160deg,${PALETTE[i%PALETTE.length][0]},${PALETTE[i%PALETTE.length][1]})"><span>${m.fa}</span></div>`;
+const toFa = n => String(n).replace(/\d/g, d => '۰۱۲۳۴۵۶۷۸۹'[d]);
+let genre = 'همه', q = '';
+const app = document.getElementById('app');
+function library() {
+  const list = MANGAS.filter(m => (genre === 'همه' || m.genres.includes(genre)) && (!q || (m.fa + m.title).toLowerCase().includes(q.toLowerCase())));
+  app.innerHTML = `
+    <div class="hero"><div style="font-size:34px">📚</div><div><b>امروز چه بخوانیم؟</b><p>${toFa(MANGAS.length)} مانگا · فصل‌های رایگان فارسی</p></div></div>
+    <input class="search" id="q" placeholder="جستجوی مانگا…" value="${q}">
+    <div class="chips">${GENRES.map(g => `<span class="chip ${g===genre?'on':''}" data-g="${g}">${g}</span>`).join('')}</div>
+    <div class="sec">همه مانگاها <small>${toFa(list.length)} مورد</small></div>
+    <div class="grid">${list.map((m) => { const i = MANGAS.indexOf(m); return `<div class="card" data-id="${m.id}">${cover(m, i, 'cover')}<div class="meta"><h3>${m.fa}</h3><p>${m.author || '—'}</p><span class="badge">${toFa(m.chapters.length)} فصل</span></div></div>`; }).join('')}</div>`;
+  document.getElementById('q').oninput = e => { q = e.target.value; library(); document.getElementById('q').focus(); };
+  app.querySelectorAll('.chip').forEach(c => c.onclick = () => { genre = c.dataset.g; library(); });
+  app.querySelectorAll('.card').forEach(c => c.onclick = () => location.hash = '#/m/' + c.dataset.id);
+}
+function detail(id) {
+  const m = MANGAS.find(x => String(x.id) === id); const i = MANGAS.indexOf(m);
+  const desc = m.descFa || m.desc || 'توضیحات این مانگا هنوز اضافه نشده است.';
+  app.innerHTML = `
+    <div style="margin:8px 0"><a href="#/" style="color:var(--mut);font-size:13px">← کتابخانه</a></div>
+    <div class="detail">
+      <div>${cover(m, i, 'dcover')}</div>
+      <div>
+        <h1>${m.fa}</h1>
+        <p class="sub">${m.title}${m.author ? ' · ' + m.author : ''}${m.year ? ' · ' + toFa(m.year) : ''}</p>
+        <div>${m.genres.map(g => `<span class="badge">${g}</span>`).join(' ')}</div>
+        <p class="desc">${desc}</p>
+        <div class="btns"><button class="btn" data-read="${m.chapters[0] ? m.chapters[0].n : ''}">شروع خواندن</button><button class="btn ghost">افزودن به کتابخانه</button></div>
+        <div class="sec">فصل‌ها <small>${toFa(m.chapters.length)} فصل</small></div>
+        <div class="clist">${m.chapters.slice().reverse().map(c => `<div class="crow" data-read="${c.n}"><div>فصل ${toFa(c.n)}${c.name ? '<small>' + c.name + '</small>' : ''}</div><em>${toFa(c.pages)} صفحه ›</em></div>`).join('') || '<div class="crow">فصلی منتشر نشده است</div>'}</div>
+      </div>
+    </div>`;
+  app.querySelectorAll('[data-read]').forEach(el => el.onclick = () => { if (el.dataset.read !== '') location.hash = `#/r/${id}/${el.dataset.read}`; });
+}
+function reader(id, n) {
+  const m = MANGAS.find(x => String(x.id) === id); const idx = m.chapters.findIndex(c => String(c.n) === String(n));
+  const c = m.chapters[idx]; if (!c) return detail(id);
+  let p = 1; const total = c.pages || 1;
+  const draw = () => {
+    app.innerHTML = `
+      <div class="reader">
+        <div class="rtop"><a href="#/m/${id}">← ${m.fa}</a><span>فصل ${toFa(c.n)} · صفحه ${toFa(p)} از ${toFa(total)}</span></div>
+        <div class="prog"><i style="width:${Math.round(p/total*100)}%"></i></div>
+        <div class="page"><div class="sheet">
+          <div class="panel p1"></div>
+          <div class="bubble">${c.name || 'صفحه نمونه'}</div>
+          <div class="panel p2"></div><div class="panel p3"></div>
+          <div class="lbl">${m.fa} · ${toFa(c.n)}-${toFa(p)}</div>
+        </div></div>
+        <div class="rbtm"><button id="nx">صفحه بعد ›</button><button id="pv">‹ صفحه قبل</button></div>
+      </div>`;
+    document.getElementById('nx').onclick = () => { if (p < total) { p++; draw(); } else if (idx + 1 < m.chapters.length) location.hash = `#/r/${id}/${m.chapters[idx+1].n}`; };
+    document.getElementById('pv').onclick = () => { if (p > 1) { p--; draw(); } else if (idx > 0) location.hash = `#/r/${id}/${m.chapters[idx-1].n}`; };
+  };
+  draw();
+}
+function route() {
+  const h = location.hash || '#/';
+  const r = h.match(/^#\/r\/([^/]+)\/(.+)$/), d = h.match(/^#\/m\/([^/]+)$/);
+  if (r) reader(r[1], r[2]); else if (d) detail(d[1]); else library();
+  window.scrollTo(0, 0);
+}
+addEventListener('hashchange', route); route();
+</script>
+</body>
+</html>

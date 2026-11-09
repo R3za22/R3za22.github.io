@@ -3,6 +3,7 @@ import path from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { scanDemo } from './scan-demo.mjs';
+import { vendorizeAssets, fixRootAssetRefs } from './vendor-assets.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const config = JSON.parse(fs.readFileSync(path.join(root, 'demos.config.json'), 'utf8'));
@@ -45,5 +46,7 @@ for (const entry of config) {
   fs.rmSync(dest, { recursive: true, force: true });
   fs.mkdirSync(path.dirname(dest), { recursive: true });
   fs.cpSync(src, dest, { recursive: true });
+  vendorizeAssets(dest);
+  fixRootAssetRefs(dest, entry.slug);
   console.log(`copied ${entry.slug} to public/demos/${entry.slug}`);
 }

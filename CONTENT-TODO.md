@@ -16,7 +16,7 @@ the repositories, the design files and the plans in `My Profile/docs/`.
 - **Mangaro period.** The site says "2024 — now". The Mangaro repository's first
   commit is dated 2026-06, so confirm the start year.
 - **Old Profit credit.** Confirm the backend credit (Ali Sabet Imani,
-  github.com/Ali1375SI) and the period 2024–25.
+  github.com/Ali1375SI). Role set to programming team lead, full-time, 2024–25.
 - **ShahContract credit.** The Adventureum credit line is in the EN and FA files;
   keep or remove it.
 - **TrapClub role.** Set to "Frontend" as an assumption. Confirm.

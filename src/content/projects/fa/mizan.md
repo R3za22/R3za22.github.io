@@ -9,17 +9,19 @@ links:
   demo: "/demos/mizan/"
 order: 7
 featured: false
-images: []
 media:
   - type: image
     src: "projects/mizan/1.webp"
-    alt: "صفحه اصلی میزان"
+    alt: "صفحه اصلی میزان روی گوشی: قهوه فعلی، تنظیمات آسیاب و شات‌های اخیر"
   - type: image
     src: "projects/mizan/2.webp"
-    alt: "فهرست قهوه‌های میزان"
+    alt: "کتابخانه قهوه‌های میزان با برچسب وضعیت و یادداشت تنظیم آسیاب"
   - type: image
     src: "projects/mizan/3.webp"
-    alt: "صفحه آموزش میزان"
+    alt: "تایمر شات میزان روی گوشی با نمایش دوز، زمان، خروجی و نسبت"
+  - type: image
+    src: "projects/mizan/4.webp"
+    alt: "صفحه یادگیری میزان با توضیحات کوتاه درباره استخراج و آسیاب"
 demoNote: "رابط فارسی"
 ---
 

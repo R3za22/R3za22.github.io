@@ -6,15 +6,13 @@ status: "shipped"
 team: false
 stack: ["React", "Vite", "Vitest", "Playwright"]
 links:
-  github: "https://github.com/R3za22/Tic-Tac-Toe-2024"
   demo: "/demos/tic-tac-toe/"
 order: 21
 featured: false
-images: []
 media:
   - type: image
     src: "projects/tic-tac-toe/1.webp"
-    alt: "Tic-Tac-Toe game board"
+    alt: "Tic-Tac-Toe mid-game board with scores, undo and restart controls"
 early: true
 ---
 

@@ -9,17 +9,16 @@ links:
   demo: "/demos/trapclub/"
 order: 4
 featured: false
-images: []
 media:
   - type: image
     src: "projects/trapclub/1.webp"
-    alt: "TrapClub storefront home page"
+    alt: "TrapClub home page with hero, new collection and category tiles"
   - type: image
     src: "projects/trapclub/2.webp"
-    alt: "TrapClub product catalogue"
+    alt: "TrapClub product grid with category filters and product prices"
   - type: image
     src: "projects/trapclub/3.webp"
-    alt: "TrapClub checkout page"
+    alt: "TrapClub product page with colour and size options and gallery"
 ---
 
 ## 01 Overview

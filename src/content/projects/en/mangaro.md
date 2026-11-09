@@ -10,17 +10,26 @@ status: "production"
 team: false
 stack: ["Kotlin", "Jetpack Compose", "SQLDelight", "Django", "DRF", "PostgreSQL", "Zarinpal", "GitHub Actions", "Liara"]
 links:
-  demo: "/demos/mangaro/"
+  demo: "/demos/mangaro-reader/"
+  adminDemo: "/demos/mangaro/"
 order: 1
 featured: true
-images: []
 media:
   - type: image
     src: "projects/mangaro/1.webp"
-    alt: "Mangaro home screen on a phone"
+    alt: "Mangaro reader library on a phone with genre chips and search"
   - type: image
     src: "projects/mangaro/2.webp"
-    alt: "Mangaro home page in a desktop browser"
+    alt: "Mangaro manga detail on a phone with synopsis and chapter list"
+  - type: image
+    src: "projects/mangaro/3.webp"
+    alt: "Mangaro page reader on a phone with chapter, page count and page controls"
+  - type: image
+    src: "projects/mangaro/4.webp"
+    alt: "Mangaro admin dashboard overview with reader KPIs and attention queue"
+  - type: image
+    src: "projects/mangaro/5.webp"
+    alt: "Mangaro admin revenue page with payment charts and plan mix"
 architecture:
   nodes:
     - title: "Android app"
@@ -53,4 +62,6 @@ I designed and built the whole system: the Android client, the Django API, phone
 
 ## 04 Result
 
-Live in production on Liara, currently at version 1.13.
+Live in production on Liara, currently at version 1.13. [placeholder] real numbers (users, subscribers, chapters), if available.
+
+**What I'd do differently:** [placeholder] reflection, one or two sentences.

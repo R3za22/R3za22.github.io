@@ -29,17 +29,14 @@ architecture:
     - "Liara → hosting"
 media:
   - type: image
-    src: "projects/aiprofit/panel.png"
-    alt: "AIProfit user panel"
+    src: "projects/aiprofit/1.webp"
+    alt: "AIProfit home with the investment-opportunity hero and analysis cards"
   - type: image
-    src: "projects/aiprofit/admin-dashboard.png"
-    alt: "AIProfit admin dashboard"
+    src: "projects/aiprofit/2.webp"
+    alt: "AIProfit investor bot page with the plan comparison and signal summary"
   - type: image
-    src: "projects/aiprofit/admin-opportunities.png"
-    alt: "AIProfit admin opportunities list"
-  - type: image
-    src: "projects/aiprofit/admin-articles.png"
-    alt: "AIProfit admin articles list"
+    src: "projects/aiprofit/3.webp"
+    alt: "AIProfit learning page with course cards and progress"
 demoNote: "Persian UI · static snapshot"
 ---
 
