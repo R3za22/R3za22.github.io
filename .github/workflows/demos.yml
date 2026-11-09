@@ -36,7 +36,7 @@ jobs:
       - name: Check demo ref exists
         id: ref
         env:
-          GH_TOKEN: ${{ secrets.DEMOS_READ_TOKEN }}
+          GH_TOKEN: ${{ secrets.DEMOS_READ_TOKEN || github.token }}
         run: |
           if git ls-remote --exit-code "https://x-access-token:${GH_TOKEN}@github.com/${{ matrix.demo.repo }}.git" "${{ matrix.demo.ref }}" >/dev/null 2>&1; then
             echo "ok=true" >> "$GITHUB_OUTPUT"
@@ -50,7 +50,7 @@ jobs:
           path: src-demo
           repository: ${{ matrix.demo.repo }}
           ref: ${{ matrix.demo.ref }}
-          token: ${{ secrets.DEMOS_READ_TOKEN }}
+          token: ${{ secrets.DEMOS_READ_TOKEN || github.token }}
       - uses: actions/setup-node@v4
         if: steps.ref.outputs.ok == 'true'
         with:
