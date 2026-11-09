@@ -1,0 +1,7 @@
+:HL["/demos/mizan/_next/static/chunks/08xc_exa6qs94.css","style"]
+:HL["/demos/mizan/_next/static/media/3146272aa7a4924e-s.p.21se6xk6bxqs6.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/demos/mizan/_next/static/media/413d8ff922cbc3a2-s.p.2avnhkksosb5d.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/demos/mizan/_next/static/media/8056169c9d560660-s.p.41rroleoq1br7.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+2:[["children",{"s":"__PAGE__","h":160}]]
+1:[["children",{"s":"settings","h":96,"c":"$Q2"}]]
+0:{"b":"UfRdw5XRKt-_itgqbYxiM","t":{"t":{"s":"","h":80,"c":"$Q1"}}}

@@ -1,0 +1,12 @@
+# Site-repo gitleaks scan. Built demo bundles under public/demos are not
+# source code and are scanned separately by the demos workflow (gitleaks on
+# each demo's output and scripts/scan-demo.mjs), so they are excluded here.
+# A generic-api-key hit in a minified Zaboon bundle (OFFLINE_KEY=!0, a boolean)
+# is a false positive that broke every demo job.
+
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Built demo bundles, scanned by the demos workflow instead"
+paths = ['''^public/demos/''']

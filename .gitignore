@@ -5,6 +5,4 @@ dist
 test-results
 playwright-report
 .lighthouseci
-public/demos/*
-!public/demos/mangaro-reader/
 dist-demos/
