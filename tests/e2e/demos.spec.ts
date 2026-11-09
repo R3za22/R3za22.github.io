@@ -54,7 +54,7 @@ test.describe('demo links on cards', () => {
 
   test('aiprofit case study shows three screenshots and the note', async ({ page }) => {
     await page.goto('/work/aiprofit');
-    await expect(page.locator('[data-media] img')).toHaveCount(3);
+    await expect(page.locator('[data-phone-frame]')).toHaveCount(3);
     await expect(page.locator('.demo-note')).toHaveText('Persian UI · static snapshot');
   });
 });

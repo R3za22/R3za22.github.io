@@ -58,9 +58,9 @@ test.describe('mangaro case study at 1440x900', () => {
     await expect(page.locator('[data-fact]')).toHaveCount(4);
   });
 
-  test('two screenshot frames for mangaro', async ({ page }) => {
+  test('five screenshot frames for mangaro (reader and dashboard)', async ({ page }) => {
     await page.goto('/work/mangaro');
-    await expect(page.locator('[data-phone-frame]')).toHaveCount(2);
+    await expect(page.locator('[data-phone-frame]')).toHaveCount(5);
   });
 
   test('section labels appear in order', async ({ page }) => {
