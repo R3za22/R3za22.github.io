@@ -37,7 +37,7 @@ export function vendorizeAssets(dir) {
 export function fixRootAssetRefs(dir, slug) {
   const assets = path.join(dir, 'assets');
   if (!fs.existsSync(assets)) return 0;
-  const have = new Set(fs.readdirSync(assets));
+  const have = new Set(fs.readdirSync(assets).filter((f) => fs.statSync(path.join(assets, f)).isFile()));
   let changed = 0;
   const re = new RegExp(`/demos/${slug}/([^"'()\\s/]+)`, 'g');
   const walk = (d) => {
